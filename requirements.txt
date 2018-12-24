@@ -1,0 +1,7 @@
+appdirs==1.4.3
+attrs==18.2.0
+black==18.9b0
+Click==7.0
+Django==2.1.4
+pytz==2018.7
+toml==0.10.0
