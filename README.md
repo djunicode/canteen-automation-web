@@ -15,7 +15,7 @@ python3 manage.py migrate
 python3 manage.py runserver
 ```
 
-**Note:** 1) Before adding or commiting to git, please run `black .` inside this directory. This is important because we are using Black code formatter for this project and Travis build will fail otherwise.
+**Note:** 1) Before adding or commiting to git, please run `black canteenAutomation/`, `black canteenWeb/` and `black canteenApp/` inside this directory. This is important because we are using Black code formatter for this project and Travis build will fail otherwise.
 <br>
 2) The database we are using is sqllite3 for the prototype. We may change it to PostgreSQL later.
 
