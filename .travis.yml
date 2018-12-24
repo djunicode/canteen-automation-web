@@ -17,5 +17,6 @@ before_script:
  - python3 manage.py migrate
 
 script:
- - black .
+ - black --check canteenAutomation/
+ - black --check canteenWeb/
  - python3 manage.py test
