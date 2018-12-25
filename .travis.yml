@@ -7,7 +7,7 @@ env:
  - DJANGO=2.1.4
 
 before_install:
- - export DJANGO_SETTINGS_MODULE=canteenWeb.settings
+ - export DJANGO_SETTINGS_MODULE=canteenAutomation.settings
 
 install:
  - pip install -r requirements.txt
@@ -19,4 +19,5 @@ before_script:
 script:
  - black --check canteenAutomation/
  - black --check canteenWeb/
+ - black --check canteenApp/
  - python3 manage.py test
