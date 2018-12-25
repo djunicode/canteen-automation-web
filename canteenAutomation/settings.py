@@ -41,9 +41,7 @@ DJANGO_APPS = [
 ]
 
 # NOTE: Add new apps here.
-USER_APPS = [
-    "canteenWeb",
-]
+USER_APPS = ["canteenWeb"]
 
 # User apps are appended to the end of the list.
 INSTALLED_APPS = DJANGO_APPS + USER_APPS
@@ -92,7 +90,7 @@ DATABASES = {
 
 # Custom auth user model.
 # https://docs.djangoproject.com/en/2.1/topics/auth/customizing/#extending-the-existing-user-model
-AUTH_USER_MODEL = 'canteenWeb.User'
+AUTH_USER_MODEL = "canteenWeb.User"
 
 
 # Password validation

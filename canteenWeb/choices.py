@@ -6,8 +6,8 @@
 
 # Order.payment_mode
 PAYMENT_MODE_CHOICES = (
-    ('ONLINE', "Online Payment Gateway"),
-    ('COD', "Cash on Counter/ Delivery"),
+    ("ONLINE", "Online Payment Gateway"),
+    ("COD", "Cash on Counter/ Delivery"),
 )
 
 # Order.status
