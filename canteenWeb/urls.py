@@ -1,5 +1,4 @@
-"""canteenAutomation URL Configuration
-
+"""
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
 Examples:
@@ -13,8 +12,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path, include
-import canteenWeb.urls
+from rest_framework import routers
+from . import views
 
-urlpatterns = [path("admin/", admin.site.urls), path("", include(canteenWeb.urls))]
+router = routers.DefaultRouter()
+router.register("orders", views.OrderViewSet)
+
+urlpatterns = [path("web/", include(router.urls))]
