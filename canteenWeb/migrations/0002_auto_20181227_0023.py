@@ -7,94 +7,94 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('canteenWeb', '0001_initial'),
-    ]
+    dependencies = [("canteenWeb", "0001_initial")]
 
     operations = [
         migrations.AddField(
-            model_name='studentprofile',
-            name='admission_year',
+            model_name="studentprofile",
+            name="admission_year",
             field=models.PositiveSmallIntegerField(default=1),
         ),
         migrations.AddField(
-            model_name='studentprofile',
-            name='department',
+            model_name="studentprofile",
+            name="department",
             field=models.CharField(default=None, max_length=30),
         ),
         migrations.AddField(
-            model_name='studentprofile',
-            name='division',
-            field=models.CharField(default='A', max_length=1),
+            model_name="studentprofile",
+            name="division",
+            field=models.CharField(default="A", max_length=1),
         ),
         migrations.AddField(
-            model_name='studentprofile',
-            name='student',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="studentprofile",
+            name="student",
+            field=models.OneToOneField(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AddField(
-            model_name='teacherprofile',
-            name='department',
+            model_name="teacherprofile",
+            name="department",
             field=models.CharField(default=None, max_length=30),
         ),
         migrations.AddField(
-            model_name='teacherprofile',
-            name='floor',
+            model_name="teacherprofile",
+            name="floor",
             field=models.PositiveSmallIntegerField(default=None),
         ),
         migrations.AddField(
-            model_name='teacherprofile',
-            name='teacher',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="teacherprofile",
+            name="teacher",
+            field=models.OneToOneField(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AddField(
-            model_name='user',
-            name='EMAIL_FIELD',
+            model_name="user",
+            name="EMAIL_FIELD",
             field=models.EmailField(blank=True, max_length=40, unique=True),
         ),
         migrations.AddField(
-            model_name='user',
-            name='USERNAME_FIELD',
-            field=models.CharField(default='', max_length=30, unique=True),
+            model_name="user",
+            name="USERNAME_FIELD",
+            field=models.CharField(default="", max_length=30, unique=True),
         ),
         migrations.AddField(
-            model_name='user',
-            name='device_id',
-            field=models.CharField(default='', max_length=30),
+            model_name="user",
+            name="device_id",
+            field=models.CharField(default="", max_length=30),
         ),
         migrations.AddField(
-            model_name='user',
-            name='is_banned',
+            model_name="user",
+            name="is_banned",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='user',
-            name='is_student',
+            model_name="user",
+            name="is_student",
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='user',
-            name='is_teacher',
+            model_name="user",
+            name="is_teacher",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='user',
-            name='phone_number',
+            model_name="user",
+            name="phone_number",
             field=models.CharField(blank=True, max_length=12),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='first_name',
-            field=models.CharField(max_length=15),
+            model_name="user", name="first_name", field=models.CharField(max_length=15)
         ),
         migrations.AlterField(
-            model_name='user',
-            name='is_staff',
-            field=models.BooleanField(default=False),
+            model_name="user", name="is_staff", field=models.BooleanField(default=False)
         ),
         migrations.AlterField(
-            model_name='user',
-            name='last_name',
-            field=models.CharField(max_length=15),
+            model_name="user", name="last_name", field=models.CharField(max_length=15)
         ),
     ]
