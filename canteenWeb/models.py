@@ -16,6 +16,7 @@ class User(AbstractUser):
     is_student = models.BooleanField(default = True)# to check whether the user is student
     is_teacher = models.BooleanField(default = False)# to check whether the user is teacher
     is_banned = models.BooleanField(default = False) # To check whether the user is banned
+    is_staff = models.BooleanField(default = False)
 
 class StudentProfile(models.Model):
     student =  models.OneToOneField(User, on_delete = models.CASCADE, null = True)
