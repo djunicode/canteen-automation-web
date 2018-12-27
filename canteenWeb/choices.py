@@ -13,14 +13,14 @@ PAYMENT_MODE_CHOICES = (
 # Order.status
 # Dictionary for easy editing or access.
 STATUS_DICTIONARY = {
-    -3: "Not picked up",
-    -2: "Rejected by Canteen",
-    -1: "Cancelled by User",
-    0: "New",
-    1: "Preparing",
-    2: "Prepared",
-    3: "En-route",
+    "Not picked up": -3,
+    "Rejected by Canteen": -2,
+    "Cancelled by User": -1,
+    "New": 0,
+    "Preparing": 1,
+    "Prepared": 2,
+    "En-route": 3,
 }
 
-# Create a choices list from the above dictionary for Order.status
-STATUS_CHOICES = tuple(STATUS_DICTIONARY.items())
+# Create a reversed choices list from the above dictionary for Order.status
+STATUS_CHOICES = tuple(zip(STATUS_DICTIONARY.values(), STATUS_DICTIONARY.keys()))
