@@ -16,9 +16,10 @@ STATUS_DICTIONARY = {
     -3: "Not picked up",
     -2: "Rejected by Canteen",
     -1: "Cancelled by User",
-    0: "Preparing",
-    1: "Prepared",
-    2: "En-route",
+    0: "New",
+    1: "Preparing",
+    2: "Prepared",
+    3: "En-route",
 }
 
 # Create a choices list from the above dictionary for Order.status
