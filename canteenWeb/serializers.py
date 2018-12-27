@@ -18,7 +18,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
-    items = OrderItemSerializer(many=True)
+    status = serializers.IntegerField(read_only=True)
 
     time_issued = serializers.DateTimeField(read_only=True)
     time_sheduled = serializers.DateTimeField(read_only=True)
@@ -38,7 +38,6 @@ class OrderSerializer(serializers.ModelSerializer):
             "time_sheduled",
             "time_prepared",
             "time_delivered",
-            "items",
         )
 
     def create(self, validated_data):

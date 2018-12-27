@@ -35,7 +35,7 @@ class MenuItem(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    total_price = models.IntegerField(default=0)
+    total_price = models.IntegerField(default=0)  # TODO: FloatField!
     is_fulfilled = models.BooleanField(default=False)
     status = models.SmallIntegerField(choices=choices.STATUS_CHOICES, default=0)
     transaction_id = models.CharField(max_length=256, blank=True, default="")
@@ -50,9 +50,9 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
-    order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     quantity = models.SmallIntegerField()
-    comment = models.TextField()
+    comment = models.TextField(blank=True)
     price = models.IntegerField()
 
 
