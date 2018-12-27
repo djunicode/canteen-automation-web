@@ -19,4 +19,4 @@ from . import views
 router = routers.DefaultRouter()
 router.register("orders", views.OrderViewSet)
 
-urlpatterns = [path("web/", include(router.urls))]
+urlpatterns = [path("", include(router.urls))]

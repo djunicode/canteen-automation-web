@@ -17,4 +17,4 @@ from django.contrib import admin
 from django.urls import path, include
 import canteenWeb.urls
 
-urlpatterns = [path("admin/", admin.site.urls), path("", include(canteenWeb.urls))]
+urlpatterns = [path("admin/", admin.site.urls), path("web/", include(canteenWeb.urls))]
