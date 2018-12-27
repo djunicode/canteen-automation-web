@@ -41,7 +41,7 @@ DJANGO_APPS = [
 ]
 
 # NOTE: Add new apps here.
-USER_APPS = ["canteenWeb"]
+USER_APPS = ["canteenWeb", "rest_framework"]
 
 # User apps are appended to the end of the list.
 INSTALLED_APPS = DJANGO_APPS + USER_APPS
@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Kolkata"
 
 USE_I18N = True
 

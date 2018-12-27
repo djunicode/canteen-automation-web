@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import datetime
 
 #########################
 # AUTHENTICATION SYSTEM #
@@ -23,8 +24,22 @@ class TeacherProfile(models.Model):
 #####################
 
 
+CHOICES = (
+    ('JAIN','Jain'),
+    ('NON JAIN','Non Jain'),
+    ('BOTH','Both'),
+)
+
 class MenuItem(models.Model):
-    pass
+    name = models.CharField(max_length = 20)
+    price = models.PositiveIntegerField(blank = False, null = False)
+    is_available = models.BooleanField(default = True)
+    preparation_time = models.TimeField(blank = True, null = True)
+    options = models.CharField(max_length = 8, choices = CHOICES)
+
+    def __str__(self):
+        return self.name
+
 
 
 ###################
