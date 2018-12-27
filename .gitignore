@@ -102,8 +102,3 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-
-# django migrations
-**/migrations/*.py
-# except for __init__.py
-!**/migrations/__init__.py
