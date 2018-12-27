@@ -47,10 +47,15 @@ class Order(models.Model):
         max_length=8, choices=choices.PAYMENT_MODE_CHOICES, default="COD"
     )
 
+    def __str__(self):
+        return "{}|{} >> {}".format(
+            self.user.username, self.time_issued, self.total_price
+        )
+
 
 class OrderItem(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
     quantity = models.SmallIntegerField()
     comment = models.TextField(blank=True)
     price = models.IntegerField()
