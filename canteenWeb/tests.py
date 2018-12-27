@@ -30,7 +30,5 @@ class OrderTest(TestCase):
     def tearDown(self):
         Order.objects.all().delete()
 
-    def test_accept(self):
-        # Get list
-        response = self.client.get(self.URL)
-        print(type(response))
+    # TODO: Complete tests.
+    # Vikrant's note: Order rejection and acceptance has been tested in Postman. Going on a vacation so will complete tests later.
