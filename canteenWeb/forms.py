@@ -1,7 +1,7 @@
 from django import forms
 
 
-class UserForm(forms.ModelForm):
+class UserCreationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = "__all__"
