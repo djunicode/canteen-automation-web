@@ -6,6 +6,7 @@ from . import choices
 # ORDERING SYSTEM #
 ###################
 
+
 class OrderItemSerializer(serializers.ModelSerializer):
     menu_item = serializers.SlugRelatedField(
         slug_field="name", queryset=MenuItem.objects.all()
@@ -14,6 +15,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = "__all__"
+
 
 class OrderSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
@@ -55,18 +57,13 @@ class OrderSerializer(serializers.ModelSerializer):
         # TODO: COMPLETE
         return instance
 
+
 #####################
 # CUSTOMIZABLE MENU #
 #####################
 
-class MenuItemSerializer(serializers.ModelSerializer):
 
+class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
-        fields = (
-            "id",
-            "name",
-            "price",
-            "preparation_time",
-            "options",
-        )
+        fields = ("id", "name", "price", "preparation_time", "options")

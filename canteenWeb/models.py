@@ -45,12 +45,12 @@ class MenuItem(models.Model):
     price = models.PositiveIntegerField(blank=False, null=False)
     is_available = models.BooleanField(default=True)
     preparation_time = models.TimeField(blank=True, null=True)
-    options = models.CharField(max_length=8, choices=choices.MENU_ITEM_CHOICES, default="NON JAIN")
+    options = models.CharField(
+        max_length=8, choices=choices.MENU_ITEM_CHOICES, default="NON JAIN"
+    )
 
     def __str__(self):
-        return (
-            self.name, self.price
-        )
+        return (self.name, self.price)
 
 
 ###################

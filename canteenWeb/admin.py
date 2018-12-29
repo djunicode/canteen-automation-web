@@ -16,6 +16,7 @@ class CustomUserCreationForm(UserCreationForm):
             "device_id",
         )
 
+
 admin.site.register(User, UserAdmin)
 
 # Remove groups from admin site.
