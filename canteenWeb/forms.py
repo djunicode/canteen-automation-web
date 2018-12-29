@@ -1,13 +1,29 @@
-from django import forms
+from django.contrib.auth.forms import (
+    UserCreationForm as BaseUserCreationForm,
+    BaseUserChangeForm,
+)
+from .models import User
+
+# Our custom user model.
+class UserCreationForm(BaseUserCreationForm):
+    class Meta(BaseUserCreationForm.Meta):
+        model = User
+        fields = BaseUserCreationForm.Meta.fields + (
+            "phone_number",
+            "is_banned",
+            "is_student",
+            "is_teacher",
+            "device_id",
+        )
 
 
-class UserCreationForm(forms.ModelForm):
+class UserUpdateForm(BaseUserChangeForm):
     class Meta:
         model = User
-        fields = "__all__"
-
-
-class UserUpdateForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ("phone_number", "is_banned", "is_student", "is_teacher", "device_id")
+        fields = BaseUserChangeForm.Meta.fields + (
+            "phone_number",
+            "is_banned",
+            "is_student",
+            "is_teacher",
+            "device_id",
+        )

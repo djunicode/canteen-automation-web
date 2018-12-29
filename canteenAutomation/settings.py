@@ -38,10 +38,11 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
 ]
 
 # NOTE: Add new apps here.
-USER_APPS = ["canteenWeb", "rest_framework"]
+USER_APPS = ["canteenWeb"]
 
 # User apps are appended to the end of the list.
 INSTALLED_APPS = DJANGO_APPS + USER_APPS
@@ -124,3 +125,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = "/static/"
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")

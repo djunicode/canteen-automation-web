@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
-from .models import *
+from .models import User, MenuItem, Order
 from django.contrib.auth.forms import UserCreationForm
 
 # Our custom user model.
@@ -16,7 +16,6 @@ class CustomUserCreationForm(UserCreationForm):
             "device_id",
         )
 
-
 admin.site.register(User, UserAdmin)
 
 # Remove groups from admin site.
@@ -24,3 +23,6 @@ admin.site.unregister(Group)
 
 # Our menu item model
 admin.site.register(MenuItem)
+
+# Ordering system
+admin.site.register(Order)
