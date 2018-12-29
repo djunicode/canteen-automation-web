@@ -103,5 +103,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# Node modules
+# migrations
+**/migrations/*
+
+# node modules
 node_modules/
