@@ -1,16 +1,51 @@
 from django.shortcuts import render
-from rest_framework import viewsets, permissions, status
+from rest_framework import viewsets, permissions, status, views
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from django.http import Http404
 from . import choices
 from .models import MenuItem, Order
 from .serializers import MenuItemSerializer, OrderSerializer
 
 # Create your views here.
-class MenuItemViewSet(viewsets.ModelViewSet):
-    queryset = MenuItem.objects.all()
-    serializer_class = MenuItemSerializer
+class MenuItemList(views.APIView):
+    def get(self, request):
+        menu_item = MenuItem.objects.all()
+        serializer = MenuItemSerializer(menu_item, many=True)
+        return Response(serializer.data)
+
+
+class MenuItemDetails(views.APIView):
+
     permission_classes = (permissions.IsAdminUser,)
+
+    def get_object(self, id):
+        try:
+            return MenuItem.objects.get(id=id)
+        except MenuItem.DoesNotExist:
+            raise Http404
+
+    def get(self, request, *args, **kwargs):
+        menu_item_id = kwargs["menu_item_id"]
+        menu_item = self.get_object(id=menu_item_id)
+        serializer = MenuItemSerializer(menu_item)
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        serializer = MenuItemSerializer(data=request.DATA)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, *args, **kwargs):
+        menu_item_id = kwargs["menu_item_id"]
+        menu_item = self.get_object(id=menu_item_id)
+        serializer = MenuItemSerializer(menu_item, data=request.DATA)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # FIXME: Change to ModelViewSet and add CRUD operations, with OrderItem support.
