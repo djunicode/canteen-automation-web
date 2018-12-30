@@ -7,19 +7,37 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='MenuItem',
+            name="MenuItem",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('price', models.PositiveSmallIntegerField()),
-                ('is_available', models.BooleanField(default=True)),
-                ('options', models.CharField(choices=[('Jain', 'Jain'), ('Non-Jain', 'Non-Jain'), ('Both', 'Both')], default='Non-Jain', max_length=10)),
-                ('preperation_time', models.PositiveSmallIntegerField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("price", models.PositiveSmallIntegerField()),
+                ("is_available", models.BooleanField(default=True)),
+                (
+                    "options",
+                    models.CharField(
+                        choices=[
+                            ("Jain", "Jain"),
+                            ("Non-Jain", "Non-Jain"),
+                            ("Both", "Both"),
+                        ],
+                        default="Non-Jain",
+                        max_length=10,
+                    ),
+                ),
+                ("preperation_time", models.PositiveSmallIntegerField()),
             ],
-        ),
+        )
     ]

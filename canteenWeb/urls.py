@@ -4,8 +4,6 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
-router.register('create', views.ItemViewSet, base_name='create')
+router.register("items", views.MenuViewSet)
 
-urlpatterns = [
-    url(r'', include(router.urls))
-]
+urlpatterns = [url("", include(router.urls))]

@@ -18,6 +18,6 @@ from django.contrib import admin
 from django.conf.urls import include
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^api/', include('canteenWeb.urls')),
+    url(r"^admin/", admin.site.urls),
+    url(r"^menu/", include("canteenWeb.urls")),
 ]
