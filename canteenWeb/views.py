@@ -9,15 +9,21 @@ from .serializers import MenuItemSerializer, OrderSerializer
 
 # Create your views here.
 class MenuItemList(views.APIView):
+
     def get(self, request):
         menu_item = MenuItem.objects.all()
         serializer = MenuItemSerializer(menu_item, many=True)
         return Response(serializer.data)
 
+    def post(self, request):
+        serializer = MenuItemSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class MenuItemDetails(views.APIView):
-
-    permission_classes = (permissions.IsAdminUser,)
 
     def get_object(self, id):
         try:
@@ -31,17 +37,10 @@ class MenuItemDetails(views.APIView):
         serializer = MenuItemSerializer(menu_item)
         return Response(serializer.data)
 
-    def post(self, request, *args, **kwargs):
-        serializer = MenuItemSerializer(data=request.DATA)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     def put(self, request, *args, **kwargs):
         menu_item_id = kwargs["menu_item_id"]
         menu_item = self.get_object(id=menu_item_id)
-        serializer = MenuItemSerializer(menu_item, data=request.DATA)
+        serializer = MenuItemSerializer(menu_item, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

@@ -50,7 +50,7 @@ class MenuItem(models.Model):
     )
 
     def __str__(self):
-        return (self.name, self.price)
+        return self.name
 
 
 ###################
