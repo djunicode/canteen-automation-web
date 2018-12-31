@@ -9,7 +9,6 @@ from .serializers import MenuItemSerializer, OrderSerializer
 
 # Create your views here.
 class MenuItemList(views.APIView):
-
     def get(self, request):
         menu_item = MenuItem.objects.all()
         serializer = MenuItemSerializer(menu_item, many=True)
@@ -24,7 +23,6 @@ class MenuItemList(views.APIView):
 
 
 class MenuItemDetails(views.APIView):
-
     def get_object(self, id):
         try:
             return MenuItem.objects.get(id=id)
