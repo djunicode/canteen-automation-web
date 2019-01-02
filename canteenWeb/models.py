@@ -41,7 +41,7 @@ class TeacherProfile(models.Model):
 
 
 class MenuItem(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, null=False, blank=False, unique=True)
     price = models.PositiveIntegerField(blank=False, null=False)
     is_available = models.BooleanField(default=True)
     preparation_time = models.TimeField(blank=True, null=True)

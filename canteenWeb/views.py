@@ -14,6 +14,8 @@ class MenuItemList(views.APIView):
         serializer = MenuItemSerializer(menu_item, many=True)
         return Response(serializer.data)
 
+
+class AddMenuItem(views.APIView):
     def post(self, request):
         serializer = MenuItemSerializer(data=request.data)
         if serializer.is_valid():
@@ -41,7 +43,7 @@ class MenuItemDetails(views.APIView):
         serializer = MenuItemSerializer(menu_item, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
