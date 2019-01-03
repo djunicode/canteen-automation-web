@@ -20,50 +20,52 @@ const styles = {
   grow: {
     flexGrow: 1,
   },
+  appBar: {
+    width: `100%`,
+    height: 70,
+  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
-    
   },
-  
+
 };
 class MenuAppBar extends React.Component {
     state = {
-      
+
       anchorEl: null,
     };
-  
+
     handleChange = event => {
       this.setState({ auth: event.target.checked });
     };
-  
+
     handleMenu = event => {
       this.setState({ anchorEl: event.currentTarget });
     };
-  
+
     handleClose = () => {
       this.setState({ anchorEl: null });
     };
-  
+
     render() {
       const { classes } = this.props;
       const {  anchorEl } = this.state;
       const open = Boolean(anchorEl);
-  
+
       return (
         <div>
         <div className={classes.root}>
-          
-          <AppBar position="fixed">
+
+          <AppBar position="static" className={classes.appBar}>
             <Toolbar>
               <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
                 <MenuIcon />{/* logo */}
-  
               </IconButton>
               <Typography variant="h6" align="right" color="inherit" className={classes.grow}>
               john
               </Typography>
-              
+
                 <div>
                   <IconButton
                     aria-owns={open ? 'menu-appbar' : undefined}
@@ -73,7 +75,7 @@ class MenuAppBar extends React.Component {
                   >
                     <AccountCircle fontSize="large" />
                   </IconButton>
-                  
+
                   <Menu
                     id="menu-appbar"
                     anchorEl={anchorEl}
@@ -87,14 +89,14 @@ class MenuAppBar extends React.Component {
                     }}
                     open={open}
                     onClose={this.handleClose}
-                  >                
-              
+                  >
+
                   <MenuItem onClick={this.handleClose}>Logout</MenuItem>
-                  
+
                   </Menu>
-                
+
                 </div>
-              
+
             </Toolbar>
           </AppBar>
         </div>
@@ -106,7 +108,6 @@ class MenuAppBar extends React.Component {
   MenuAppBar.propTypes = {
     classes: PropTypes.object.isRequired,
   };
-  
+
 
 export default withStyles(styles)(MenuAppBar);
-
