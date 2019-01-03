@@ -61,5 +61,5 @@ class OrderSerializer(serializers.ModelSerializer):
 class MenuSerializer(serializers.ModelSerializer):
     class Meta:
 
-        model = models.MenuItem
+        model = MenuItem
         fields = ("name", "price", "options", "preperation_time", "is_available")
