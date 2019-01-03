@@ -23,6 +23,7 @@ const styles = theme => ({
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
+    marginTop: 71,
   },
   drawer: {
     width: drawerWidth,
@@ -30,6 +31,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    top: 70,
   },
   toolbar: theme.mixins.toolbar,
   content: {
@@ -37,8 +39,8 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit *3 ,
   },
- 
- 
+
+
 
 });
 
@@ -65,7 +67,7 @@ function PermanentDrawerLeft(props) {
         anchor="left"
       >
         <div className={classes.toolbar} />
-        
+        <p>Notification Component Here</p>  
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
