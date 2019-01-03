@@ -1,6 +1,5 @@
 # Byte-compiled / optimized / DLL files
 **/__pycache__
-canteen
 *.py[cod]
 *$py.class
 

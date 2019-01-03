@@ -1,14 +1,12 @@
 from django.conf.urls import url
 from django.conf.urls import include
-from rest_framework.routers import DefaultRouter
 from . import views
 
-router = DefaultRouter()
-router.register("items", views.MenuViewSet, basename='items')
-
 urlpatterns = [
-    url("", include(router.urls)),
-    url("signup", views.signup, name='signup'),
-    url("login", views.login_view, name='login'),
-    url("logout", views.logout_view, name='logout')
+    url(r"^$", views.ListMenu.as_view(), name="list"),
+    url(r"^create/$", views.CreateMenu.as_view(), name="create"),
+    url(r"^(?P<pk>\d+)/$", views.ModifyMenu.as_view(), name="modify"),
+    url(r"^signup/$", views.signup, name="signup"),
+    url(r"^login/$", views.login_view, name="login"),
+    url(r"^logout/$", views.logout_view, name="logout"),
 ]
