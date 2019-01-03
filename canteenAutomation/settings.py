@@ -30,7 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+# NOTE: Add django or third-party apps here.
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -40,6 +41,12 @@ INSTALLED_APPS = [
     "canteenWeb",
     "rest_framework",
 ]
+
+# NOTE: Add new apps here.
+USER_APPS = ["canteenWeb"]
+
+# User apps are appended to the end of the list.
+INSTALLED_APPS = DJANGO_APPS + USER_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -83,6 +90,11 @@ DATABASES = {
 }
 
 
+# Custom auth user model.
+# https://docs.djangoproject.com/en/2.1/topics/auth/customizing/#extending-the-existing-user-model
+AUTH_USER_MODEL = "canteenWeb.User"
+
+
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -114,4 +126,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = "/static/"
+
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
