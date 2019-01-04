@@ -27,6 +27,7 @@ function App() {
         <Route path="/Orders/Completed" component={Completed} exact />
         <Route component={Error}/>
       </Switch>
+      <Footer/>
       </div>
     </BrowserRouter>
 
