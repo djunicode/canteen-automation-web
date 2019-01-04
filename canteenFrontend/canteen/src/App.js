@@ -17,9 +17,10 @@ function App() {
   return(
     <BrowserRouter>
     <div>
-      {/* <NavHome/>      
+      {/* <NavHome/>
       <NavCompleted/>
       <NavPending/> */}
+      <MenuAppBar/>
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/Orders/Pending" component={Pending} exact />
@@ -28,7 +29,7 @@ function App() {
       </Switch>
       </div>
     </BrowserRouter>
-    
+
       //Should be in page:HOME
       // <div>
       //   <MenuAppBar/>
