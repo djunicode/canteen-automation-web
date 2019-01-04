@@ -18,7 +18,9 @@ from .serializers import OrderSerializer
 
 
 # FIXME: Change to ModelViewSet and add CRUD operations, with OrderItem support.
-class OrderViewSet(viewsets.ReadOnlyModelViewSet):
+class OrderViewSet(LoginRequiredMixin, viewsets.ReadOnlyModelViewSet):
+    login_url = "/menu/login/"
+    redirect_field_name = "login"
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
@@ -64,7 +66,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("/menu/login/")
+            return redirect("/login/")
     else:
         form = UserCreationForm()
     return render(request, "canteenWeb/signup.html", {"form": form})
@@ -76,7 +78,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("/menu/")
+            return redirect("/list/")
     else:
         form = AuthenticationForm()
     return render(request, "canteenWeb/login.html", {"form": form})
@@ -85,4 +87,4 @@ def login_view(request):
 def logout_view(request):
     if request.method == "POST":
         logout(request)
-        return redirect("/menu/login/")
+        return redirect("/login/")
