@@ -12,8 +12,8 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import Pending from './Pending';
-import Completed from './Completed';
+import Pending from './PendingOrders';
+import Completed from './CompletedOrders';
 
 function TabContainer(props) {
   return (
@@ -28,7 +28,7 @@ TabContainer.propTypes = {
 };
 
 function LinkTab(props) {
-  return <Tab component="a" onClick={event => event.preventDefault()} {...props} />;
+  return <Tab component="a" onClick={event => event.preventDefault()} {...props}/>;
 }
 
 const styles = theme => ({
@@ -87,20 +87,20 @@ const styles = theme => ({
 const stylesbar={
 	nav:{
 	 background: 'white',
-     color:'#0477BD',
-	  marginTop:-23,
-	  marginLeft:-25,
-	  marginRight:-67,
+    color:'#0477BD',
+	  marginTop: 0,
+	  marginLeft:0,
+	  marginRight:0,
 	  padding:0,
-	  
+
 }
-	
+
 };
 
 class NavTabs extends React.Component {
   state = {
     value: 0,
-   
+
   };
 
   handleChange = (event, value) => {
@@ -110,7 +110,7 @@ class NavTabs extends React.Component {
   render() {
     const { classes } = this.props;
     const { value } = this.state;
-    
+
 
     return (
       <NoSsr>
@@ -135,7 +135,7 @@ class NavTabs extends React.Component {
             />
           </div>
           </Toolbar>
-        
+
           </AppBar>
           {value === 0 && <TabContainer ><Pending/></TabContainer>}
           {value === 1 && <TabContainer ><Completed/></TabContainer>}

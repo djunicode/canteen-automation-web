@@ -12,6 +12,7 @@ import Error from './Error'
 import NavHome from './components/NavHome'
 import NavPending from './components/NavPending'
 import NavCompleted from './components/NavCompleted'
+import NavTabs from './Orders'
 function App() {
 
   return(
@@ -23,8 +24,7 @@ function App() {
       <MenuAppBar/>
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/Orders/Pending" component={Pending} exact />
-        <Route path="/Orders/Completed" component={Completed} exact />
+        <Route path="/Orders" component={NavTabs} exact />
         <Route component={Error}/>
       </Switch>
       <Footer/>
