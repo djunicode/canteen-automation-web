@@ -59,10 +59,15 @@ class OrderSerializer(serializers.ModelSerializer):
         return instance
 
 
-class MenuSerializer(serializers.ModelSerializer):
+#####################
+# CUSTOMIZABLE MENU #
+#####################
+
+
+class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
-        fields = ("name", "price", "options", "preperation_time", "is_available")
+        fields = ("id", "name", "price", "is_available", "preparation_time", "options")
 
 
 class SignUpSerializer(serializers.ModelSerializer):

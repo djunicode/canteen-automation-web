@@ -47,6 +47,11 @@ USER_APPS = ["canteenWeb"]
 # User apps are appended to the end of the list.
 INSTALLED_APPS = DJANGO_APPS + USER_APPS
 
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [],
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
+}
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

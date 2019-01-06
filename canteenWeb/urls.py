@@ -21,11 +21,15 @@ router = routers.DefaultRouter()
 router.register("orders", views.OrderViewSet)
 
 urlpatterns = [
-    url(r"^list/", views.ListMenu.as_view(), name="list"),
-    url(r"^create/", views.CreateMenu.as_view(), name="create"),
-    url(r"^(?P<pk>\d+)/", views.ModifyMenu.as_view(), name="modify"),
+    path("", include(router.urls)),
+    url(r"^menu_item/$", views.MenuItemList.as_view(), name="menu_item_list"),
+    url(r"^menu_item/add/$", views.AddMenuItem.as_view(), name="add_menu_item"),
+    url(
+        r"^menu_item/(?P<menu_item_id>[0-9]+)/$",
+        views.MenuItemDetails.as_view(),
+        name="menu_item_detail",
+    ),
     url(r"^signup/", views.SignUp.as_view(), name="signup"),
     url(r"^login/", views.Login.as_view(), name="login"),
     url(r"^logout/", views.Logout.as_view(), name="logout"),
-    path("", include(router.urls)),
 ]
