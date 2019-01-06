@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from rest_framework import viewsets, status
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
+from rest_framework import viewsets, status, filters
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.generics import (
@@ -7,20 +9,18 @@ from rest_framework.generics import (
     CreateAPIView,
     RetrieveUpdateDestroyAPIView,
 )
-from django.contrib.auth import login, logout
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.mixins import LoginRequiredMixin
-from . import serializers
-from . import models
+from rest_framework.views import APIView
 from . import choices
-from .models import Order
-from .serializers import OrderSerializer
-
+from .models import Order, MenuItem, User
+from .serializers import (
+    OrderSerializer,
+    MenuSerializer,
+    SignUpSerializer,
+    LoginSerializer,
+)
 
 # FIXME: Change to ModelViewSet and add CRUD operations, with OrderItem support.
-class OrderViewSet(LoginRequiredMixin, viewsets.ReadOnlyModelViewSet):
-    login_url = "/menu/login/"
-    redirect_field_name = "login"
+class OrderViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
@@ -42,49 +42,44 @@ class OrderViewSet(LoginRequiredMixin, viewsets.ReadOnlyModelViewSet):
 
 
 class ListMenu(ListAPIView):
-    queryset = models.MenuItem.objects.all()
-    serializer_class = serializers.MenuSerializer
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ("name",)
 
 
-class CreateMenu(LoginRequiredMixin, CreateAPIView):
-    login_url = "/menu/login/"
-    redirect_field_name = "login"
-    queryset = models.MenuItem.objects.all()
-    serializer_class = serializers.MenuSerializer
+class CreateMenu(CreateAPIView):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuSerializer
 
 
-class ModifyMenu(LoginRequiredMixin, RetrieveUpdateDestroyAPIView):
-    login_url = "/menu/login/"
-    redirect_field_name = "login"
-    queryset = models.MenuItem.objects.all()
-    serializer_class = serializers.MenuSerializer
+class ModifyMenu(RetrieveUpdateDestroyAPIView):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuSerializer
 
 
-def signup(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
+class SignUp(CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = SignUpSerializer
+
+
+class Login(APIView):
+    serializer_class = LoginSerializer
+
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            user = authenticate(
+                username=serializer.data.get("username"),
+                password=serializer.data.get("password"),
+            )
             login(request, user)
-            return redirect("/login/")
-    else:
-        form = UserCreationForm()
-    return render(request, "canteenWeb/signup.html", {"form": form})
+            return HttpResponseRedirect(redirect_to="/list/")
+        else:
+            return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
 
-def login_view(request):
-    if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect("/list/")
-    else:
-        form = AuthenticationForm()
-    return render(request, "canteenWeb/login.html", {"form": form})
-
-
-def logout_view(request):
-    if request.method == "POST":
+class Logout(APIView):
+    def post(self, request):
         logout(request)
-        return redirect("/login/")
+        return HttpResponseRedirect(redirect_to="/login/")

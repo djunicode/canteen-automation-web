@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Order, OrderItem, MenuItem
+from django.contrib.auth import get_user_model
+from .models import Order, OrderItem, MenuItem, User
 from . import choices
 
 ###################
@@ -60,6 +61,36 @@ class OrderSerializer(serializers.ModelSerializer):
 
 class MenuSerializer(serializers.ModelSerializer):
     class Meta:
-
         model = MenuItem
         fields = ("name", "price", "options", "preperation_time", "is_available")
+
+
+class SignUpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            "first_name",
+            "last_name",
+            "email",
+            "is_staff",
+            "username",
+            "password",
+        )
+        extra_kwargs = {"password": {"write_only": True}}
+
+    def create(self, validated_data):
+        user = User(
+            first_name=validated_data["first_name"],
+            last_name=validated_data["last_name"],
+            email=validated_data["email"],
+            is_staff=validated_data["is_staff"],
+            username=validated_data["username"],
+        )
+        user.set_password(validated_data["password"])
+        user.save()
+        return user
+
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=10)
+    password = serializers.CharField(style={"input_type": "password"})
