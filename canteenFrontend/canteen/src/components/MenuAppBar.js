@@ -21,7 +21,8 @@ const styles = {
     flexGrow: 1,
   },
   appBar: {
-    width: `100%`,
+    // width: `100%`,
+    position: 'fixed',
     height: 70,
   },
   menuButton: {
