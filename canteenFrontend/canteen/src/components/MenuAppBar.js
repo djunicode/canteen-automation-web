@@ -24,6 +24,7 @@ const styles = {
     // width: `100%`,
     position: 'fixed',
     height: 70,
+    backgroundColor:'#0477BD'
   },
   menuButton: {
     marginLeft: -12,

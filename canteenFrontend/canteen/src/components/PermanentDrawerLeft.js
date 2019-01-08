@@ -33,6 +33,7 @@ const styles = theme => ({
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
     marginTop: 71,
+    backgroundColor:'white'
   },
   drawer: {
     width: drawerWidth,
@@ -100,7 +101,7 @@ class PermanentDrawerLeft extends React.Component {
           <div style={{
             width:'30%', float:'left',backgroundColor: 'white',
             height:530,
-            borderTop:'3px solid #D0D8DD',borderBottom:'3px solid #D0D8DD',borderRight:'3px solid #D0D8DD',
+            borderBottom:'3px solid #D0D8DD',borderRight:'3px solid #D0D8DD',
             }}>
             #left content in there
 </div>
@@ -109,7 +110,7 @@ class PermanentDrawerLeft extends React.Component {
           backgroundColor:'#DDF3FD',height:530
           
           }}>
-          <div style={{width:'100%',height:70,backgroundColor:'white',borderTop:'3px solid #D0D8DD',
+          <div style={{width:'100%',height:70,backgroundColor:'white',
                         borderRight:'3px solid #D0D8DD'
         }}>
           <div style={{float:'left',width:'80%',height:35}}>
