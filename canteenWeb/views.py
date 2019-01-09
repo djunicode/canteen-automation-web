@@ -33,3 +33,11 @@ class OrderViewSet(viewsets.ReadOnlyModelViewSet):
         completed_orders = Order.objects.filter(is_fulfilled=True)
         serializer = self.get_serializer(completed_orders, many=True)
         return Response(serializer.data)
+
+    @action(detail=False)
+    def pending(self, request):
+        pending_orders = Order.objects.filter(
+            is_fulfilled=False, status__gte=0
+        )  # Should not be fulfilled and status should be positive.
+        serializer = self.get_serializer(pending_orders, many=True)
+        return Response(serializer.data)
