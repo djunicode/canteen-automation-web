@@ -27,3 +27,9 @@ class OrderViewSet(viewsets.ReadOnlyModelViewSet):
         order.status = choices.STATUS_DICTIONARY["Rejected by Canteen"]
         order.save()
         return Response({"message": "Order rejected"})
+
+    @action(detail=False)
+    def completed(self, request):
+        completed_orders = Order.objects.filter(is_fulfilled=True)
+        serializer = self.get_serializer(completed_orders, many=True)
+        return Response(serializer.data)
