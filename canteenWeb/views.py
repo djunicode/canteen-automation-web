@@ -46,17 +46,17 @@ class OrderViewSet(viewsets.ReadOnlyModelViewSet):
     def status_options(self, request):
         return Response(choices.STATUS_DICTIONARY)
 
-    @action(detail=True)
+    @action(detail=True, methods=["get", "post"])
     def change_status(self, request, pk=None):
         order = self.get_object()
         data = request.data
         if "status" in data:
-            order.status = data["status"]
+            order.status = int(data["status"])
             order.save()
             return Response(
                 {
                     "message": "Order status changed",
-                    "status": choices.STATUS_DICTIONARY_REVERSE[data["status"]],
+                    "status": choices.STATUS_DICTIONARY_REVERSE[order.status],
                 }
             )
         else:
