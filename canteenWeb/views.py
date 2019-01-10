@@ -91,15 +91,21 @@ class OrderViewSet(viewsets.ReadOnlyModelViewSet):
         order = self.get_object()
         data = request.data
         if "status" in data:
-            order.status = int(data["status"])
-            order.save()
-            return Response(
-                {
-                    "message": "Order status changed",
-                    "status": choices.STATUS_DICTIONARY_REVERSE[order.status],
-                }
-            )
+            if "status" in choices.STATUS_DICTIONARY_REVERSE:
+                order.status = int(data["status"])
+                order.save()
+                return Response(
+                    {
+                        "message": "Order status changed",
+                        "status": choices.STATUS_DICTIONARY_REVERSE[order.status],
+                    }
+                )
+            else:
+                return Response(
+                    {"error": "Status not recognised", "status": data["status"]},
+                    status.HTTP_400_BAD_REQUEST,
+                )
         else:
             return Response(
-                {"error": "Status not recognised"}, status.HTTP_400_BAD_REQUEST
+                {"error": "Missing status in request body"}, status.HTTP_400_BAD_REQUEST
             )
