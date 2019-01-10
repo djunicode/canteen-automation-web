@@ -19,14 +19,6 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register("orders", views.OrderViewSet)
+router.register("menu", views.MenuViewSet)
 
-urlpatterns = [
-    path("", include(router.urls)),
-    url(r"^menu_item/$", views.MenuItemList.as_view(), name="menu_item_list"),
-    url(r"^menu_item/add/$", views.AddMenuItem.as_view(), name="add_menu_item"),
-    url(
-        r"^menu_item/(?P<menu_item_id>[0-9]+)/$",
-        views.MenuItemDetails.as_view(),
-        name="menu_item_detail",
-    ),
-]
+urlpatterns = [path("", include(router.urls))]

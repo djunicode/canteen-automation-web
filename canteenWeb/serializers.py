@@ -66,4 +66,21 @@ class OrderSerializer(serializers.ModelSerializer):
 class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
-        fields = ("id", "name", "price", "is_available", "preparation_time", "options")
+        fields = (
+            "id",
+            "name",
+            "price",
+            "is_available",
+            "preparation_time",
+            "options",
+            "category",
+        )
+
+        def create(self, validate_data):
+            menu_item = MenuItem.objects.create(title=validated_data["name"])
+            return menu_item
+
+        """def update (self,instance,validated_data):
+            instance.name = validate_data['name']
+            instance.save()
+            return instance"""

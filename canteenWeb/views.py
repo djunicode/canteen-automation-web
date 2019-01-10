@@ -8,43 +8,11 @@ from .models import MenuItem, Order
 from .serializers import MenuItemSerializer, OrderSerializer
 
 # Create your views here.
-class MenuItemList(views.APIView):
-    def get(self, request):
-        menu_item = MenuItem.objects.all()
-        serializer = MenuItemSerializer(menu_item, many=True)
-        return Response(serializer.data)
 
 
-class AddMenuItem(views.APIView):
-    def post(self, request):
-        serializer = MenuItemSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class MenuItemDetails(views.APIView):
-    def get_object(self, id):
-        try:
-            return MenuItem.objects.get(id=id)
-        except MenuItem.DoesNotExist:
-            raise Http404
-
-    def get(self, request, *args, **kwargs):
-        menu_item_id = kwargs["menu_item_id"]
-        menu_item = self.get_object(id=menu_item_id)
-        serializer = MenuItemSerializer(menu_item)
-        return Response(serializer.data)
-
-    def put(self, request, *args, **kwargs):
-        menu_item_id = kwargs["menu_item_id"]
-        menu_item = self.get_object(id=menu_item_id)
-        serializer = MenuItemSerializer(menu_item, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class MenuViewSet(viewsets.ModelViewSet):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
 
 
 # FIXME: Change to ModelViewSet and add CRUD operations, with OrderItem support.

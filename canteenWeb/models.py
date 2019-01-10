@@ -48,6 +48,9 @@ class MenuItem(models.Model):
     options = models.CharField(
         max_length=8, choices=choices.MENU_ITEM_CHOICES, default="NON JAIN"
     )
+    category = models.CharField(
+        max_length=20, choices=choices.MENU_ITEM_CATEGORY, default="FAST FOOD"
+    )
 
     def __str__(self):
         return self.name
