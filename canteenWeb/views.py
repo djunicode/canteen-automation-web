@@ -41,3 +41,25 @@ class OrderViewSet(viewsets.ReadOnlyModelViewSet):
         )  # Should not be fulfilled and status should be positive.
         serializer = self.get_serializer(pending_orders, many=True)
         return Response(serializer.data)
+
+    @action(detail=False)
+    def status_options(self, request):
+        return Response(choices.STATUS_DICTIONARY)
+
+    @action(detail=True)
+    def change_status(self, request, pk=None):
+        order = self.get_object()
+        data = request.data
+        if "status" in data:
+            order.status = data["status"]
+            order.save()
+            return Response(
+                {
+                    "message": "Order status changed",
+                    "status": choices.STATUS_DICTIONARY_REVERSE[data["status"]],
+                }
+            )
+        else:
+            return Response(
+                {"error": "Status not recognised"}, status.HTTP_400_BAD_REQUEST
+            )
