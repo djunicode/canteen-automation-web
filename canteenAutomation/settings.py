@@ -39,6 +39,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "channels",
 ]
 
 # NOTE: Add new apps here.
@@ -81,6 +82,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "canteenAutomation.wsgi.application"
+ASGI_APPLICATION = "canteenAutomation.routing.application"
 
 
 # Database
