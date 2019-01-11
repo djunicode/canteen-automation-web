@@ -67,6 +67,7 @@ class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
         fields = (
+            "url",
             "id",
             "name",
             "price",
