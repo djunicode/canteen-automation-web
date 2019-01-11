@@ -49,7 +49,7 @@ class MenuItem(models.Model):
         max_length=8, choices=choices.MENU_ITEM_CHOICES, default="NON JAIN"
     )
     category = models.CharField(
-        max_length=20, choices=choices.MENU_ITEM_CATEGORY, default="FAST FOOD"
+        max_length=32, choices=choices.MENU_ITEM_CATEGORY, default="FAST FOOD"
     )
 
     def __str__(self):
