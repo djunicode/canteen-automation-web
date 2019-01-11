@@ -91,7 +91,7 @@ class OrderViewSet(viewsets.ReadOnlyModelViewSet):
         order = self.get_object()
         data = request.data
         if "status" in data:
-            if "status" in choices.STATUS_DICTIONARY_REVERSE:
+            if int(data["status"]) in choices.STATUS_DICTIONARY_REVERSE:
                 order.status = int(data["status"])
                 order.save()
                 return Response(
