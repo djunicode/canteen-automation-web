@@ -7,7 +7,7 @@ import Home from './components/Home';
 import Orders from './components/Orders';
 
 
-function Main() {
+function App() {
 
   return(
     <div>
@@ -24,4 +24,4 @@ function Main() {
    
 } 
 
-export default Main
+export default App;
