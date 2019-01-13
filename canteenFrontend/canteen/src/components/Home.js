@@ -1,3 +1,4 @@
+
 import React from 'react';
 import MenuAppBar from './MenuAppBar';
 import ButtonAppBar from './ButtonAppBar';
@@ -14,10 +15,10 @@ function Home(){
             <ButtonAppBar/>
             </div>
             <PermanentDrawerLeft/>
-            <Route exact path="/" component={Pending} />
+            
     <Route path="/Orders/pending" component={Pending} />
-    <Route path="/Home/completed" component={Completed} />
+    <Route path="/Orders/completed" component={Completed} />
         </div>
     )
 }
-export default Home
+export default Home;

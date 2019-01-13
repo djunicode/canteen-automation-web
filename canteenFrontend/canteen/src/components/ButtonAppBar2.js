@@ -10,39 +10,46 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Home from './Home';
 
-import Orders from './Orders';
-
+//import Orders from './Orders';
+import CustomizedInputBase from './CustomizedInputBase';
 function ButtonAppBar2(props) {
   const { classes } = props;
   return (
     <div style={{flexGrow:1,marginTop:48,height:20}}>
+  
       <AppBar position="static" style={{backgroundColor:'white',borderBottom:'3px solid #0477BD'}}>
+      
         <Toolbar>
           <IconButton style={{
             marginLeft: -12,
             marginRight: 20,}} color="inherit" aria-label="Menu">
-            <Link to='/Orders/pending'>
+            {/*<Link to='/Orders/pending'>
             <button>
               pending
             </button>
-            </Link>
-           {/* <button component={Link} to='/Home'>
-              home
-          </button>*/}
+          </Link>*/}
+          <Button component={Link} to='/Orders/pending'>
+              pending
+        </Button>
           </IconButton>
           <IconButton style={{
             marginLeft: -12,
             marginRight: 20,}} color="inherit" aria-label="Menu">
-            <Link to='/Orders/completed'>
+            {/*<Link to='/Orders/completed'>
             <button>
               completed
             </button>
-            </Link>
-            {/*<button component={Link} to='/Orders'>orders</button>*/}
+          </Link>*/}
+          
+            <Button component={Link} to='/Orders/completed'>completed</Button>
+          
           </IconButton>
-
+          <div style={{paddingLeft:700}}>
+          <CustomizedInputBase/>
+          </div>
         </Toolbar>
       </AppBar>
+      
     </div>
   );
 }

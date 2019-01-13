@@ -7,6 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import OutlinedTextFields from './OutlinedTextFields';
 import Button from '@material-ui/core/Button';
+import CustomizedInputBase from './CustomizedInputBase';
 class PermanentDrawerLeft extends React.Component {
     state = {
         open: false,
@@ -31,8 +32,10 @@ return(
             </Typography>
             
     </div>
-        <div style={{width:'100%',height:70,backgroundColor:'#FFFFFF',borderBottom:'3px solid #D0D8DD'}}>
-        search bar
+        <div style={{width:'100%',height:70,backgroundColor:'#FFFFFF',borderBottom:'3px solid #D0D8DD',textAlign:'center'}}>
+            <div style={{display:'inline-block',marginTop:10}}>
+            <CustomizedInputBase/>
+            </div>
         </div>
         <div>
         <div style={{
@@ -90,8 +93,8 @@ return(
             </div> 
 
         </div>
-        <div style={{width:'100%',height:490,backgroundColor:'#0477BD'}}>
-                <h4 style={{textAlign:'right',color:'white'}}>TOTAL Rs. 12,500<span style={{padding:50}}>ORDERS 150</span></h4>
+        <div style={{width:'100%',height:508.6,backgroundColor:'#0477BD'}}>
+               <Typography align='right' color='default' variant='h6'>TOTAL Rs. 12,500<span style={{paddingLeft:40,paddingRight:40}}>ORDERS 150</span></Typography>
                 
             </div>
 </div>

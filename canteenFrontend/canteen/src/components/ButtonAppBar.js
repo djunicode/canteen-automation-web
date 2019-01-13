@@ -8,9 +8,10 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Home from './Home';
+import Home from './Home'
+//import './button.css'
 
-import Orders from './Orders';
+//import Orders from './Orders';
 
 function ButtonAppBar(props) {
   const { classes } = props;
@@ -21,24 +22,24 @@ function ButtonAppBar(props) {
           <IconButton style={{
             marginLeft: -12,
             marginRight: 20,}} color="inherit" aria-label="Menu">
-            <Link to='/Home'>
-            <button>
+           {/* <Link to='/Home'>
+            <button className="button">
               home
-            </button>
-            </Link>
-           {/* <button component={Link} to='/Home'>
+          </button>
+          </Link>*/}
+            <Button component={Link} to='/Home'>
               home
-          </button>*/}
+          </Button>
           </IconButton>
           <IconButton style={{
             marginLeft: -12,
             marginRight: 20,}} color="inherit" aria-label="Menu">
-            <Link to='/Orders'>
+           {/* <Link to='/Orders/pending'>
             <button>
               orders
             </button>
-            </Link>
-            {/*<button component={Link} to='/Orders'>orders</button>*/}
+          </Link>*/}
+           <Button component={Link} to='/Orders/pending'>orders</Button>
           </IconButton>
 
         </Toolbar>
