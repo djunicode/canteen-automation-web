@@ -5,4 +5,4 @@ Click==7.0
 Django==2.1.4
 pytz==2018.7
 toml==0.10.0
-djangorestframework
+djangorestframework==3.9.0

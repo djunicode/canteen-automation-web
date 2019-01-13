@@ -56,3 +56,14 @@ class OrderSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         # TODO: COMPLETE
         return instance
+
+
+#####################
+# CUSTOMIZABLE MENU #
+#####################
+
+
+class MenuItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MenuItem
+        fields = ("id", "name", "price", "is_available", "preparation_time", "options")
