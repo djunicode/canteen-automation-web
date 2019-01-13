@@ -57,9 +57,9 @@ class OrderSerializer(serializers.ModelSerializer):
             OrderItem.objects.create(order=order, **item_data)
         return order
 
-    def update(self, instance, validated_data):
-        # TODO: COMPLETE
-        return instance
+    # def update(self, instance, validated_data):
+    #     # TODO: COMPLETE
+    #     return instance
 
 
 #####################
