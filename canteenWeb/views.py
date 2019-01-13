@@ -47,8 +47,7 @@ class MenuItemDetails(views.APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# FIXME: Change to ModelViewSet and add CRUD operations, with OrderItem support.
-class OrderViewSet(viewsets.ReadOnlyModelViewSet):
+class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
