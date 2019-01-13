@@ -10,6 +10,10 @@ class CanteenWebConsumer(WebsocketConsumer):
         self.accept()
         async_to_sync(self.channel_layer.group_add)("admin", self.channel_name)
         # Send all orders.
+        self.orders_list()
+
+    # Event handler for type orders.list
+    def orders_list(self, event=None):
         orders = Order.objects.all()
         serialized_orders = OrderSerializer(orders, many=True)
         json_orders = (

@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from .models import Order, OrderItem, MenuItem
+from .models import Order, OrderItem, MenuItem, User
 from . import choices
+
 
 ###################
 # ORDERING SYSTEM #
@@ -14,11 +15,11 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = "__all__"
+        exclude = ("order",)
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     status = serializers.CharField(read_only=True, source="get_status_display")
 
     time_issued = serializers.DateTimeField(read_only=True)
@@ -26,7 +27,7 @@ class OrderSerializer(serializers.ModelSerializer):
     time_prepared = serializers.DateTimeField(read_only=True)
     time_delivered = serializers.DateTimeField(read_only=True)
 
-    items = OrderItemSerializer(many=True)
+    items = OrderItemSerializer(many=True, required=False, allow_null=True)
 
     class Meta:
         model = Order
@@ -48,7 +49,9 @@ class OrderSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
-        items = validated_data.pop("items")
+        items = []
+        if "items" in validated_data:
+            items = validated_data.pop("items")
         order = Order.objects.create(**validated_data)
         for item_data in items:
             OrderItem.objects.create(order=order, **item_data)
