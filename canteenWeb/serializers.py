@@ -32,7 +32,7 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         # Need to include items serializer.
         fields = (
-            "url",
+            # "url",
             "id",
             "user",
             "total_price",
