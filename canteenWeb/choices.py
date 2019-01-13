@@ -24,5 +24,10 @@ STATUS_DICTIONARY = {
     "En-route": 3,
 }
 
+# Create a reversed dictionary from the above
+STATUS_DICTIONARY_REVERSE = dict(
+    zip(STATUS_DICTIONARY.values(), STATUS_DICTIONARY.keys())
+)
+
 # Create a reversed choices list from the above dictionary for Order.status
-STATUS_CHOICES = tuple(zip(STATUS_DICTIONARY.values(), STATUS_DICTIONARY.keys()))
+STATUS_CHOICES = tuple(STATUS_DICTIONARY_REVERSE.items())
