@@ -2,20 +2,19 @@ import React from "react";
 import MenuAppBar from "./components/MenuAppBar";
 import ButtonAppBar from "./components/ButtonAppBar";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Home from "./components/Home";
-//import Orders from "./components/Orders";
-import Pending from "./components/Pending";
-import Completed from "./components/Completed";
+import HomePanel from "./layouts/HomePanel";
+import OrdersPendingPanel from "./layouts/OrdersPendingPanel";
+import OrdersCompletedPanel from "./layouts/OrdersCompletedPanel";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <Router>
         <div>
-          <Route exact path="/" component={Home} />
-          <Route path="/Orders/pending" component={Pending} />
-          <Route path="/Orders/completed" component={Completed} />
-          <Route path="/Home" component={Home} />
+          <Route exact path="/" component={HomePanel} />
+          <Route path="/Orders/pending" component={OrdersPendingPanel} />
+          <Route path="/Orders/completed" component={OrdersCompletedPanel} />
+          <Route path="/Home" component={HomePanel} />
         </div>
       </Router>
     </div>
