@@ -13,4 +13,4 @@ function Orders(){
         </div>
     )
 }
-export default Orders
+export default Orders;
