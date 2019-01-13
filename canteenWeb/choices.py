@@ -3,6 +3,8 @@
     Add choices here instead of writing them in models.py.
 """
 
+# Menu Item
+MENU_ITEM_CHOICES = (("JAIN", "Jain"), ("NON JAIN", "Non Jain"), ("BOTH", "Both"))
 
 # Order.payment_mode
 PAYMENT_MODE_CHOICES = (
