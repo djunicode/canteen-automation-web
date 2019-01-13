@@ -31,6 +31,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
+        # Need to include items serializer.
         fields = (
             "url",
             "id",
