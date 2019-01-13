@@ -16,8 +16,14 @@ import Home from './Home'
 function ButtonAppBar(props) {
   const { classes } = props;
   return (
-    <div style={{flexGrow:1,marginTop:50,height:20}}>
-      <AppBar position="static" style={{backgroundColor:'#FFFFFF',borderBottom:'3px solid #0477BD'}}>
+    <div style={{ flexGrow: 1, marginTop: 50, height: 20 }}>
+      <AppBar
+        position="static"
+        style={{
+          backgroundColor: "#FFFFFF",
+          borderBottom: "3px solid #0477BD"
+        }}
+      >
         <Toolbar>
           <IconButton style={{
             marginLeft: -12,
@@ -41,7 +47,6 @@ function ButtonAppBar(props) {
           </Link>*/}
            <Button component={Link} to='/Orders/pending'>orders</Button>
           </IconButton>
-
         </Toolbar>
       </AppBar>
     </div>
@@ -49,7 +54,7 @@ function ButtonAppBar(props) {
 }
 
 ButtonAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default ButtonAppBar;
