@@ -1,44 +1,25 @@
-import React from 'react';
-import MenuAppBar from './components/MenuAppBar';
-import Footer from './components/Footer';
-// import './App.css';
-import PermanentDrawerLeft from './components/PermanentDrawerLeft';
-import { Divider } from '@material-ui/core';
-import {Switch, BrowserRouter, Route} from 'react-router-dom'
-import Home from './Home'
-import Pending from './PendingOrders'
-import Completed from './CompletedOrders'
-import Error from './Error'
-import NavHome from './components/NavHome'
-import NavPending from './components/NavPending'
-import NavCompleted from './components/NavCompleted'
-import NavTabs from './Orders'
+import React from "react";
+import MenuAppBar from "./components/MenuAppBar";
+import ButtonAppBar from "./components/ButtonAppBar";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Home from "./components/Home";
+//import Orders from "./components/Orders";
+import Pending from "./components/Pending";
+import Completed from "./components/Completed";
+
 function App() {
-
-  return(
-    <BrowserRouter>
+  return (
     <div>
-      {/* <NavHome/>
-      <NavCompleted/>
-      <NavPending/> */}
-      <MenuAppBar/>
-      <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/Orders" component={NavTabs} exact />
-        <Route component={Error}/>
-      </Switch>
-      <Footer/>
-      </div>
-    </BrowserRouter>
-
-      //Should be in page:HOME
-      // <div>
-      //   <MenuAppBar/>
-      //   <PermanentDrawerLeft/>
-      // </div>
-
-
-  )
+      <Router>
+        <div>
+          <Route exact path="/" component={Home} />
+          <Route path="/Orders/pending" component={Pending} />
+          <Route path="/Orders/completed" component={Completed} />
+          <Route path="/Home" component={Home} />
+        </div>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
