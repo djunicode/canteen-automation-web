@@ -3,8 +3,6 @@ import Typography from "@material-ui/core/Typography";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import OutlinedTextFields from "./OutlinedTextFields";
 import Button from "@material-ui/core/Button";
 import RoundSearchBar from "./RoundSearchBar";
@@ -21,7 +19,6 @@ class PermanentDrawerLeft extends React.Component {
     this.setState({ open: false });
   };
   render() {
-    const { classes } = this.props;
     return (
       <div>
         <div
@@ -87,7 +84,6 @@ class PermanentDrawerLeft extends React.Component {
                 <button
                   onClick={this.handleClickOpen}
                   style={{
-                    textAlign: "right",
                     marginTop: 18,
                     borderRadius: 20,
                     backgroundColor: "white",

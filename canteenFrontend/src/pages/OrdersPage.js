@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import OrdersBar from "../components/OrdersBar";
 import OrdersPendingPanel from "./OrdersPendingPanel";
