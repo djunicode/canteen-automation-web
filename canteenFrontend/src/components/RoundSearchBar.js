@@ -28,7 +28,7 @@ const styles = {
   }
 };
 
-function CustomizedInputBase(props) {
+function RoundSearchBar(props) {
   const { classes } = props;
 
   return (
@@ -48,8 +48,8 @@ function CustomizedInputBase(props) {
   );
 }
 
-CustomizedInputBase.propTypes = {
+RoundSearchBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(CustomizedInputBase);
+export default withStyles(styles)(RoundSearchBar);

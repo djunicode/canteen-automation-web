@@ -1,23 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import RoundSearchBar from "./RoundSearchBar";
 
-//import Orders from './Orders';
-import CustomizedInputBase from "./CustomizedInputBase";
+
 function OrdersBar(props) {
   const { classes } = props;
   return (
-    <div style={{ flexGrow: 1, marginTop: 48, height: 20 }}>
       <AppBar
-        position="static"
+        position="sticky"
         style={{ backgroundColor: "white", borderBottom: "3px solid #0477BD" }}
       >
-        <Toolbar>
+        <Toolbar style={{ height: 20 }}>
           <IconButton
             style={{
               marginLeft: -12,
@@ -43,11 +43,10 @@ function OrdersBar(props) {
             </Button>
           </IconButton>
           <div style={{ paddingLeft: 700 }}>
-            <CustomizedInputBase />
+            <RoundSearchBar />
           </div>
         </Toolbar>
       </AppBar>
-    </div>
   );
 }
 

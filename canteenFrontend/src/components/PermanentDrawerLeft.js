@@ -7,7 +7,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import OutlinedTextFields from "./OutlinedTextFields";
 import Button from "@material-ui/core/Button";
-import CustomizedInputBase from "./CustomizedInputBase";
+import RoundSearchBar from "./RoundSearchBar";
 class PermanentDrawerLeft extends React.Component {
   state = {
     open: false
@@ -52,7 +52,7 @@ class PermanentDrawerLeft extends React.Component {
           }}
         >
           <div style={{ display: "inline-block", marginTop: 10 }}>
-            <CustomizedInputBase />
+            <RoundSearchBar />
           </div>
         </div>
         <div>

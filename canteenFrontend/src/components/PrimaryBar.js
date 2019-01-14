@@ -1,13 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-
-const { Link } = BrowserRouter;
 
 function PrimaryBar(props) {
   return (
