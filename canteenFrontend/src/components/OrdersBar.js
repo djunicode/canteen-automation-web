@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
@@ -11,8 +10,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 const styles = {
     Toolbar: {
         height: "72px",
-        justifyContent: "space-between"
-    }
+        justifyContent: "space-between",
+    },
 };
 
 function OrdersBar({ classes }) {

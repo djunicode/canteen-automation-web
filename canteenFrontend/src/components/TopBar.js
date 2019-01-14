@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
 import AppBar from "@material-ui/core/AppBar";
@@ -97,9 +96,5 @@ class TopBar extends React.Component {
         );
     }
 }
-
-TopBar.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(TopBar);

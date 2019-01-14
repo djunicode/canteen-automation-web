@@ -1,11 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import BarButton from "./core/BarButton";
 import BorderAppBar from "./core/BorderAppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
 
 function PrimaryBar(props) {
     return (

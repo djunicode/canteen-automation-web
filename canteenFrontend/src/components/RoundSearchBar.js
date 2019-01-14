@@ -12,7 +12,7 @@ const RoundInputBase = withStyles({
         lineHeight: 20,
         height: "20px",
         padding: "6px 0 6px 0",
-    }
+    },
 })(InputBase);
 
 const styles = {
@@ -35,7 +35,7 @@ function RoundSearchBar(props) {
             <IconButton className={classes.iconButton} aria-label='Menu'>
                 <SearchIcon />
             </IconButton>
-            <RoundInputBase placeholder="Search" onChange={props.onChange} />
+            <RoundInputBase placeholder='Search' onChange={props.onChange} />
         </Paper>
     );
 }
