@@ -39,6 +39,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "channels",
 ]
 
 # NOTE: Add new apps here.
@@ -82,6 +83,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "canteenAutomation.wsgi.application"
 
+# ASGI for Channels
+ASGI_APPLICATION = "canteenAutomation.routing.application"
+
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -91,6 +95,15 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
+}
+
+# Channels
+CHANNEL_LAYERS = {
+    "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"},
+    "redis": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {"hosts": [("localhost", 6379)]},
+    },
 }
 
 
