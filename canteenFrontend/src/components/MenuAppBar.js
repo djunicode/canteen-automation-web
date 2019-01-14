@@ -48,7 +48,7 @@ class MenuAppBar extends React.Component {
     const open = Boolean(anchorEl);
 
     return (
-      <AppBar position="sticky">
+      <AppBar position="sticky" color="primary">
         <Toolbar className={classes.toolbar}>
           <IconButton
             className={classes.menuButton}
