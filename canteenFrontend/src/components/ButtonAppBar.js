@@ -9,47 +9,45 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 function ButtonAppBar(props) {
   const { classes } = props;
   return (
-    <div style={{ flexGrow: 1, marginTop: 50, height: 20 }}>
-      <AppBar
-        position="static"
-        style={{
-          backgroundColor: "#FFFFFF",
-          borderBottom: "3px solid #0477BD"
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            style={{
-              marginLeft: -12,
-              marginRight: 20
-            }}
-            color="inherit"
-            aria-label="Menu"
-          >
-            <Button component={Link} to="/Home">
-              home
-            </Button>
-          </IconButton>
-          <IconButton
-            style={{
-              marginLeft: -12,
-              marginRight: 20
-            }}
-            color="inherit"
-            aria-label="Menu"
-          >
-            {/* <Link to='/Orders/pending'>
+    <AppBar
+      position="static"
+      style={{
+        backgroundColor: "#FFFFFF",
+        borderBottom: "3px solid #0477BD"
+      }}
+    >
+      <Toolbar>
+        <IconButton
+          style={{
+            marginLeft: -12,
+            marginRight: 20
+          }}
+          color="inherit"
+          aria-label="Menu"
+        >
+          <Button component={Link} to="/Home">
+            home
+          </Button>
+        </IconButton>
+        <IconButton
+          style={{
+            marginLeft: -12,
+            marginRight: 20
+          }}
+          color="inherit"
+          aria-label="Menu"
+        >
+          {/* <Link to='/Orders/pending'>
             <button>
               orders
             </button>
           </Link>*/}
-            <Button component={Link} to="/Orders/pending">
-              orders
-            </Button>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-    </div>
+          <Button component={Link} to="/Orders/pending">
+            orders
+          </Button>
+        </IconButton>
+      </Toolbar>
+    </AppBar>
   );
 }
 

@@ -3,11 +3,9 @@ import MenuAppBar from "../components/MenuAppBar";
 import ButtonAppBar from "../components/ButtonAppBar";
 import ButtonAppBar2 from "../components/ButtonAppBar2";
 import Typography from "@material-ui/core/Typography";
-function Pending() {
+function Completed() {
   return (
     <div>
-      <MenuAppBar />
-      <br />
       <ButtonAppBar />
       <ButtonAppBar2 />
       <div
@@ -15,7 +13,6 @@ function Pending() {
           width: "100%",
           height: 460,
           backgroundColor: "#EEEEEE",
-          marginTop: 48,
           borderBottom: "3px solid #D0D8DD"
         }}
       />
@@ -28,4 +25,4 @@ function Pending() {
     </div>
   );
 }
-export default Pending;
+export default Completed;
