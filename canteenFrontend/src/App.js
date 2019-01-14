@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from "./theme";
 
-import MenuAppBar from "./components/MenuAppBar";
-import ButtonAppBar from "./components/ButtonAppBar";
-import HomePanel from "./pages/HomePanel";
+import TopBar from "./components/TopBar";
+import PrimaryBar from "./components/PrimaryBar";
+import HomePage from "./pages/HomePage";
 import OrdersPendingPanel from "./pages/OrdersPendingPanel";
 import OrdersCompletedPanel from "./pages/OrdersCompletedPanel";
 
@@ -14,12 +14,12 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <Router>
         <React.Fragment>
-            <MenuAppBar />
+            <TopBar />
+            <PrimaryBar />
 
-            <Route exact path="/" component={HomePanel} />
-            <Route path="/Orders/pending" component={OrdersPendingPanel} />
-            <Route path="/Orders/completed" component={OrdersCompletedPanel} />
-            <Route path="/Home" component={HomePanel} />
+            <Route exact path="/" component={HomePage} />
+            <Route path="/orders/pending" component={OrdersPendingPanel} />
+            <Route path="/orders/completed" component={OrdersCompletedPanel} />
         </React.Fragment>
       </Router>
     </MuiThemeProvider>

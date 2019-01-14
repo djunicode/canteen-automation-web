@@ -16,16 +16,12 @@ const styles = {
     flexGrow: 1
   },
 
-  appBar: {
-    backgroundColor: "#0477BD"
-  },
-
   toolbar: {
     height: "72px",
   },
 };
 
-class MenuAppBar extends React.Component {
+class TopBar extends React.Component {
   state = {
     anchorEl: null
   };
@@ -100,8 +96,8 @@ class MenuAppBar extends React.Component {
   }
 }
 
-MenuAppBar.propTypes = {
+TopBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(MenuAppBar);
+export default withStyles(styles)(TopBar);

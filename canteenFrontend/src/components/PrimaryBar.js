@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-function ButtonAppBar(props) {
+function PrimaryBar(props) {
   const { classes } = props;
   return (
     <AppBar
@@ -25,7 +25,7 @@ function ButtonAppBar(props) {
           color="inherit"
           aria-label="Menu"
         >
-          <Button component={Link} to="/Home">
+          <Button component={Link} to="/">
             home
           </Button>
         </IconButton>
@@ -37,11 +37,6 @@ function ButtonAppBar(props) {
           color="inherit"
           aria-label="Menu"
         >
-          {/* <Link to='/Orders/pending'>
-            <button>
-              orders
-            </button>
-          </Link>*/}
           <Button component={Link} to="/Orders/pending">
             orders
           </Button>
@@ -51,8 +46,8 @@ function ButtonAppBar(props) {
   );
 }
 
-ButtonAppBar.propTypes = {
+PrimaryBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default ButtonAppBar;
+export default PrimaryBar;

@@ -1,13 +1,9 @@
 import React from "react";
-import MenuAppBar from "../components/MenuAppBar";
-import ButtonAppBar from "../components/ButtonAppBar";
-import ButtonAppBar2 from "../components/ButtonAppBar2";
 import Typography from "@material-ui/core/Typography";
+
 function Completed() {
   return (
     <div>
-      <ButtonAppBar />
-      <ButtonAppBar2 />
       <div
         style={{
           width: "100%",

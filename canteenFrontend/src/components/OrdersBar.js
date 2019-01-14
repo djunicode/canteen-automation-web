@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 //import Orders from './Orders';
 import CustomizedInputBase from "./CustomizedInputBase";
-function ButtonAppBar2(props) {
+function OrdersBar(props) {
   const { classes } = props;
   return (
     <div style={{ flexGrow: 1, marginTop: 48, height: 20 }}>
@@ -51,8 +51,8 @@ function ButtonAppBar2(props) {
   );
 }
 
-ButtonAppBar2.propTypes = {
+OrdersBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default ButtonAppBar2;
+export default OrdersBar;

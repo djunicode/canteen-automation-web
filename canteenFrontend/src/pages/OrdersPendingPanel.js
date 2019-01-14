@@ -1,13 +1,11 @@
 import React from "react";
-import MenuAppBar from "../components/MenuAppBar";
-import ButtonAppBar from "../components/ButtonAppBar";
-import ButtonAppBar2 from "../components/ButtonAppBar2";
+import OrdersBar from "../components/OrdersBar";
 import Typography from "@material-ui/core/Typography";
+
 function Pending() {
   return (
     <div>
-      <ButtonAppBar />
-      <ButtonAppBar2 />
+      
       <div
         style={{
           width: "100%",
