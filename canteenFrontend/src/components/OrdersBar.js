@@ -1,58 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-// import { withStyles } from "@material-ui/core/styles";
 
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
 import RoundSearchBar from "./RoundSearchBar";
+import BarButton from "./core/BarButton";
+import BorderAppBar from "./core/BorderAppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 
-function OrdersBar() {
+const styles = {
+    Toolbar: {
+        height: "72px",
+        justifyContent: "space-between"
+    }
+};
+
+function OrdersBar({ classes }) {
     return (
-        <AppBar
-            position='sticky'
-            style={{
-                backgroundColor: "white",
-                borderBottom: "3px solid #0477BD",
-            }}
-        >
-            <Toolbar style={{ height: 20 }}>
-                <IconButton
-                    style={{
-                        marginLeft: -12,
-                        marginRight: 20,
-                    }}
-                    color='inherit'
-                    aria-label='Menu'
-                >
-                    <Button component={Link} to='/Orders/pending'>
-                        pending
-                    </Button>
-                </IconButton>
-                <IconButton
-                    style={{
-                        marginLeft: -12,
-                        marginRight: 20,
-                    }}
-                    color='inherit'
-                    aria-label='Menu'
-                >
-                    <Button component={Link} to='/Orders/completed'>
-                        completed
-                    </Button>
-                </IconButton>
-                <div style={{ paddingLeft: 700 }}>
-                    <RoundSearchBar />
+        <BorderAppBar position='sticky' color='secondary'>
+            <Toolbar className={classes.Toolbar}>
+                <div>
+                    <BarButton component={Link} to='/orders/pending'>
+                        Pending
+                    </BarButton>
+                    <BarButton component={Link} to='/orders/completed'>
+                        Completed
+                    </BarButton>
                 </div>
+                <span>
+                    <RoundSearchBar />
+                </span>
             </Toolbar>
-        </AppBar>
+        </BorderAppBar>
     );
 }
 
-OrdersBar.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default OrdersBar;
+export default withStyles(styles)(OrdersBar);
