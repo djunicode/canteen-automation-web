@@ -1,16 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { BrowserRouter } from "react-router-dom";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+const { Link } = BrowserRouter;
 
 function PrimaryBar(props) {
-  const { classes } = props;
   return (
     <AppBar
-      position="static"
+      position="sticky"
       style={{
         backgroundColor: "#FFFFFF",
         borderBottom: "3px solid #0477BD"
@@ -37,7 +39,7 @@ function PrimaryBar(props) {
           color="inherit"
           aria-label="Menu"
         >
-          <Button component={Link} to="/Orders/pending">
+          <Button component={Link} to="/orders/pending">
             orders
           </Button>
         </IconButton>

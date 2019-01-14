@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 function Completed() {
   return (
     <div>
+      <h1> COMPLETED PAGE </h1>
       <div
         style={{
           width: "100%",

@@ -6,8 +6,7 @@ import theme from "./theme";
 import TopBar from "./components/TopBar";
 import PrimaryBar from "./components/PrimaryBar";
 import HomePage from "./pages/HomePage";
-import OrdersPendingPanel from "./pages/OrdersPendingPanel";
-import OrdersCompletedPanel from "./pages/OrdersCompletedPanel";
+import OrdersPage from './pages/OrdersPage';
 
 function App() {
   return (
@@ -18,8 +17,7 @@ function App() {
             <PrimaryBar />
 
             <Route exact path="/" component={HomePage} />
-            <Route path="/orders/pending" component={OrdersPendingPanel} />
-            <Route path="/orders/completed" component={OrdersCompletedPanel} />
+            <Route path="/orders" component={OrdersPage} />
         </React.Fragment>
       </Router>
     </MuiThemeProvider>

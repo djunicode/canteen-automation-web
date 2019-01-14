@@ -1,17 +1,15 @@
 import React from "react";
-import OrdersBar from "../components/OrdersBar";
 import Typography from "@material-ui/core/Typography";
 
 function Pending() {
   return (
     <div>
-      
+      <h1> PENDING PAGE </h1>
       <div
         style={{
           width: "100%",
           height: 460,
           backgroundColor: "#EEEEEE",
-          marginTop: 48,
           borderBottom: "3px solid #D0D8DD"
         }}
       />
