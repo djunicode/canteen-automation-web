@@ -12,92 +12,94 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 
 const styles = {
-  grow: {
-    flexGrow: 1
-  },
+    grow: {
+        flexGrow: 1,
+    },
 
-  toolbar: {
-    height: "72px",
-  },
+    toolbar: {
+        height: "72px",
+    },
 };
 
 class TopBar extends React.Component {
-  state = {
-    anchorEl: null
-  };
+    state = {
+        anchorEl: null,
+    };
 
-  handleChange = event => {
-    this.setState({ auth: event.target.checked });
-  };
+    handleChange = (event) => {
+        this.setState({ auth: event.target.checked });
+    };
 
-  handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
+    handleMenu = (event) => {
+        this.setState({ anchorEl: event.currentTarget });
+    };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
+    handleClose = () => {
+        this.setState({ anchorEl: null });
+    };
 
-  render() {
-    const { classes } = this.props;
-    const { anchorEl } = this.state;
-    const open = Boolean(anchorEl);
+    render() {
+        const { classes } = this.props;
+        const { anchorEl } = this.state;
+        const open = Boolean(anchorEl);
 
-    return (
-      <AppBar position="sticky" color="primary">
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Menu"
-          >
-            <AppIcon />
-          </IconButton>
+        return (
+            <AppBar position='sticky' color='primary'>
+                <Toolbar className={classes.toolbar}>
+                    <IconButton
+                        className={classes.menuButton}
+                        color='inherit'
+                        aria-label='Menu'
+                    >
+                        <AppIcon />
+                    </IconButton>
 
-          <Typography
-            variant="h6"
-            align="right"
-            color="inherit"
-            className={classes.grow}
-          >
-            john
-          </Typography>
+                    <Typography
+                        variant='h6'
+                        align='right'
+                        color='inherit'
+                        className={classes.grow}
+                    >
+                        john
+                    </Typography>
 
-          <div>
-            <IconButton
-              aria-owns={open ? "menu-appbar" : undefined}
-              aria-haspopup="true"
-              onClick={this.handleMenu}
-              color="inherit"
-            >
-              <AccountCircle fontSize="large" />
-            </IconButton>
+                    <div>
+                        <IconButton
+                            aria-owns={open ? "menu-appbar" : undefined}
+                            aria-haspopup='true'
+                            onClick={this.handleMenu}
+                            color='inherit'
+                        >
+                            <AccountCircle fontSize='large' />
+                        </IconButton>
 
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right"
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right"
-              }}
-              open={open}
-              onClose={this.handleClose}
-            >
-              <MenuItem onClick={this.handleClose}>Logout</MenuItem>
-            </Menu>
-          </div>
-        </Toolbar>
-      </AppBar>
-    );
-  }
+                        <Menu
+                            id='menu-appbar'
+                            anchorEl={anchorEl}
+                            anchorOrigin={{
+                                vertical: "top",
+                                horizontal: "right",
+                            }}
+                            transformOrigin={{
+                                vertical: "top",
+                                horizontal: "right",
+                            }}
+                            open={open}
+                            onClose={this.handleClose}
+                        >
+                            <MenuItem onClick={this.handleClose}>
+                                Logout
+                            </MenuItem>
+                        </Menu>
+                    </div>
+                </Toolbar>
+            </AppBar>
+        );
+    }
 }
 
 TopBar.propTypes = {
-  classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(TopBar);
