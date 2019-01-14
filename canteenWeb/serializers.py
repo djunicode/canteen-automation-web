@@ -78,7 +78,6 @@ class MenuItemSerializer(serializers.ModelSerializer):
             "options",
             "category",
         )
-=======
         fields = ("id", "name", "price", "is_available", "preparation_time", "options")
 
 
