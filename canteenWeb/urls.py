@@ -37,4 +37,3 @@ urlpatterns = [
     url(r"^logout/", views.Logout.as_view(), name="logout"),
 ]
 """
-
