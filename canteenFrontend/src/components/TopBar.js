@@ -6,19 +6,21 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import AppIcon from "@material-ui/icons/Fastfood";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
+import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 
 const styles = {
-    grow: {
-        flexGrow: 1,
+    topToolbar: {
+        justifyContent: "space-between",
     },
 
-    toolbar: {
-        height: "72px",
-    },
+    authTools: {
+        display: "inherit",
+        alignItems: "inherit",
+    }
 };
 
 class TopBar extends React.Component {
@@ -45,37 +47,45 @@ class TopBar extends React.Component {
 
         return (
             <AppBar position='sticky' color='primary'>
-                <Toolbar className={classes.toolbar}>
-                    <IconButton
-                        className={classes.menuButton}
-                        color='inherit'
-                        aria-label='Menu'
-                        component={Link}
-                        to='/'
-                    >
-                        <AppIcon />
-                    </IconButton>
-
-                    <Typography
-                        variant='h6'
-                        align='right'
-                        color='inherit'
-                        className={classes.grow}
-                    >
-                        john
-                    </Typography>
-
+                <Toolbar className={classes.topToolbar}>
                     <div>
+                        <IconButton
+                            className={classes.menuButton}
+                            color='inherit'
+                            aria-label='Menu'
+                            component={Link}
+                            to='/'
+                        >
+                            <AppIcon />
+                        </IconButton>
+                    </div>
+
+                    <div className={classes.authTools}>
+                        <Typography
+                            variant='h6'
+                            align='right'
+                            color='inherit'
+                        >
+                            John
+                        </Typography>
+
+                        <IconButton
+                            color='inherit'
+                        >
+                            <AccountCircle fontSize='large' />
+                        </IconButton>
+
                         <IconButton
                             aria-owns={open ? "menu-appbar" : undefined}
                             aria-haspopup='true'
                             onClick={this.handleMenu}
                             color='inherit'
                         >
-                            <AccountCircle fontSize='large' />
+                            <ArrowDropDown />
                         </IconButton>
+                    </div>
 
-                        <Menu
+                    <Menu
                             id='menu-appbar'
                             anchorEl={anchorEl}
                             anchorOrigin={{
@@ -92,8 +102,7 @@ class TopBar extends React.Component {
                             <MenuItem onClick={this.handleClose}>
                                 Logout
                             </MenuItem>
-                        </Menu>
-                    </div>
+                    </Menu>
                 </Toolbar>
             </AppBar>
         );
