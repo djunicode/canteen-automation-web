@@ -19,7 +19,10 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register("orders", views.OrderViewSet)
+router.register("menu", views.MenuViewSet)
 
+urlpatterns = [path("", include(router.urls))]
+"""
 urlpatterns = [
     path("", include(router.urls)),
     url(r"^menu_item/$", views.MenuItemList.as_view(), name="menu_item_list"),
@@ -33,3 +36,4 @@ urlpatterns = [
     url(r"^login/", views.Login.as_view(), name="login"),
     url(r"^logout/", views.Logout.as_view(), name="logout"),
 ]
+"""
