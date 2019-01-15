@@ -5,11 +5,10 @@ import { Link } from "react-router-dom";
 import RoundSearchBar from "./RoundSearchBar";
 import BarButton from "./core/BarButton";
 import BorderAppBar from "./core/BorderAppBar";
-import Toolbar from "@material-ui/core/Toolbar";
+import LargeToolbar from "./core/LargeToolbar";
 
 const styles = {
-    Toolbar: {
-        height: "72px",
+    ordersToolbar: {
         justifyContent: "space-between",
     },
 };
@@ -17,7 +16,7 @@ const styles = {
 function OrdersBar({ classes }) {
     return (
         <BorderAppBar position='sticky' color='secondary'>
-            <Toolbar className={classes.Toolbar}>
+            <LargeToolbar className={classes.ordersToolbar}>
                 <div>
                     <BarButton component={Link} to='/orders/pending'>
                         Pending
@@ -29,7 +28,7 @@ function OrdersBar({ classes }) {
                 <span>
                     <RoundSearchBar />
                 </span>
-            </Toolbar>
+            </LargeToolbar>
         </BorderAppBar>
     );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -49,6 +50,8 @@ class TopBar extends React.Component {
                         className={classes.menuButton}
                         color='inherit'
                         aria-label='Menu'
+                        component={Link}
+                        to='/'
                     >
                         <AppIcon />
                     </IconButton>

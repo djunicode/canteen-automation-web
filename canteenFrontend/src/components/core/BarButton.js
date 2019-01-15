@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
     root: {
-        color: theme.palette.primary,
+        color: theme.palette.primary.main,
         margin: theme.spacing.unit,
     },
 });

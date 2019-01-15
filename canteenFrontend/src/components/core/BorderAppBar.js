@@ -3,7 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 
 const styles = theme => ({
     root: {
-        borderBottom: "3px solid #0477BD",
+        borderBottom: "3px solid " + theme.palette.primary.main,
     }
 });
 

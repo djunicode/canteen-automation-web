@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 
 import BarButton from "./core/BarButton";
 import BorderAppBar from "./core/BorderAppBar";
-import Toolbar from "@material-ui/core/Toolbar";
+import LargeToolbar from "./core/LargeToolbar";
 
-function PrimaryBar(props) {
+function PrimaryBar() {
     return (
         <BorderAppBar position='sticky' color='secondary'>
-            <Toolbar>
+            <LargeToolbar>
                 <BarButton component={Link} to='/'>
                     Home
                 </BarButton>
                 <BarButton component={Link} to='/orders/pending'>
                     Orders
                 </BarButton>
-            </Toolbar>
+            </LargeToolbar>
         </BorderAppBar>
     );
 }
