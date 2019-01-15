@@ -2,19 +2,12 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 from .models import User, MenuItem, Order
-from django.contrib.auth.forms import UserCreationForm
+
 
 # Our custom user model.
-class CustomUserCreationForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = User
-        fields = UserCreationForm.Meta.fields + (
-            "phone_number",
-            "is_banned",
-            "is_student",
-            "is_teacher",
-            "device_id",
-        )
+class UserAdmin(admin.ModelAdmin):
+    model = User
+    filter_horizontal = ("user_permissions", "groups")
 
 
 admin.site.register(User, UserAdmin)
