@@ -24,6 +24,11 @@ class MenuViewSet(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
 
+class BillViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Bill.objects.all()
+    serializer_class = BillSerializer
+
+    
 
 # FIXME: Change to ModelViewSet and add CRUD operations, with OrderItem support.
 class OrderViewSet(viewsets.ReadOnlyModelViewSet):

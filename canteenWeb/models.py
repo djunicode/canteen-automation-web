@@ -48,9 +48,7 @@ class MenuItem(models.Model):
     options = models.CharField(
         max_length=8, choices=choices.MENU_ITEM_CHOICES, default="NON JAIN"
     )
-    category = models.CharField(
-        max_length=32, choices=choices.MENU_ITEM_CATEGORY, default="FAST FOOD"
-    )
+    category = models.ForeignKey(Category, on_delete = models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -88,6 +86,8 @@ class OrderItem(models.Model):
     comment = models.TextField(blank=True)
     price = models.IntegerField()
 
+class Category(models.Model):
+    name = models.CharField(max_length = 255, blank = True)
 
 ##################
 # BILLING SYSTEM #
@@ -95,4 +95,7 @@ class OrderItem(models.Model):
 
 
 class Bill(models.Model):
-    pass
+    bill = models.OneToOneField(Order, on_delete=models.CASCADE, primary_key=True)
+    bill_no = models.CharField(max_length = 255,default = "XXXX")
+    transaction_fees = models.IntegerField()
+    tax = models.IntegerField()

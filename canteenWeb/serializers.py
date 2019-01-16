@@ -76,7 +76,6 @@ class MenuItemSerializer(serializers.ModelSerializer):
             "is_available",
             "preparation_time",
             "options",
-            "category",
         )
 
 
@@ -109,3 +108,7 @@ class SignUpSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=10)
     password = serializers.CharField(style={"input_type": "password"})
+
+class BillSerializer(serializers.Serializer):
+    user = Bill
+    field = '__all__'
