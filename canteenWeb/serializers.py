@@ -70,4 +70,44 @@ class OrderSerializer(serializers.ModelSerializer):
 class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
-        fields = ("id", "name", "price", "is_available", "preparation_time", "options")
+        fields = (
+            "url",
+            "id",
+            "name",
+            "price",
+            "is_available",
+            "preparation_time",
+            "options",
+            "category",
+        )
+
+
+class SignUpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            "first_name",
+            "last_name",
+            "email",
+            "is_staff",
+            "username",
+            "password",
+        )
+        extra_kwargs = {"password": {"write_only": True}}
+
+    def create(self, validated_data):
+        user = User(
+            first_name=validated_data["first_name"],
+            last_name=validated_data["last_name"],
+            email=validated_data["email"],
+            is_staff=validated_data["is_staff"],
+            username=validated_data["username"],
+        )
+        user.set_password(validated_data["password"])
+        user.save()
+        return user
+
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=10)
+    password = serializers.CharField(style={"input_type": "password"})

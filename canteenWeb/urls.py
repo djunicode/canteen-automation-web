@@ -13,12 +13,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, include
-from django.conf.urls import url
+from django.conf.urls import url, include
 from rest_framework import routers
 from . import views
 
 router = routers.DefaultRouter()
-router.register("orders", views.OrderViewSet, base_name="orders")
+router.register("orders", views.OrderViewSet)
+router.register("menu", views.MenuViewSet)
+
+urlpatterns = [path("", include(router.urls))]
+"""
+Removed in favour of viewset. To be discussed.
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -29,4 +34,8 @@ urlpatterns = [
         views.MenuItemDetails.as_view(),
         name="menu_item_detail",
     ),
+    url(r"^signup/", views.SignUp.as_view(), name="signup"),
+    url(r"^login/", views.Login.as_view(), name="login"),
+    url(r"^logout/", views.Logout.as_view(), name="logout"),
 ]
+"""
