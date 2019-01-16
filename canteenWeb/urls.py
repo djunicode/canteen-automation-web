@@ -23,6 +23,8 @@ router.register("menu", views.MenuViewSet)
 
 urlpatterns = [path("", include(router.urls))]
 """
+Removed in favour of viewset. To be discussed.
+
 urlpatterns = [
     path("", include(router.urls)),
     url(r"^menu_item/$", views.MenuItemList.as_view(), name="menu_item_list"),
