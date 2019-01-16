@@ -1,6 +1,6 @@
 from django.test import TestCase
 from rest_framework import status
-from rest_framework.test import APIClient,APIRequestFactory
+from rest_framework.test import APIClient, APIRequestFactory
 from rest_framework.request import Request
 from .models import Order, User, MenuItem
 from .serializers import MenuItemSerializer, OrderItemSerializer, OrderSerializer
@@ -10,25 +10,20 @@ import json
 
 
 factory = APIRequestFactory()
-request = factory.get('/')
+request = factory.get("/")
 
-serializer_context = {
-    'request': Request(request),
-}
+serializer_context = {"request": Request(request)}
 
 
 class OrderTest(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.URL = "orders"
-
-        # Basic user.
+        # User
         cls.user = User.objects.create(
             username="Student", email="sixty@nine.com", password="super-secret-meow"
         )
         cls.user.save()
-
         # Client.
         cls.client = APIClient()
         cls.client.force_authenticate(user=cls.user)
@@ -40,34 +35,45 @@ class OrderTest(TestCase):
         )
 
     def test_order_accept(self):
-        client = APIClient()
-        # before accepting
-        response1 = client.get(reverse("order-detail", kwargs={"pk": self.order.id}))
-        # accepting
-        response2 = client.get(reverse("order-accept", kwargs={"pk": self.order.id}))
-        # after accepting
-        response3 = client.get(reverse("order-detail", kwargs={"pk": self.order.id}))
-        self.assertEqual(response1.data["status"], "New")
-        self.assertEqual(response2.data["message"], "Order accepted")
-        self.assertEqual(response3.data["status"], "Preparing")
+        before = self.client.get(
+            "/orders/{}/".format(self.order.id)
+        )  # before accepting
+        accept = self.client.post(
+            "/orders/{}/accept/".format(self.order.id)
+        )  # accepting
+        after = self.client.get("/orders/{}/".format(self.order.id))  # after accepting
+        # Assertions
+        self.assertEqual(before.status_code, 200)
+        self.assertEqual(before.data["status"], "New")
+
+        self.assertEqual(accept.status_code, 200)
+
+        self.assertEqual(after.status_code, 200)
+        self.assertEqual(after.data["status"], "Preparing")
 
     def test_order_reject(self):
-        # before rejecting
-        client = APIClient()
-        response1 = client.get(reverse("order-detail", kwargs={"pk": self.order.id}))
-        # rejecting
-        response2 = client.get(reverse("order-reject", kwargs={"pk": self.order.id}))
-        # after rejecting
-        response3 = client.get(reverse("order-detail", kwargs={"pk": self.order.id}))
-        self.assertEqual(response1.data["status"], "New")
-        self.assertEqual(response2.data["message"], "Order rejected")
-        self.assertEqual(response3.data["status"], "Rejected by Canteen")
+        before = self.client.get(
+            "/orders/{}/".format(self.order.id)
+        )  # before accepting
+        reject = self.client.post(
+            "/orders/{}/reject/".format(self.order.id)
+        )  # rejecting
+        after = self.client.get("/orders/{}/".format(self.order.id))  # after rejecting
+        # Assertions
+        self.assertEqual(before.status_code, 200)
+        self.assertEqual(before.data["status"], "New")
+
+        self.assertEqual(reject.status_code, 200)
+
+        self.assertEqual(after.status_code, 200)
+        self.assertEqual(after.data["status"], "Rejected by Canteen")
 
     def tearDown(self):
         Order.objects.all().delete()
 
     # TODO: Complete tests.
     # Vikrant's note: Order rejection and acceptance has been tested in Postman. Going on a vacation so will complete tests later.
+
 
 class MenuTest(TestCase):
     @classmethod
@@ -142,7 +148,9 @@ class MenuTest(TestCase):
         response = client.get(reverse("menuitem-list"))
         # get data from db
         menu_item_list = MenuItem.objects.all()
-        serializer = MenuItemSerializer(menu_item_list, context=serializer_context, many=True)
+        serializer = MenuItemSerializer(
+            menu_item_list, context=serializer_context, many=True
+        )
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 

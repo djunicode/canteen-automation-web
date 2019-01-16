@@ -23,10 +23,10 @@ from .serializers import (
 class MenuViewSet(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
+    permission_classes = (permissions.IsAdminUserOrReadOnly,)
 
 
-# FIXME: Change to ModelViewSet and add CRUD operations, with OrderItem support.
-class OrderViewSet(viewsets.ReadOnlyModelViewSet):
+class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
@@ -105,7 +105,9 @@ class Login(APIView):
                 password=serializer.data.get("password"),
             )
             login(request, user)
-            return HttpResponseRedirect(redirect_to="/menu_item/")
+            return HttpResponseRedirect(
+                redirect_to="/menu_item/", status=status.HTTP_200_OK
+            )
         else:
             return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
@@ -113,4 +115,4 @@ class Login(APIView):
 class Logout(APIView):
     def post(self, request):
         logout(request)
-        return HttpResponseRedirect(redirect_to="/login/")
+        return HttpResponseRedirect(redirect_to="/login/", status=status.HTTP_200_OK)
