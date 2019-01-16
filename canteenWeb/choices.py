@@ -5,7 +5,13 @@
 
 # Menu Item
 MENU_ITEM_CHOICES = (("JAIN", "Jain"), ("NON JAIN", "Non Jain"), ("BOTH", "Both"))
-
+MENU_ITEM_CATEGORY = (
+    ("CHINESE", "Chinese Food"),
+    ("SOUTH INDIAN", "South Indian Food"),
+    ("FAST FOOD", "Fast Food"),
+    ("DRINKS", "Drinks"),
+    ("ITALIAN", "Italian"),
+)
 # Order.payment_mode
 PAYMENT_MODE_CHOICES = (
     ("ONLINE", "Online Payment Gateway"),
