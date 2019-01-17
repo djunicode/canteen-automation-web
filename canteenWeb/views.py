@@ -25,10 +25,10 @@ class MenuViewSet(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
 
+
 class BillViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Bill.objects.all()
     serializer_class = BillSerializer
-
 
 
 class OrderViewSet(viewsets.ModelViewSet):

@@ -20,7 +20,7 @@ from . import views
 router = routers.DefaultRouter()
 router.register("orders", views.OrderViewSet)
 router.register("menu", views.MenuViewSet)
-router.register("bill",views.BillViewSet)
+router.register("bill", views.BillViewSet)
 
 urlpatterns = [path("", include(router.urls))]
 """
