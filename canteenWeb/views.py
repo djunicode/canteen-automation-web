@@ -8,12 +8,13 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
 from django.http import Http404
 from . import choices
-from .models import Order, MenuItem, User
+from .models import Order, MenuItem, User, Bill
 from .serializers import (
     OrderSerializer,
     MenuItemSerializer,
     SignUpSerializer,
     LoginSerializer,
+    BillSerializer,
 )
 
 
@@ -28,10 +29,9 @@ class BillViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Bill.objects.all()
     serializer_class = BillSerializer
 
-    
 
-# FIXME: Change to ModelViewSet and add CRUD operations, with OrderItem support.
-class OrderViewSet(viewsets.ReadOnlyModelViewSet):
+
+class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 

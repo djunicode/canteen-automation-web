@@ -20,9 +20,12 @@ from . import views
 router = routers.DefaultRouter()
 router.register("orders", views.OrderViewSet)
 router.register("menu", views.MenuViewSet)
+router.register("bill",views.BillViewSet)
 
 urlpatterns = [path("", include(router.urls))]
 """
+Removed in favour of viewset. To be discussed.
+
 urlpatterns = [
     path("", include(router.urls)),
     url(r"^menu_item/$", views.MenuItemList.as_view(), name="menu_item_list"),

@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
-from .models import Order, OrderItem, MenuItem, User
+from .models import Order, OrderItem, MenuItem, User, Bill
 from . import choices
+
 
 ###################
 # ORDERING SYSTEM #
@@ -15,11 +15,11 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = "__all__"
+        exclude = ("order",)
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     status = serializers.CharField(read_only=True, source="get_status_display")
 
     time_issued = serializers.DateTimeField(read_only=True)
@@ -27,13 +27,13 @@ class OrderSerializer(serializers.ModelSerializer):
     time_prepared = serializers.DateTimeField(read_only=True)
     time_delivered = serializers.DateTimeField(read_only=True)
 
-    items = OrderItemSerializer(many=True)
+    items = OrderItemSerializer(many=True, required=False, allow_null=True)
 
     class Meta:
         model = Order
         # Need to include items serializer.
         fields = (
-            "url",
+            # "url",
             "id",
             "user",
             "total_price",
@@ -49,15 +49,17 @@ class OrderSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
-        items = validated_data.pop("items")
+        items = []
+        if "items" in validated_data:
+            items = validated_data.pop("items")
         order = Order.objects.create(**validated_data)
         for item_data in items:
             OrderItem.objects.create(order=order, **item_data)
         return order
 
-    def update(self, instance, validated_data):
-        # TODO: COMPLETE
-        return instance
+    # def update(self, instance, validated_data):
+    #     # TODO: COMPLETE
+    #     return instance
 
 
 #####################
@@ -109,6 +111,7 @@ class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=10)
     password = serializers.CharField(style={"input_type": "password"})
 
-class BillSerializer(serializers.Serializer):
-    user = Bill
-    field = '__all__'
+class BillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bill
+        fields = '__all__'
