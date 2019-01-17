@@ -17,42 +17,51 @@ from .serializers import (
 )
 
 
+class IsAdminUserOrReadOnly(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        return (request.method in permissions.SAFE_METHODS or
+                request.user and
+                request.user.is_staff)
+
+
 # Create your views here.
 
 
 class MenuViewSet(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
-    permission_classes = (permissions.IsAdminUserOrReadOnly,)
+    permission_classes = (IsAdminUserOrReadOnly,)
 
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     # TODO: Add permissions.
 
-    @action(detail=True, methods=["get", "post"])  # TODO: Remove get
+    @action(detail=True, methods=["get", "post"], permission_classes=[permissions.IsAdminUser])  # TODO: Remove get
     def accept(self, request, pk=None):
         order = self.get_object()
         order.status = choices.STATUS_DICTIONARY["Preparing"]
         order.save()
         return Response({"message": "Order accepted"})
 
-    @action(detail=True, methods=["get", "post"])  # TODO: Remove get
+    @action(detail=True, methods=["get", "post"], permission_classes=[permissions.IsAdminUser])  # TODO: Remove get
     def reject(self, request, pk=None):
         order = self.get_object()
         order.status = choices.STATUS_DICTIONARY["Rejected by Canteen"]
         order.save()
         return Response({"message": "Order rejected"})
 
-    @action(detail=False)
+    @action(detail=False, permission_classes=[permissions.IsAdminUser])
     def completed(self, request):
         completed_orders = Order.objects.filter(is_fulfilled=True)
         serializer = self.get_serializer(completed_orders, many=True)
         return Response(serializer.data)
 
-    @action(detail=False)
+    @action(detail=False, permission_classes=[permissions.IsAdminUser])
     def pending(self, request):
         pending_orders = Order.objects.filter(
             is_fulfilled=False, status__gte=0
@@ -64,7 +73,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     def status_options(self, request):
         return Response(choices.STATUS_DICTIONARY)
 
-    @action(detail=True, methods=["get", "post"])
+    @action(detail=True, methods=["get", "post"], permission_classes=[permissions.IsAdminUser])
     def change_status(self, request, pk=None):
         order = self.get_object()
         data = request.data
