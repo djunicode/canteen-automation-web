@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Order, OrderItem, MenuItem, User, Bill
+from .models import Order, OrderItem, MenuItem, User, Bill, Category
 from . import choices
 
 
@@ -115,4 +115,10 @@ class LoginSerializer(serializers.Serializer):
 class BillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bill
+        fields = "__all__"
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
         fields = "__all__"

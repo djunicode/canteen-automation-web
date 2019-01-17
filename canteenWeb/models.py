@@ -82,6 +82,9 @@ class Order(models.Model):
             self.user.username, self.time_issued, self.total_price
         )
 
+    def get_price(self):
+        return total_price
+
 
 class OrderItem(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
@@ -98,6 +101,7 @@ class OrderItem(models.Model):
 
 class Bill(models.Model):
     bill = models.OneToOneField(Order, on_delete=models.CASCADE, primary_key=True)
-    bill_no = models.CharField(max_length=255, default="XXXX")
+    bill_no = models.CharField(max_length=256, default="XXXX")
     transaction_fees = models.IntegerField(null=True)
     tax = models.IntegerField(null=True)
+    total_amount = models.IntegerField(default=0)

@@ -14,5 +14,9 @@ channel_layer = get_channel_layer()
 @receiver(signals.post_delete, sender=Order)
 def new_orders_websocket(sender, created=None, **kwargs):
     async_to_sync(channel_layer.group_send)("admin", {"type": "orders.list"})
-
-    Bill.objects.get_or_create(bill=kwargs.get("instance"))
+    object = kwargs.get("instance")
+    Bill.objects.get_or_create(
+        bill=object,
+        tax=int(object.total_price) * 5 / 100,
+        total_amount=int(object.total_price) + int(object.total_price) * 5 / 100,
+    )
