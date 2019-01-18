@@ -82,8 +82,6 @@ class Order(models.Model):
             self.user.username, self.time_issued, self.total_price
         )
 
-    def get_price(self):
-        return total_price
 
 
 class OrderItem(models.Model):
