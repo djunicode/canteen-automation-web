@@ -23,7 +23,9 @@ class OrderTest(TestCase):
         cls.user = User.objects.create(
             username="Student", email="sixty@nine.com", password="super-secret-meow"
         )
+        cls.user.is_staff = True
         cls.user.save()
+
         # Client.
         cls.client = APIClient()
         cls.client.force_authenticate(user=cls.user)
@@ -85,6 +87,7 @@ class MenuTest(TestCase):
         cls.user = User.objects.create(
             username="Student1", email="sixtynine@one.com", password="super-secret-meow"
         )
+        cls.user.is_staff = True
         cls.user.save()
 
         # Client.
@@ -143,9 +146,8 @@ class MenuTest(TestCase):
         }
 
     def test_get_all_menu_items(self):
-        client = APIClient()
         # get API response
-        response = client.get(reverse("menuitem-list"))
+        response = self.client.get(reverse("menuitem-list"))
         # get data from db
         menu_item_list = MenuItem.objects.all()
         serializer = MenuItemSerializer(
@@ -155,8 +157,7 @@ class MenuTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_valid_menu_item(self):
-        client = APIClient()
-        response = client.get(
+        response = self.client.get(
             reverse("menuitem-detail", kwargs={"pk": self.sandwich.id})
         )
         menu_item = MenuItem.objects.get(id=self.sandwich.id)
@@ -165,13 +166,11 @@ class MenuTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_invalid_menu_item(self):
-        client = APIClient()
-        response = client.get(reverse("menuitem-detail", kwargs={"pk": 7}))
+        response = self.client.get(reverse("menuitem-detail", kwargs={"pk": 7}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_create_valid_menu_item(self):
-        client = APIClient()
-        response = client.post(
+        response = self.client.post(
             reverse("menuitem-list"),
             data=json.dumps(self.valid_menu_item),
             content_type="application/json",
@@ -179,8 +178,7 @@ class MenuTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_create_invalid_menu_item(self):
-        client = APIClient()
-        response = client.post(
+        response = self.client.post(
             reverse("menuitem-list"),
             data=json.dumps(self.invalid_menu_item),
             content_type="application/json",
@@ -188,8 +186,7 @@ class MenuTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_valid_update_menu_item(self):
-        client = APIClient()
-        response = client.put(
+        response = self.client.put(
             reverse("menuitem-detail", kwargs={"pk": self.sandwich.id}),
             data=json.dumps(self.valid_update_menu_item),
             content_type="application/json",
@@ -197,8 +194,7 @@ class MenuTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_invalid_update_menu_item(self):
-        client = APIClient()
-        response = client.put(
+        response = self.client.put(
             reverse("menuitem-detail", kwargs={"pk": self.sandwich.id}),
             data=json.dumps(self.invalid_update_menu_item),
             content_type="application/json",
