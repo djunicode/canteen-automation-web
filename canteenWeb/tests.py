@@ -2,7 +2,7 @@ from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIClient, APIRequestFactory
 from rest_framework.request import Request
-from .models import Order, User, MenuItem
+from .models import Order, User, MenuItem, Category
 from .serializers import MenuItemSerializer, OrderItemSerializer, OrderSerializer
 from django.urls import reverse
 import random
@@ -96,53 +96,62 @@ class MenuTest(TestCase):
 
     def setUp(self):
         # Create an menu before all tests.
+        self.indian = Category.objects.create(name="Indian")
         self.sandwich = MenuItem.objects.create(
             name="Sandwich",
             price=random.randint(0, 100),
             is_available=True,
             options="JAIN",
+            category=self.indian,
         )
         self.dosa = MenuItem.objects.create(
             name="Dosa",
             price=random.randint(0, 100),
             is_available=True,
             options="NON JAIN",
+            category=self.indian,
         )
         self.fried_rice = MenuItem.objects.create(
             name="Fried Rice",
             price=random.randint(0, 100),
             is_available=False,
             options="BOTH",
+            category=self.indian,
         )
         self.coffee = MenuItem.objects.create(
             name="Coffee",
             price=random.randint(0, 100),
             is_available=False,
             options="JAIN",
+            category=self.indian,
         )
         self.valid_menu_item = {
             "name": "Pizza",
             "price": 140,
             "is_available": "False",
             "options": "NON JAIN",
+            "category": "Italian",
         }
         self.invalid_menu_item = {
             "name": "",
             "price": 60,
             "is_available": "False",
             "options": "NON JAIN",
+            "category": "Indian",
         }
         self.valid_update_menu_item = {
             "name": "Burger",
             "price": 90,
             "is_available": "False",
             "options": "JAIN",
+            "category": "American",
         }
         self.invalid_update_menu_item = {
             "name": "",
             "price": 70,
             "is_available": "True",
             "options": "NON JAIN",
+            "category": "Indian",
         }
 
     def test_get_all_menu_items(self):
