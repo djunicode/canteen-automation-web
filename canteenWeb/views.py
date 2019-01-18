@@ -103,7 +103,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         return Response({"message": "Order unfulfilled"})
 
     @swagger_auto_schema(responses={200: OrderSerializer(many=True)})
-    @action(detail=False)
+    @action(detail=False, permission_classes=[permissions.IsAdminUser])
     def completed(self, request):
         """
             Return a list of all completed orders.
