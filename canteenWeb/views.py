@@ -18,11 +18,12 @@ from .serializers import (
 
 
 class IsAdminUserOrReadOnly(permissions.BasePermission):
-
     def has_permission(self, request, view):
-        return (request.method in permissions.SAFE_METHODS or
-                request.user and
-                request.user.is_staff)
+        return (
+            request.method in permissions.SAFE_METHODS
+            or request.user
+            and request.user.is_staff
+        )
 
 
 # Create your views here.
@@ -41,14 +42,22 @@ class OrderViewSet(viewsets.ModelViewSet):
 
     # TODO: Add permissions.
 
-    @action(detail=True, methods=["get", "post"], permission_classes=[permissions.IsAdminUser])  # TODO: Remove get
+    @action(
+        detail=True,
+        methods=["get", "post"],
+        permission_classes=[permissions.IsAdminUser],
+    )  # TODO: Remove get
     def accept(self, request, pk=None):
         order = self.get_object()
         order.status = choices.STATUS_DICTIONARY["Preparing"]
         order.save()
         return Response({"message": "Order accepted"})
 
-    @action(detail=True, methods=["get", "post"], permission_classes=[permissions.IsAdminUser])  # TODO: Remove get
+    @action(
+        detail=True,
+        methods=["get", "post"],
+        permission_classes=[permissions.IsAdminUser],
+    )  # TODO: Remove get
     def reject(self, request, pk=None):
         order = self.get_object()
         order.status = choices.STATUS_DICTIONARY["Rejected by Canteen"]
@@ -73,7 +82,11 @@ class OrderViewSet(viewsets.ModelViewSet):
     def status_options(self, request):
         return Response(choices.STATUS_DICTIONARY)
 
-    @action(detail=True, methods=["get", "post"], permission_classes=[permissions.IsAdminUser])
+    @action(
+        detail=True,
+        methods=["get", "post"],
+        permission_classes=[permissions.IsAdminUser],
+    )
     def change_status(self, request, pk=None):
         order = self.get_object()
         data = request.data
