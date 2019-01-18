@@ -10,18 +10,30 @@ from rest_framework.views import APIView
 from drf_yasg.utils import no_body, swagger_auto_schema
 from drf_yasg import openapi
 from . import choices
-from .models import Order, MenuItem, User
+from .models import Order, MenuItem, User, Bill, Category
 from .serializers import (
     OrderSerializer,
     MenuItemSerializer,
     SignUpSerializer,
     LoginSerializer,
+    BillSerializer,
+    CategorySerializer,
 )
 
 
 class MenuViewSet(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
+
+
+class BillViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Bill.objects.all()
+    serializer_class = BillSerializer
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Order, OrderItem, MenuItem, User
+from .models import Order, OrderItem, MenuItem, User, Bill, Category
 from . import choices
 
 
@@ -78,7 +78,6 @@ class MenuItemSerializer(serializers.ModelSerializer):
             "is_available",
             "preparation_time",
             "options",
-            "category",
         )
 
 
@@ -111,3 +110,15 @@ class SignUpSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=10)
     password = serializers.CharField(style={"input_type": "password"})
+
+
+class BillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bill
+        fields = "__all__"
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = "__all__"

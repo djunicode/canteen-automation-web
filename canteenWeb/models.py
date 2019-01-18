@@ -40,6 +40,10 @@ class TeacherProfile(models.Model):
 #####################
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=256, blank=True)
+
+
 class MenuItem(models.Model):
     name = models.CharField(max_length=20, null=False, blank=False, unique=True)
     price = models.PositiveIntegerField(blank=False, null=False)
@@ -48,9 +52,7 @@ class MenuItem(models.Model):
     options = models.CharField(
         max_length=8, choices=choices.MENU_ITEM_CHOICES, default="NON JAIN"
     )
-    category = models.CharField(
-        max_length=32, choices=choices.MENU_ITEM_CATEGORY, default="FAST FOOD"
-    )
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -80,6 +82,9 @@ class Order(models.Model):
             self.user.username, self.time_issued, self.total_price
         )
 
+    def get_price(self):
+        return total_price
+
 
 class OrderItem(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
@@ -95,4 +100,8 @@ class OrderItem(models.Model):
 
 
 class Bill(models.Model):
-    pass
+    bill = models.OneToOneField(Order, on_delete=models.CASCADE, primary_key=True)
+    bill_no = models.CharField(max_length=256, default="XXXX")
+    transaction_fees = models.IntegerField(null=True)
+    tax = models.IntegerField(null=True)
+    total_amount = models.IntegerField(default=0)
