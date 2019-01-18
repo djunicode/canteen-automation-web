@@ -83,7 +83,6 @@ class Order(models.Model):
         )
 
 
-
 class OrderItem(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
