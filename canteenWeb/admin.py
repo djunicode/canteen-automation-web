@@ -2,9 +2,10 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import UserChangeForm
-from .models import User, MenuItem, Order
+from .models import User, Category, MenuItem, Order, Bill
 
 
+# Our custom user model.
 class UserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = User
@@ -34,8 +35,7 @@ admin.site.register(User, UserAdmin)
 # Remove groups from admin site.
 admin.site.unregister(Group)
 
-# Our menu item model
-admin.site.register(MenuItem)
-
-# Ordering system
 admin.site.register(Order)
+admin.site.register(Category)
+admin.site.register(MenuItem)
+admin.site.register(Bill)
