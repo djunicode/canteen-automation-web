@@ -23,15 +23,13 @@ class OrderTest(TestCase):
 
     def setUp(self):
         # Create an order before all tests.
-        self.order = Order.objects.create(
-            user=self.user, total_price=random.randint(0, 10000), payment_choices="COD"
-        )
+        self.order = Order.objects.create(user=self.user, payment_choices="COD")
 
     def test_order_accept(self):
         before = self.client.get(
             "/orders/{}/".format(self.order.id)
         )  # before accepting
-        accept = self.client.post(
+        accept = self.client.put(
             "/orders/{}/accept/".format(self.order.id)
         )  # accepting
         after = self.client.get("/orders/{}/".format(self.order.id))  # after accepting
@@ -48,7 +46,7 @@ class OrderTest(TestCase):
         before = self.client.get(
             "/orders/{}/".format(self.order.id)
         )  # before accepting
-        reject = self.client.post(
+        reject = self.client.put(
             "/orders/{}/reject/".format(self.order.id)
         )  # rejecting
         after = self.client.get("/orders/{}/".format(self.order.id))  # after rejecting
