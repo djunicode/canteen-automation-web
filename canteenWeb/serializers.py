@@ -20,10 +20,10 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
-    status = serializers.CharField(read_only=True, source="get_status_display")
+    time_sheduled = serializers.DateTimeField()
 
+    status = serializers.CharField(read_only=True, source="get_status_display")
     time_issued = serializers.DateTimeField(read_only=True)
-    time_sheduled = serializers.DateTimeField(read_only=True)
     time_prepared = serializers.DateTimeField(read_only=True)
     time_delivered = serializers.DateTimeField(read_only=True)
 
@@ -31,12 +31,10 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        # Need to include items serializer.
         fields = (
             # "url",
             "id",
             "user",
-            "total_price",
             "is_fulfilled",
             "payment_choices",
             "status",
@@ -57,28 +55,24 @@ class OrderSerializer(serializers.ModelSerializer):
             OrderItem.objects.create(order=order, **item_data)
         return order
 
-    # def update(self, instance, validated_data):
-    #     # TODO: COMPLETE
-    #     return instance
-
 
 #####################
 # CUSTOMIZABLE MENU #
 #####################
 
 
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = "__all__"
+
+
 class MenuItemSerializer(serializers.ModelSerializer):
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
+
     class Meta:
         model = MenuItem
-        fields = (
-            "url",
-            "id",
-            "name",
-            "price",
-            "is_available",
-            "preparation_time",
-            "options",
-        )
+        fields = "__all__"
 
 
 class SignUpSerializer(serializers.ModelSerializer):
@@ -112,13 +106,12 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(style={"input_type": "password"})
 
 
+##################
+# BILLING SYSTEM #
+##################
+
+
 class BillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bill
-        fields = "__all__"
-
-
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
         fields = "__all__"

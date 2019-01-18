@@ -64,6 +64,30 @@ class OrderViewSet(viewsets.ModelViewSet):
         order.save()
         return Response({"message": "Order rejected"})
 
+    @swagger_auto_schema(request_body=no_body, responses={200: None})
+    @action(detail=True, methods=["put"])
+    def fulfil(self, request, pk=None):
+        """
+            Fulfil an order by PUT-ing to this end-point.
+            Payload is ignored.
+        """
+        order = self.get_object()
+        order.is_fulfilled = True
+        order.save()
+        return Response({"message": "Order fulfilled"})
+
+    @swagger_auto_schema(request_body=no_body, responses={200: None})
+    @action(detail=True, methods=["put"])
+    def unfulfil(self, request, pk=None):
+        """
+            Set order fulfil to false by PUT-ing to this end-point.
+            Payload is ignored.
+        """
+        order = self.get_object()
+        order.is_fulfilled = False
+        order.save()
+        return Response({"message": "Order unfulfilled"})
+
     @swagger_auto_schema(responses={200: OrderSerializer(many=True)})
     @action(detail=False)
     def completed(self, request):
