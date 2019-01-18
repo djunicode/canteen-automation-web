@@ -8,12 +8,14 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
 from django.http import Http404
 from . import choices
-from .models import Order, MenuItem, User
+from .models import Order, MenuItem, User, Bill, Category
 from .serializers import (
     OrderSerializer,
     MenuItemSerializer,
     SignUpSerializer,
     LoginSerializer,
+    BillSerializer,
+    CategorySerializer,
 )
 
 
@@ -23,6 +25,16 @@ from .serializers import (
 class MenuViewSet(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
+
+
+class BillViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Bill.objects.all()
+    serializer_class = BillSerializer
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):
