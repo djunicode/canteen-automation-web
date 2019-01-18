@@ -80,12 +80,7 @@ class Order(models.Model):
     )
 
     def __str__(self):
-        return "{}|{} >> {}".format(
-            self.user.username, self.time_issued, self.total_price
-        )
-
-    def get_price(self):
-        return self.total_price
+        return "{}|{}".format(self.id, self.user.username)
 
 
 class OrderItem(models.Model):
