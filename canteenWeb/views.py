@@ -139,9 +139,7 @@ class Login(APIView):
                 password=serializer.data.get("password"),
             )
             login(request, user)
-            return HttpResponseRedirect(
-                redirect_to="/menu_item/", status=status.HTTP_200_OK
-            )
+            return HttpResponseRedirect(redirect_to="/menu_item/")
         else:
             return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
@@ -149,4 +147,4 @@ class Login(APIView):
 class Logout(APIView):
     def post(self, request):
         logout(request)
-        return HttpResponseRedirect(redirect_to="/login/", status=status.HTTP_200_OK)
+        return HttpResponseRedirect(redirect_to="/login/")
