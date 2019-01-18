@@ -23,9 +23,7 @@ class OrderTest(TestCase):
 
     def setUp(self):
         # Create an order before all tests.
-        self.order = Order.objects.create(
-            user=self.user, total_price=random.randint(0, 10000), payment_choices="COD"
-        )
+        self.order = Order.objects.create(user=self.user, payment_choices="COD")
 
     def test_order_accept(self):
         before = self.client.get(
