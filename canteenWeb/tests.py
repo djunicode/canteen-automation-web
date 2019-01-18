@@ -38,7 +38,7 @@ class OrderTest(TestCase):
         before = self.client.get(
             "/orders/{}/".format(self.order.id)
         )  # before accepting
-        accept = self.client.post(
+        accept = self.client.put(
             "/orders/{}/accept/".format(self.order.id)
         )  # accepting
         after = self.client.get("/orders/{}/".format(self.order.id))  # after accepting
@@ -55,7 +55,7 @@ class OrderTest(TestCase):
         before = self.client.get(
             "/orders/{}/".format(self.order.id)
         )  # before accepting
-        reject = self.client.post(
+        reject = self.client.put(
             "/orders/{}/reject/".format(self.order.id)
         )  # rejecting
         after = self.client.get("/orders/{}/".format(self.order.id))  # after rejecting

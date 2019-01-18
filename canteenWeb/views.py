@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
+from django.http import Http404
 from rest_framework import viewsets, permissions, status, views
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
-from django.http import Http404
+from drf_yasg.utils import no_body, swagger_auto_schema
+from drf_yasg import openapi
 from . import choices
 from .models import Order, MenuItem, User, Bill, Category
 from .serializers import (
@@ -52,46 +54,82 @@ class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    # TODO: Add permissions.
-
-    @action(
-        detail=True,
-        methods=["get", "post"],
-        permission_classes=[permissions.IsAdminUser],
-    )  # TODO: Remove get
+    @swagger_auto_schema(request_body=no_body, responses={200: None})
+    @action(detail=True, methods=["put"], permission_classes=[permissions.IsAdminUser])
     def accept(self, request, pk=None):
+        """
+            Accept an order by PUT-ing to this end-point.
+            Payload is ignored.
+        """
         order = self.get_object()
         order.status = choices.STATUS_DICTIONARY["Preparing"]
         order.save()
         return Response({"message": "Order accepted"})
 
-    @action(
-        detail=True,
-        methods=["get", "post"],
-        permission_classes=[permissions.IsAdminUser],
-    )  # TODO: Remove get
+    @swagger_auto_schema(request_body=no_body, responses={200: None})
+    @action(detail=True, methods=["put"], permission_classes=[permissions.IsAdminUser])
     def reject(self, request, pk=None):
+        """
+            Reject an order by PUT-ing to this end-point.
+            Payload is ignored.
+        """
         order = self.get_object()
         order.status = choices.STATUS_DICTIONARY["Rejected by Canteen"]
         order.save()
         return Response({"message": "Order rejected"})
 
-    @action(detail=False, permission_classes=[permissions.IsAdminUser])
+    @swagger_auto_schema(request_body=no_body, responses={200: None})
+    @action(detail=True, methods=["put"], permission_classes=[permissions.IsAdminUser])
+    def fulfil(self, request, pk=None):
+        """
+            Fulfil an order by PUT-ing to this end-point.
+            Payload is ignored.
+        """
+        order = self.get_object()
+        order.is_fulfilled = True
+        order.save()
+        return Response({"message": "Order fulfilled"})
+
+    @swagger_auto_schema(request_body=no_body, responses={200: None})
+    @action(detail=True, methods=["put"], permission_classes=[permissions.IsAdminUser])
+    def unfulfil(self, request, pk=None):
+        """
+            Set order fulfil to false by PUT-ing to this end-point.
+            Payload is ignored.
+        """
+        order = self.get_object()
+        order.is_fulfilled = False
+        order.save()
+        return Response({"message": "Order unfulfilled"})
+
+    @swagger_auto_schema(responses={200: OrderSerializer(many=True)})
+    @action(detail=False)
     def completed(self, request):
+        """
+            Return a list of all completed orders.
+        """
         completed_orders = Order.objects.filter(is_fulfilled=True)
         serializer = self.get_serializer(completed_orders, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(responses={200: OrderSerializer(many=True)})
     @action(detail=False, permission_classes=[permissions.IsAdminUser])
     def pending(self, request):
+        """
+            Return a list of all pending orders.
+        """
         pending_orders = Order.objects.filter(
             is_fulfilled=False, status__gte=0
         )  # Should not be fulfilled and status should be positive.
         serializer = self.get_serializer(pending_orders, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(responses={200: None})
     @action(detail=False)
     def status_options(self, request):
+        """
+            Show all possible preparation status options for an order.
+        """
         return Response(choices.STATUS_DICTIONARY)
 
     @action(
@@ -100,6 +138,9 @@ class OrderViewSet(viewsets.ModelViewSet):
         permission_classes=[permissions.IsAdminUser],
     )
     def change_status(self, request, pk=None):
+        """
+            Change the preparation status of an order.
+        """
         order = self.get_object()
         data = request.data
         if "status" in data:

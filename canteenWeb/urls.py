@@ -19,9 +19,9 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register("orders", views.OrderViewSet)
-router.register("menu", views.MenuViewSet)
-router.register("bill", views.BillViewSet)
-router.register("category", views.CategoryViewSet)
+router.register("menus", views.MenuViewSet)
+router.register("bills", views.BillViewSet)
+router.register("categories", views.CategoryViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
