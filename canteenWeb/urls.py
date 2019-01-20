@@ -32,4 +32,6 @@ urlpatterns = [
     url(r"^signup/", views.SignUp.as_view(), name="signup"),
     url(r"^login/", views.Login.as_view(), name="login"),
     url(r"^logout/", views.Logout.as_view(), name="logout"),
+    url(r"^student-registration/", views.StudentRegistration.as_view(), name="student-registration"),
+    url(r"^teacher-registration/", views.TeacherRegistration.as_view(), name="student-registration"),
 ]

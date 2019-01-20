@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import Order, OrderItem, MenuItem, User
+from .models import Order, OrderItem, MenuItem, User, StudentProfile, TeacherProfile
 from . import choices
 
 ###################
@@ -78,7 +78,10 @@ class SignUpSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "email",
+            "phone_number",
             "is_staff",
+            "is_teacher",
+            "is_student",
             "username",
             "password",
         )
@@ -89,7 +92,10 @@ class SignUpSerializer(serializers.ModelSerializer):
             first_name=validated_data["first_name"],
             last_name=validated_data["last_name"],
             email=validated_data["email"],
+            phone_number=validated_data["phone_number"],
             is_staff=validated_data["is_staff"],
+            is_teacher=validated_data["is_teacher"],
+            is_student=validated_data["is_student"],
             username=validated_data["username"],
         )
         user.set_password(validated_data["password"])
@@ -100,3 +106,15 @@ class SignUpSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=10)
     password = serializers.CharField(style={"input_type": "password"})
+
+
+class StudentProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentProfile
+        fields = "__all__"
+
+
+class TeacherProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeacherProfile
+        fields = "__all__"

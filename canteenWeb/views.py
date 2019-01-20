@@ -8,12 +8,14 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
 from django.http import Http404
 from . import choices
-from .models import Order, MenuItem, User
+from .models import Order, MenuItem, User, StudentProfile, TeacherProfile
 from .serializers import (
     OrderSerializer,
     MenuItemSerializer,
     SignUpSerializer,
     LoginSerializer,
+    StudentProfileSerializer,
+    TeacherProfileSerializer,
 )
 
 
@@ -121,9 +123,21 @@ class OrderViewSet(viewsets.ReadOnlyModelViewSet):
             )
 
 
-class SignUp(CreateAPIView):
-    queryset = User.objects.all()
+class SignUp(APIView):
     serializer_class = SignUpSerializer
+
+    def post(self, request):
+        serializer = SignUpSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            if(serializer.data.get("is_student")):
+                return HttpResponseRedirect(redirect_to="/student-registration/")
+            elif(serializer.data.get("is_teacher")):
+                return HttpResponseRedirect(redirect_to="/student-registration/")
+            else:
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
 
 class Login(APIView):
@@ -146,3 +160,25 @@ class Logout(APIView):
     def post(self, request):
         logout(request)
         return HttpResponseRedirect(redirect_to="/login/")
+
+
+class StudentRegistration(APIView):
+    serializer_class = StudentProfileSerializer
+    def post(self, request):
+        serializer = StudentProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class TeacherRegistration(APIView):
+    serializer_class = TeacherProfileSerializer
+    def post(self, request):
+        serializer = TeacherProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
