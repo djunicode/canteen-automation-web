@@ -23,6 +23,7 @@ class OrderTest(TestCase):
         cls.user = User.objects.create(
             username="Student", email="sixty@nine.com", password="super-secret-meow"
         )
+        cls.user.save()
         cls.user.is_staff = True
         cls.user.save()
 
@@ -35,10 +36,11 @@ class OrderTest(TestCase):
         self.order = Order.objects.create(user=self.user, payment_choices="COD")
 
     def test_order_accept(self):
+        self.client.login(username=self.user.username, password=self.user.password)
         before = self.client.get(
             "/orders/{}/".format(self.order.id)
         )  # before accepting
-        accept = self.client.put(
+        accept = self.client.post(
             "/orders/{}/accept/".format(self.order.id)
         )  # accepting
         after = self.client.get("/orders/{}/".format(self.order.id))  # after accepting
@@ -50,12 +52,14 @@ class OrderTest(TestCase):
 
         self.assertEqual(after.status_code, 200)
         self.assertEqual(after.data["status"], "Preparing")
+        self.client.logout()
 
     def test_order_reject(self):
+        self.client.login(username=self.user.username, password=self.user.password)
         before = self.client.get(
             "/orders/{}/".format(self.order.id)
         )  # before accepting
-        reject = self.client.put(
+        reject = self.client.post(
             "/orders/{}/reject/".format(self.order.id)
         )  # rejecting
         after = self.client.get("/orders/{}/".format(self.order.id))  # after rejecting
@@ -67,12 +71,10 @@ class OrderTest(TestCase):
 
         self.assertEqual(after.status_code, 200)
         self.assertEqual(after.data["status"], "Rejected by Canteen")
+        self.client.logout()
 
     def tearDown(self):
         Order.objects.all().delete()
-
-    # TODO: Complete tests.
-    # Vikrant's note: Order rejection and acceptance has been tested in Postman. Going on a vacation so will complete tests later.
 
 
 class MenuTest(TestCase):
@@ -85,6 +87,7 @@ class MenuTest(TestCase):
         cls.user = User.objects.create(
             username="Student1", email="sixtynine@one.com", password="super-secret-meow"
         )
+        cls.user.save()
         cls.user.is_staff = True
         cls.user.save()
 
@@ -177,36 +180,45 @@ class MenuTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_create_valid_menu_item(self):
+        self.client.login(username=self.user.username, password=self.user.password)
         response = self.client.post(
             reverse("menuitem-list"),
             data=json.dumps(self.valid_menu_item),
             content_type="application/json",
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.client.logout()
 
     def test_create_invalid_menu_item(self):
+        self.client.login(username=self.user.username, password=self.user.password)
         response = self.client.post(
             reverse("menuitem-list"),
             data=json.dumps(self.invalid_menu_item),
             content_type="application/json",
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.client.logout()
 
     def test_valid_update_menu_item(self):
+        self.client.login(username=self.user.username, password=self.user.password)
         response = self.client.put(
             reverse("menuitem-detail", kwargs={"pk": self.sandwich.id}),
             data=json.dumps(self.valid_update_menu_item),
             content_type="application/json",
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.client.logout()
 
     def test_invalid_update_menu_item(self):
+        self.client.login(username=self.user.username, password=self.user.password)
+        import pdb; pdb.set_trace()
         response = self.client.put(
             reverse("menuitem-detail", kwargs={"pk": self.sandwich.id}),
             data=json.dumps(self.invalid_update_menu_item),
             content_type="application/json",
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.client.logout()
 
     def tearDown(self):
         MenuItem.objects.all().delete()
