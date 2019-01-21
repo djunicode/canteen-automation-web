@@ -24,10 +24,18 @@ router.register("bills", views.BillViewSet)
 router.register("categories", views.CategoryViewSet)
 
 urlpatterns = [
-        path("", include(router.urls)),
-        url(r"^signup/", views.SignUp.as_view(), name="signup"),
-        url(r"^login/", views.Login.as_view(), name="login"),
-        url(r"^logout/", views.Logout.as_view(), name="logout"),
-        url(r"^student-registration/", views.StudentRegistration.as_view(), name="student-registration"),
-        url(r"^teacher-registration/", views.TeacherRegistration.as_view(), name="student-registration"),
-    ]
+    path("", include(router.urls)),
+    url(r"^signup/", views.SignUp.as_view(), name="signup"),
+    url(r"^login/", views.Login.as_view(), name="login"),
+    url(r"^logout/", views.Logout.as_view(), name="logout"),
+    url(
+        r"^student-registration/",
+        views.StudentRegistration.as_view(),
+        name="student-registration",
+    ),
+    url(
+        r"^teacher-registration/",
+        views.TeacherRegistration.as_view(),
+        name="student-registration",
+    ),
+]

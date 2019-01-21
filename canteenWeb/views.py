@@ -10,7 +10,15 @@ from rest_framework.views import APIView
 from drf_yasg.utils import no_body, swagger_auto_schema
 from drf_yasg import openapi
 from . import choices
-from .models import Order, MenuItem, User, StudentProfile, TeacherProfile, Bill, Category
+from .models import (
+    Order,
+    MenuItem,
+    User,
+    StudentProfile,
+    TeacherProfile,
+    Bill,
+    Category,
+)
 from .serializers import (
     OrderSerializer,
     MenuItemSerializer,
@@ -155,9 +163,9 @@ class SignUp(APIView):
         serializer = SignUpSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            if(serializer.data.get("is_student")):
+            if serializer.data.get("is_student"):
                 return HttpResponseRedirect(redirect_to="/student-registration/")
-            elif(serializer.data.get("is_teacher")):
+            elif serializer.data.get("is_teacher"):
                 return HttpResponseRedirect(redirect_to="/student-registration/")
             else:
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -189,6 +197,7 @@ class Logout(APIView):
 
 class StudentRegistration(APIView):
     serializer_class = StudentProfileSerializer
+
     def post(self, request):
         serializer = StudentProfileSerializer(data=request.data)
         if serializer.is_valid():
@@ -200,6 +209,7 @@ class StudentRegistration(APIView):
 
 class TeacherRegistration(APIView):
     serializer_class = TeacherProfileSerializer
+
     def post(self, request):
         serializer = TeacherProfileSerializer(data=request.data)
         if serializer.is_valid():

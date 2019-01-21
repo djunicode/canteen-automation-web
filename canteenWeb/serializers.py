@@ -1,5 +1,14 @@
 from rest_framework import serializers
-from .models import Order, OrderItem, MenuItem, User, StudentProfile, TeacherProfile, Bill, Category
+from .models import (
+    Order,
+    OrderItem,
+    MenuItem,
+    User,
+    StudentProfile,
+    TeacherProfile,
+    Bill,
+    Category,
+)
 from . import choices
 
 
@@ -122,6 +131,7 @@ class TeacherProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeacherProfile
         fields = "__all__"
+
 
 ##################
 # BILLING SYSTEM #
