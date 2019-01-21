@@ -8,25 +8,25 @@ from .models import User, Category, MenuItem, Order, Bill
 # Our custom user model.
 class UserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
-       model = User
+        model = User
 
 
 class UserAdmin(UserAdmin):
     form = UserChangeForm
     fieldsets = UserAdmin.fieldsets + (
-    (
-        None,
-        {
-            "fields": (
-                "phone_number",
-                "is_banned",
-                "is_student",
-                "is_teacher",
-                "device_id",
-            )
-        },
-    ),
-)
+        (
+            None,
+            {
+                "fields": (
+                    "phone_number",
+                    "is_banned",
+                    "is_student",
+                    "is_teacher",
+                    "device_id",
+                )
+            },
+        ),
+    )
 
 
 admin.site.register(User, UserAdmin)
