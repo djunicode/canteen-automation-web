@@ -19,19 +19,15 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register("orders", views.OrderViewSet)
+router.register("menus", views.MenuViewSet)
+router.register("bills", views.BillViewSet)
+router.register("categories", views.CategoryViewSet)
 
 urlpatterns = [
-    path("", include(router.urls)),
-    url(r"^menu_item/$", views.MenuItemList.as_view(), name="menu_item_list"),
-    url(r"^menu_item/add/$", views.AddMenuItem.as_view(), name="add_menu_item"),
-    url(
-        r"^menu_item/(?P<menu_item_id>[0-9]+)/$",
-        views.MenuItemDetails.as_view(),
-        name="menu_item_detail",
-    ),
-    url(r"^signup/", views.SignUp.as_view(), name="signup"),
-    url(r"^login/", views.Login.as_view(), name="login"),
-    url(r"^logout/", views.Logout.as_view(), name="logout"),
-    url(r"^student-registration/", views.StudentRegistration.as_view(), name="student-registration"),
-    url(r"^teacher-registration/", views.TeacherRegistration.as_view(), name="student-registration"),
-]
+        path("", include(router.urls)),
+        url(r"^signup/", views.SignUp.as_view(), name="signup"),
+        url(r"^login/", views.Login.as_view(), name="login"),
+        url(r"^logout/", views.Logout.as_view(), name="logout"),
+        url(r"^student-registration/", views.StudentRegistration.as_view(), name="student-registration"),
+        url(r"^teacher-registration/", views.TeacherRegistration.as_view(), name="student-registration"),
+    ]

@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
-from .models import Order, OrderItem, MenuItem, User, StudentProfile, TeacherProfile
+from .models import Order, OrderItem, MenuItem, User, StudentProfile, TeacherProfile, Bill, Category
 from . import choices
+
 
 ###################
 # ORDERING SYSTEM #
@@ -15,28 +15,26 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = "__all__"
+        exclude = ("order",)
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
-    status = serializers.CharField(read_only=True, source="get_status_display")
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    time_sheduled = serializers.DateTimeField(required=False)
 
+    status = serializers.CharField(read_only=True, source="get_status_display")
     time_issued = serializers.DateTimeField(read_only=True)
-    time_sheduled = serializers.DateTimeField(read_only=True)
     time_prepared = serializers.DateTimeField(read_only=True)
     time_delivered = serializers.DateTimeField(read_only=True)
 
-    items = OrderItemSerializer(many=True)
+    items = OrderItemSerializer(many=True, required=False, allow_null=True)
 
     class Meta:
         model = Order
-        # Need to include items serializer.
         fields = (
-            "url",
+            # "url",
             "id",
             "user",
-            "total_price",
             "is_fulfilled",
             "payment_choices",
             "status",
@@ -49,15 +47,13 @@ class OrderSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
-        items = validated_data.pop("items")
+        items = []
+        if "items" in validated_data:
+            items = validated_data.pop("items")
         order = Order.objects.create(**validated_data)
         for item_data in items:
             OrderItem.objects.create(order=order, **item_data)
         return order
-
-    def update(self, instance, validated_data):
-        # TODO: COMPLETE
-        return instance
 
 
 #####################
@@ -65,10 +61,18 @@ class OrderSerializer(serializers.ModelSerializer):
 #####################
 
 
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = "__all__"
+
+
 class MenuItemSerializer(serializers.ModelSerializer):
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
+
     class Meta:
         model = MenuItem
-        fields = ("id", "name", "price", "is_available", "preparation_time", "options")
+        fields = "__all__"
 
 
 class SignUpSerializer(serializers.ModelSerializer):
@@ -117,4 +121,14 @@ class StudentProfileSerializer(serializers.ModelSerializer):
 class TeacherProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeacherProfile
+        fields = "__all__"
+
+##################
+# BILLING SYSTEM #
+##################
+
+
+class BillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bill
         fields = "__all__"
