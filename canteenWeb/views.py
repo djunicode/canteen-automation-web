@@ -1,11 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth import (
-    authenticate,
-    login,
-    logout,
-    user_logged_in,
-    user_logged_out,
-)
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.http import Http404
 from rest_framework import viewsets, permissions, status, views

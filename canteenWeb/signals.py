@@ -11,13 +11,6 @@ from django.dispatch import Signal
 channel_layer = get_channel_layer()
 
 
-# New user has registered.
-user_registered = Signal(providing_args=["user", "request"])
-
-# User has activated his or her account.
-user_activated = Signal(providing_args=["user", "request"])
-
-
 @receiver(signals.post_save, sender=Order)
 @receiver(signals.post_delete, sender=Order)
 def new_orders_websocket(sender, instance=None, created=None, **kwargs):
