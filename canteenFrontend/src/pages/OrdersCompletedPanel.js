@@ -4,15 +4,16 @@ import Typography from "@material-ui/core/Typography";
 function Completed() {
     return (
         <div>
-            <h1> COMPLETED PAGE </h1>
             <div
                 style={{
                     width: "100%",
-                    height: 460,
+                    height: 455,
                     backgroundColor: "#EEEEEE",
                     borderBottom: "3px solid #D0D8DD",
                 }}
-            />
+            >
+                completed page
+            </div>
             <div
                 style={{
                     width: "100%",

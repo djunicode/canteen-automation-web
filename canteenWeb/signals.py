@@ -5,18 +5,25 @@ from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 from .serializers import OrderSerializer, BillSerializer
 from .models import Order, Bill
+from django.dispatch import Signal
 
 # Channel layer
 channel_layer = get_channel_layer()
 
 
+# New user has registered.
+user_registered = Signal(providing_args=["user", "request"])
+
+# User has activated his or her account.
+user_activated = Signal(providing_args=["user", "request"])
+
+
 @receiver(signals.post_save, sender=Order)
 @receiver(signals.post_delete, sender=Order)
-def new_orders_websocket(sender, created=None, **kwargs):
+def new_orders_websocket(sender, instance=None, created=None, **kwargs):
     async_to_sync(channel_layer.group_send)("admin", {"type": "orders.list"})
-    object = kwargs.get("instance")
-    Bill.objects.get_or_create(
-        bill=object,
-        tax=int(object.total_price) * 5 / 100,
-        total_amount=int(object.total_price) + int(object.total_price) * 5 / 100,
-    )
+
+    if created:
+        items = list(instance.items.all())
+        total_amount = sum(map(lambda i: i.menu_item.price, items))
+        Bill.objects.create(order=instance, total_amount=total_amount)

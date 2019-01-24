@@ -8,3 +8,4 @@ toml==0.10.0
 djangorestframework==3.9.0
 channels==2.1.6
 channels_redis==2.3.3
+drf_yasg==1.12.1

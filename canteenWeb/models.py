@@ -43,6 +43,9 @@ class TeacherProfile(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=256, blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class MenuItem(models.Model):
     name = models.CharField(max_length=20, null=False, blank=False, unique=True)
@@ -65,7 +68,6 @@ class MenuItem(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    total_price = models.IntegerField(default=0)  # TODO: FloatField!
     is_fulfilled = models.BooleanField(default=False)
     status = models.SmallIntegerField(choices=choices.STATUS_CHOICES, default=0)
     transaction_id = models.CharField(max_length=256, blank=True, default="")
@@ -78,9 +80,7 @@ class Order(models.Model):
     )
 
     def __str__(self):
-        return "{}|{} >> {}".format(
-            self.user.username, self.time_issued, self.total_price
-        )
+        return "{}|{}".format(self.id, self.user.username)
 
 
 class OrderItem(models.Model):
@@ -90,6 +90,9 @@ class OrderItem(models.Model):
     comment = models.TextField(blank=True)
     price = models.IntegerField()
 
+    def __str__(self):
+        return "{} | {} x{}".format(self.order.id, self.menu_item, self.quantity)
+
 
 ##################
 # BILLING SYSTEM #
@@ -97,8 +100,11 @@ class OrderItem(models.Model):
 
 
 class Bill(models.Model):
-    bill = models.OneToOneField(Order, on_delete=models.CASCADE, primary_key=True)
+    order = models.OneToOneField(Order, on_delete=models.CASCADE, primary_key=True)
     bill_no = models.CharField(max_length=256, default="XXXX")
     transaction_fees = models.IntegerField(null=True)
     tax = models.IntegerField(null=True)
     total_amount = models.IntegerField(default=0)
+
+    def __str__(self):
+        return "Bill {} for Order #{}".format(self.bill_no, self.order.id)
