@@ -15,7 +15,7 @@ const styles = {
 
 function OrdersBar({ classes }) {
     return (
-        <BorderAppBar position='sticky' color='secondary'>
+        <BorderAppBar position='static' color='secondary'>
             <LargeToolbar className={classes.ordersToolbar}>
                 <div>
                     <BarButton component={Link} to='/orders/pending'>
