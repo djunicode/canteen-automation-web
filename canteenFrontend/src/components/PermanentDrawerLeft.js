@@ -6,7 +6,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import OutlinedTextFields from "./OutlinedTextFields";
 import Button from "@material-ui/core/Button";
 import RoundSearchBar from "./RoundSearchBar";
-//import PendingCards from "./core/PendingCards";
+import PendingCards from "./core/ItemCard";
 import { Divider } from "@material-ui/core";
 import PendingDrawer from "./core/PendingDrawer";
 import ItemCard from "./core/ItemCard";
@@ -31,7 +31,7 @@ class PermanentDrawerLeft extends React.Component {
                         width: "30%",
                         height: 581,
                         backgroundColor: "#E9E9E9",
-                        overflow:'auto',
+                        overflow: 'auto',
                         borderRight: "3px solid #D0D8DD",
                     }}
                 >
