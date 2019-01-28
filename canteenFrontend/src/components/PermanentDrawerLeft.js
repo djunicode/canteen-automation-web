@@ -9,6 +9,7 @@ import RoundSearchBar from "./RoundSearchBar";
 //import PendingCards from "./core/PendingCards";
 import { Divider } from "@material-ui/core";
 import PendingDrawer from "./core/PendingDrawer";
+import ItemCard from "./core/ItemCard";
 class PermanentDrawerLeft extends React.Component {
     state = {
         open: false,
@@ -150,9 +151,12 @@ class PermanentDrawerLeft extends React.Component {
                             </div>
                         </div>
                         <div
-                            style={{ height: 390, backgroundColor: "#DDF3FD" }}
+                            style={{ height: 390, backgroundColor: "#DDF3FD" ,overflow:'auto'}}
                         >
                             {/*cards*/}
+                            <ItemCard Name="Masala Dosa" Ing="Masala, Chutney, Sambhar, Batter" Price="₹49"/>
+                            <ItemCard Name="Pav Bhaji" Ing="Pav, Potatoes, Tomatoes" Price="₹60"/>
+                            <ItemCard Name="Sada Dosa" Ing="Batter, Chutney, Sambhar" Price="₹59"/>
                         </div>
                     </div>
                 </div>
