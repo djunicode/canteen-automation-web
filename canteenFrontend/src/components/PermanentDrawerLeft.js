@@ -151,11 +151,12 @@ class PermanentDrawerLeft extends React.Component {
                             </div>
                         </div>
                         <div
-                            style={{ height: 390, backgroundColor: "#DDF3FD", overflow: "auto" }}
+                            style={{ height: 390, backgroundColor: "#DDF3FD" ,overflow:'auto'}}
                         >
-                            <ItemCard Name="Masala Dosa" Ing="Masala, Chutney, Sambhar, Batter" Price="₹49" />
-                            <ItemCard Name="Pav Bhaji" Ing="Pav, Potatoes, Tomatoes" Price="₹60" />
-                            <ItemCard Name="Sada Dosa" Ing="Batter, Chutney, Sambhar" Price="₹59" />
+                            {/*cards*/}
+                            <ItemCard Name="Masala Dosa" Ing="Masala, Chutney, Sambhar, Batter" Price="₹49"/>
+                            <ItemCard Name="Pav Bhaji" Ing="Pav, Potatoes, Tomatoes" Price="₹60"/>
+                            <ItemCard Name="Sada Dosa" Ing="Batter, Chutney, Sambhar" Price="₹59"/>
                         </div>
                     </div>
                 </div>
