@@ -8,6 +8,7 @@ from .models import (
     TeacherProfile,
     Bill,
     Category,
+    Ingredients,
 )
 from . import choices
 
@@ -73,6 +74,12 @@ class OrderSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
+        fields = "__all__"
+
+
+class IngredientsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ingredients
         fields = "__all__"
 
 

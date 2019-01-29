@@ -18,6 +18,7 @@ from .models import (
     TeacherProfile,
     Bill,
     Category,
+    Ingredients,
 )
 from .serializers import (
     OrderSerializer,
@@ -28,6 +29,7 @@ from .serializers import (
     TeacherProfileSerializer,
     BillSerializer,
     CategorySerializer,
+    IngredientsSerializer,
 )
 
 
@@ -44,6 +46,11 @@ class BillViewSet(viewsets.ReadOnlyModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+
+class IngredientsViewset(viewsets.ModelViewSet):
+    queryset = Ingredients.objects.all()
+    serializer_class = IngredientsSerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):
