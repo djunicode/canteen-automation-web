@@ -20,7 +20,7 @@ const styles = {
     authTools: {
         display: "inherit",
         alignItems: "inherit",
-    }
+    },
 };
 
 class TopBar extends React.Component {
@@ -61,17 +61,11 @@ class TopBar extends React.Component {
                     </div>
 
                     <div className={classes.authTools}>
-                        <Typography
-                            variant='h6'
-                            align='right'
-                            color='inherit'
-                        >
+                        <Typography variant='h6' align='right' color='inherit'>
                             John
                         </Typography>
 
-                        <IconButton
-                            color='inherit'
-                        >
+                        <IconButton color='inherit'>
                             <AccountCircle fontSize='large' />
                         </IconButton>
 
@@ -86,22 +80,20 @@ class TopBar extends React.Component {
                     </div>
 
                     <Menu
-                            id='menu-appbar'
-                            anchorEl={anchorEl}
-                            anchorOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            open={open}
-                            onClose={this.handleClose}
-                        >
-                            <MenuItem onClick={this.handleClose}>
-                                Logout
-                            </MenuItem>
+                        id='menu-appbar'
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                        }}
+                        transformOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                        }}
+                        open={open}
+                        onClose={this.handleClose}
+                    >
+                        <MenuItem onClick={this.handleClose}>Logout</MenuItem>
                     </Menu>
                 </Toolbar>
             </AppBar>

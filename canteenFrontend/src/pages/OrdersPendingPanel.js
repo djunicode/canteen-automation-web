@@ -4,15 +4,16 @@ import Typography from "@material-ui/core/Typography";
 function Pending() {
     return (
         <div>
-            <h1> PENDING PAGE </h1>
             <div
                 style={{
                     width: "100%",
-                    height: 460,
+                    height: 455,
                     backgroundColor: "#EEEEEE",
                     borderBottom: "3px solid #D0D8DD",
                 }}
-            />
+            >
+                pending page
+            </div>
             <div
                 style={{
                     width: "100%",
