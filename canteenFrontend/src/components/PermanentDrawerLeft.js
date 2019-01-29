@@ -12,9 +12,16 @@ import DialogContent from "@material-ui/core/DialogContent";
 import OutlinedTextFields from "./OutlinedTextFields";
 import Button from "@material-ui/core/Button";
 import RoundSearchBar from "./RoundSearchBar";
+
 import "./style.css";
 //import { Grow } from "@material-ui/core";
 import ItemCard from "./core/ItemCard";
+
+
+import PendingCards from "./core/ItemCard";
+import { Divider } from "@material-ui/core";
+import PendingDrawer from "./core/PendingDrawer";
+
 
 class PermanentDrawerLeft extends React.Component {
     state = {
@@ -38,6 +45,9 @@ class PermanentDrawerLeft extends React.Component {
                         //height: '82.6%',
                        // height: 84.5vh,//605,84.5
                         backgroundColor: "#E9E9E9",
+
+                        overflow: 'auto',
+
                         borderRight: "3px solid #D0D8DD",
                         
                     }}
@@ -130,6 +140,7 @@ class PermanentDrawerLeft extends React.Component {
                                                 textAlign: "center",
                                             }}
                                         >
+
                                             <strong>ADD ITEM</strong>
                                         </button>
 
@@ -156,20 +167,23 @@ class PermanentDrawerLeft extends React.Component {
                                                         bottom: 20,
                                                     }}
                                                 >
-                                                    ADD ITEM
-                                                </Button>
-                                            </DialogActions>
-                                        </Dialog>
-                                     </div>
-                                 </div>
-                                <div
-                                    style={{ height: 390, backgroundColor: "#DDF3FD" }}
-                                >
-                                     <ItemCard Name="Masala Dosa" Ing="Masala, Chutney, Sambhar, Batter" Price="₹49" />
-                                     <ItemCard Name="Pav Bhaji" Ing="Pav, Potatoes, Tomatoes" Price="₹60" />
-                                     <ItemCard Name="Sada Dosa" Ing="Batter, Chutney, Sambhar" Price="₹59" />
-                                </div>
-                         </div>
+                                                    
+   
+                                            ADD ITEM
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </div>
+                        </div>
+                        <div
+                            style={{ height: 390, backgroundColor: "#DDF3FD" ,overflow:'auto'}}
+                        >
+                            {/*cards*/}
+                            <ItemCard Name="Masala Dosa" Ing="Masala, Chutney, Sambhar, Batter" Price="₹49"/>
+                            <ItemCard Name="Pav Bhaji" Ing="Pav, Potatoes, Tomatoes" Price="₹60"/>
+                            <ItemCard Name="Sada Dosa" Ing="Batter, Chutney, Sambhar" Price="₹59"/>
+                        </div>
+
                     </div>
                
                 <div className="footer"
