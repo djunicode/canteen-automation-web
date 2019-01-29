@@ -13,7 +13,6 @@ class UserChangeForm(UserChangeForm):
 
 class UserAdmin(UserAdmin):
     form = UserChangeForm
-
     fieldsets = UserAdmin.fieldsets + (
         (
             None,
