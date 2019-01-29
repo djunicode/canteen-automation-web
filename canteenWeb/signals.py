@@ -5,6 +5,7 @@ from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 from .serializers import OrderSerializer, BillSerializer
 from .models import Order, Bill
+from django.dispatch import Signal
 
 # Channel layer
 channel_layer = get_channel_layer()

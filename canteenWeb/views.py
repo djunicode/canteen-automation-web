@@ -177,7 +177,7 @@ class Login(APIView):
         if serializer.is_valid():
             user = authenticate(
                 username=serializer.data.get("username"),
-                password=serializer.data.get("password"),
+                # password=serializer.data.get("password"),
             )
             login(request, user)
             return HttpResponseRedirect(redirect_to="/menu_item/")
