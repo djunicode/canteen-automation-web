@@ -22,12 +22,23 @@ router.register("orders", views.OrderViewSet)
 router.register("menus", views.MenuViewSet)
 router.register("bills", views.BillViewSet)
 router.register("categories", views.CategoryViewSet)
+router.register("ingredients", views.IngredientsViewset)
 
 urlpatterns = [
     path("", include(router.urls)),
     path("signup/", views.SignUp.as_view(), name="signup"),
     path("login/", views.Login.as_view(), name="login"),
     path("logout/", views.Logout.as_view(), name="logout"),
+    path(
+        "student-registration/",
+        views.StudentRegistration.as_view(),
+        name="student-registration",
+    ),
+    path(
+        "teacher-registration/",
+        views.TeacherRegistration.as_view(),
+        name="teacher-registration",
+    ),
     path("auth/", include("djoser.urls")),
     path("auth/", include("djoser.urls.authtoken")),
     path("api-auth/", include("rest_framework.urls")),

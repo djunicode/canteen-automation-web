@@ -10,14 +10,26 @@ from rest_framework.views import APIView
 from drf_yasg.utils import no_body, swagger_auto_schema
 from drf_yasg import openapi
 from . import choices
-from .models import Order, MenuItem, User, Bill, Category
+from .models import (
+    Order,
+    MenuItem,
+    User,
+    StudentProfile,
+    TeacherProfile,
+    Bill,
+    Category,
+    Ingredients,
+)
 from .serializers import (
     OrderSerializer,
     MenuItemSerializer,
     SignUpSerializer,
     LoginSerializer,
+    StudentProfileSerializer,
+    TeacherProfileSerializer,
     BillSerializer,
     CategorySerializer,
+    IngredientsSerializer,
 )
 
 
@@ -47,6 +59,11 @@ class BillViewSet(viewsets.ReadOnlyModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+
+class IngredientsViewset(viewsets.ModelViewSet):
+    queryset = Ingredients.objects.all()
+    serializer_class = IngredientsSerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):
@@ -164,9 +181,21 @@ class OrderViewSet(viewsets.ModelViewSet):
             )
 
 
-class SignUp(CreateAPIView):
-    queryset = User.objects.all()
+class SignUp(APIView):
     serializer_class = SignUpSerializer
+
+    def post(self, request):
+        serializer = SignUpSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            if serializer.data.get("is_student"):
+                return HttpResponseRedirect(redirect_to="/student-registration/")
+            elif serializer.data.get("is_teacher"):
+                return HttpResponseRedirect(redirect_to="/teacher-registration/")
+            else:
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
 
 class Login(APIView):
@@ -180,7 +209,7 @@ class Login(APIView):
                 # password=serializer.data.get("password"),
             )
             login(request, user)
-            return HttpResponseRedirect(redirect_to="/menu_item/")
+            return HttpResponseRedirect(redirect_to="/menus/")
         else:
             return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
@@ -189,3 +218,27 @@ class Logout(APIView):
     def post(self, request):
         logout(request)
         return HttpResponseRedirect(redirect_to="/login/")
+
+
+class StudentRegistration(APIView):
+    serializer_class = StudentProfileSerializer
+
+    def post(self, request):
+        serializer = StudentProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class TeacherRegistration(APIView):
+    serializer_class = TeacherProfileSerializer
+
+    def post(self, request):
+        serializer = TeacherProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
