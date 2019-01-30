@@ -33,9 +33,22 @@ from .serializers import (
 )
 
 
+class IsAdminUserOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return (
+            request.method in permissions.SAFE_METHODS
+            or request.user
+            and request.user.is_staff
+        )
+
+
+# Create your views here.
+
+
 class MenuViewSet(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
+    permission_classes = (IsAdminUserOrReadOnly,)
 
 
 class BillViewSet(viewsets.ReadOnlyModelViewSet):
@@ -56,9 +69,10 @@ class IngredientsViewset(viewsets.ModelViewSet):
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     @swagger_auto_schema(request_body=no_body, responses={200: None})
-    @action(detail=True, methods=["put"])
+    @action(detail=True, methods=["put"], permission_classes=[permissions.IsAdminUser])
     def accept(self, request, pk=None):
         """
             Accept an order by PUT-ing to this end-point.
@@ -70,7 +84,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         return Response({"message": "Order accepted"})
 
     @swagger_auto_schema(request_body=no_body, responses={200: None})
-    @action(detail=True, methods=["put"])
+    @action(detail=True, methods=["put"], permission_classes=[permissions.IsAdminUser])
     def reject(self, request, pk=None):
         """
             Reject an order by PUT-ing to this end-point.
@@ -82,7 +96,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         return Response({"message": "Order rejected"})
 
     @swagger_auto_schema(request_body=no_body, responses={200: None})
-    @action(detail=True, methods=["put"])
+    @action(detail=True, methods=["put"], permission_classes=[permissions.IsAdminUser])
     def fulfil(self, request, pk=None):
         """
             Fulfil an order by PUT-ing to this end-point.
@@ -94,7 +108,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         return Response({"message": "Order fulfilled"})
 
     @swagger_auto_schema(request_body=no_body, responses={200: None})
-    @action(detail=True, methods=["put"])
+    @action(detail=True, methods=["put"], permission_classes=[permissions.IsAdminUser])
     def unfulfil(self, request, pk=None):
         """
             Set order fulfil to false by PUT-ing to this end-point.
@@ -106,7 +120,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         return Response({"message": "Order unfulfilled"})
 
     @swagger_auto_schema(responses={200: OrderSerializer(many=True)})
-    @action(detail=False)
+    @action(detail=False, permission_classes=[permissions.IsAdminUser])
     def completed(self, request):
         """
             Return a list of all completed orders.
@@ -116,7 +130,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     @swagger_auto_schema(responses={200: OrderSerializer(many=True)})
-    @action(detail=False)
+    @action(detail=False, permission_classes=[permissions.IsAdminUser])
     def pending(self, request):
         """
             Return a list of all pending orders.
@@ -135,7 +149,11 @@ class OrderViewSet(viewsets.ModelViewSet):
         """
         return Response(choices.STATUS_DICTIONARY)
 
-    @action(detail=True, methods=["get", "post"])
+    @action(
+        detail=True,
+        methods=["get", "post"],
+        permission_classes=[permissions.IsAdminUser],
+    )
     def change_status(self, request, pk=None):
         """
             Change the preparation status of an order.
@@ -173,7 +191,7 @@ class SignUp(APIView):
             if serializer.data.get("is_student"):
                 return HttpResponseRedirect(redirect_to="/student-registration/")
             elif serializer.data.get("is_teacher"):
-                return HttpResponseRedirect(redirect_to="/student-registration/")
+                return HttpResponseRedirect(redirect_to="/teacher-registration/")
             else:
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
@@ -188,7 +206,7 @@ class Login(APIView):
         if serializer.is_valid():
             user = authenticate(
                 username=serializer.data.get("username"),
-                password=serializer.data.get("password"),
+                # password=serializer.data.get("password"),
             )
             login(request, user)
             return HttpResponseRedirect(redirect_to="/menus/")
