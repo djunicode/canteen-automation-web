@@ -12,16 +12,12 @@ import DialogContent from "@material-ui/core/DialogContent";
 import OutlinedTextFields from "./OutlinedTextFields";
 import Button from "@material-ui/core/Button";
 import RoundSearchBar from "./RoundSearchBar";
-
-import "./style.css";
+import "./core/style.css";
 //import { Grow } from "@material-ui/core";
 import ItemCard from "./core/ItemCard";
-
-
-import PendingCards from "./core/ItemCard";
-import { Divider } from "@material-ui/core";
-import PendingDrawer from "./core/PendingDrawer";
-
+import Card from '@material-ui/core/Card';
+import styles from './core/styles';
+import Category from "./core/Category";
 
 class PermanentDrawerLeft extends React.Component {
     state = {
@@ -45,11 +41,8 @@ class PermanentDrawerLeft extends React.Component {
                         //height: '82.6%',
                        // height: 84.5vh,//605,84.5
                         backgroundColor: "#E9E9E9",
-
-                        overflow: 'auto',
-
                         borderRight: "3px solid #D0D8DD",
-                        
+                        overflow:"auto"
                     }}
                 >
                     <Typography
@@ -84,22 +77,33 @@ class PermanentDrawerLeft extends React.Component {
                                 style={{
                                 width: "20%",
                                     float: "left",
-                                    //flexGrow:1,
                                     backgroundColor: "white",
-                                    //height:69.4vh,// 470,
                                     borderBottom: "3px solid #D0D8DD",
                                     borderRight: "3px solid #D0D8DD",
                                 }}
                             >
-                                left content
+                                <div>
+                                    <Card style={styles.head_category}>  
+                                            
+                                           <div>
+                                               <div style={styles.main_category}>CATEGORIES</div>
+                                            <a style={styles.icon_plus} className="fa fa-plus-circle" aria-hidden="true"/>
+                                            </div>
+                                    </Card>
+                                </div>
+                                <div>
+                                  <Category />
+                                  <Category />
+                                  <Category />
+                                  <Category />
+
+                                </div>
                             </div>
                             <div className="right"
                                 style={{
                                     float: "right",
                                     width: "49.6%",
-                                    //flexGrow:3,
                                     backgroundColor: "#DDF3FD",
-                                    //height:69.4 vh,// 470,69.4
                                     borderBottom: "3px solid #D0D8DD",
                                 }}
                             >
@@ -140,7 +144,6 @@ class PermanentDrawerLeft extends React.Component {
                                                 textAlign: "center",
                                             }}
                                         >
-
                                             <strong>ADD ITEM</strong>
                                         </button>
 
@@ -167,23 +170,20 @@ class PermanentDrawerLeft extends React.Component {
                                                         bottom: 20,
                                                     }}
                                                 >
-                                                    
-   
-                                            ADD ITEM
-                                        </Button>
-                                    </DialogActions>
-                                </Dialog>
-                            </div>
-                        </div>
-                        <div
-                            style={{ height: 390, backgroundColor: "#DDF3FD" ,overflow:'auto'}}
-                        >
-                            {/*cards*/}
-                            <ItemCard Name="Masala Dosa" Ing="Masala, Chutney, Sambhar, Batter" Price="₹49"/>
-                            <ItemCard Name="Pav Bhaji" Ing="Pav, Potatoes, Tomatoes" Price="₹60"/>
-                            <ItemCard Name="Sada Dosa" Ing="Batter, Chutney, Sambhar" Price="₹59"/>
-                        </div>
-
+                                                    ADD ITEM
+                                                </Button>
+                                            </DialogActions>
+                                        </Dialog>
+                                     </div>
+                                 </div>
+                                <div
+                                    style={{ height: 390, backgroundColor: "#DDF3FD",overflow:"auto" }}
+                                >
+                                     <ItemCard Name="Masala Dosa" Ing="Masala, Chutney, Sambhar, Batter" Price="?49" />
+                                     <ItemCard Name="Pav Bhaji" Ing="Pav, Potatoes, Tomatoes" Price="?60" />
+                                     <ItemCard Name="Sada Dosa" Ing="Batter, Chutney, Sambhar" Price="?60" />
+                                </div>
+                         </div>
                     </div>
                
                 <div className="footer"
