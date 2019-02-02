@@ -1,6 +1,3 @@
-
-
-
 //import PendingCards from "./core/PendingCards";
 import { Divider } from "@material-ui/core";
 import PendingDrawer from "./core/PendingDrawer";
@@ -37,7 +34,7 @@ class PermanentDrawerLeft extends React.Component {
                 <div className="main"
                     style={{
                         float: "left",
-                        width: "30%",
+                        width: "26%",
                         //height: '82.6%',
                        // height: 84.5vh,//605,84.5
                         backgroundColor: "#E9E9E9",
@@ -179,9 +176,9 @@ class PermanentDrawerLeft extends React.Component {
                                 <div
                                     style={{ height: 390, backgroundColor: "#DDF3FD",overflow:"auto" }}
                                 >
-                                     <ItemCard Name="Masala Dosa" Ing="Masala, Chutney, Sambhar, Batter" Price="?49" />
-                                     <ItemCard Name="Pav Bhaji" Ing="Pav, Potatoes, Tomatoes" Price="?60" />
-                                     <ItemCard Name="Sada Dosa" Ing="Batter, Chutney, Sambhar" Price="?60" />
+                                     <ItemCard Name="Masala Dosa" Ing="Masala, Chutney" Price="RS. 49" />
+                                     <ItemCard Name="Pav Bhaji" Ing="Pav, Potatoes" Price="60" />
+                                     <ItemCard Name="Sada Dosa" Ing="Butter, Sambhar" Price="60" />
                                 </div>
                          </div>
                     </div>
@@ -189,7 +186,7 @@ class PermanentDrawerLeft extends React.Component {
                 <div className="footer"
                     style={{
                         width: "100%",
-                        height: 60,
+                        height: 50,
                         backgroundColor: "#0477BD",
                         
                     }}
@@ -207,4 +204,3 @@ class PermanentDrawerLeft extends React.Component {
     }
 }
 export default PermanentDrawerLeft;
-
