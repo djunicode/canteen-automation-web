@@ -6,7 +6,7 @@ function PendingDrawer (){
     return(
     <div style={styles.container}>
     
-        <PendingCards Name="masala dosa" Quantity="2"/>
+        <PendingCards Name="masala dosa " Quantity="2"/>
         <PendingCards Name="sada dosa" Quantity="3"/>
         <PendingCards Name=" dosa" Quantity="1"/>
         <PendingCards Name="wada" Quantity="5"/>

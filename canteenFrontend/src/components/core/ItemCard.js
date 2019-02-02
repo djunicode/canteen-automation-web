@@ -10,13 +10,22 @@ function ItemCard(props) {
             <br />
             <div style={styles.box1}>
                 <div style={styles.item1}>
-                    <br />
-                    <div style={styles.attribute3}>NAME <input style={styles.input} placeholder={props.Name}></input></div>
-                    <div style={styles.attribute1}>INGREDIENTS <input style={styles.input} placeholder={props.Ing}></input></div>
-                    <div style={styles.attribute4}>Price <input style={styles.input2} placeholder={props.Price}></input></div>
+                    <div style={styles.left_con}>
+                        <div style={styles.attribute3}>NAME</div>
+                        <div style={styles.attribute4}>{props.Name}</div>
+                        <div style={styles.attribute3}>INGREDIENTS</div>
+                        <div style={styles.attribute4}>{props.Ing}</div>
+                    </div>
+                    <div style={styles.right_con}>
+                        <div style={styles.attribute5}>PRICE</div>
+                        <div style={styles.attribute6}>{props.Price}</div>
+                    </div>
                 </div>
-                <a style={styles.icon_trash} className="fa fa-trash fa-2x" aria-hidden="true"></a>
-                <a style={styles.icon_tick} className="fa fa-check-circle fa-2x" aria-hidden="true"></a>
+                <div style={styles.wrap}>
+                    <div style={styles.icon_tick} className="fa fa-check-circle fa-2x" aria-hidden="true" ></div>
+                    <div style={styles.icon_trash} className="fa fa-trash fa-2x" aria-hidden="true" ></div>
+                    <div style={styles.edit_button}><button>EDIT</button></div>
+                </div>
             </div>
         </div>
     );
