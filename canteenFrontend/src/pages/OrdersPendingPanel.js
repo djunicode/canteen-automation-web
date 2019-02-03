@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-
+import PendingCards from "../components/core/PendingCards"
 function Pending() {
     return (
         <div>
@@ -8,11 +8,39 @@ function Pending() {
                 style={{
                     width: "100%",
                     height: 455,
-                    backgroundColor: "#EEEEEE",
+                    backgroundColor: "orange",
                     borderBottom: "3px solid #D0D8DD",
+                    display:'flex',
+                    flexDirection:'row',
                 }}
-            >
-                pending page
+             >
+                   <div style={{backgroundColor:'#EEEEEE',width:'33.3%',height:'100%',flexDirection:'column'}}>
+                            <br/>                           
+                            <PendingCards Name="wada" Quantity="5" Color="#FFD73F"/>
+                            <br/>
+                            <PendingCards Name="sandwich" Quantity="6" Color="#FFD73F"/>
+                            <br/>
+                            <PendingCards Name="wada" Quantity="5" Color="#FFD73F"/>
+        
+                   </div>
+                   <div style={{backgroundColor:'#EEEEEE',width:'33.3%',height:'100%'}}>
+                            <br/>                           
+                            <PendingCards Name="wada" Quantity="5" Color="#FFD73F"/>
+                            <br/>
+                            <PendingCards Name="sandwich" Quantity="6" Color="#FFD73F"/>
+                            <br/>
+                            <PendingCards Name="wada" Quantity="5" Color="#FFD73F"/>
+                   </div>
+                   <div style={{backgroundColor:'#EEEEEE',width:'33.3%',height:'100%'}}>
+                   <br/>                           
+                            <PendingCards Name="wada" Quantity="5" Color="#FFD73F"/>
+                            <br/>
+                            <PendingCards Name="sandwich" Quantity="6" Color="#FFD73F"/>
+                            <br/>
+                            <PendingCards Name="wada" Quantity="5" Color="#FFD73F"/>
+                   
+                   </div>
+                
             </div>
             <div
                 style={{

@@ -10,14 +10,14 @@ const styles = {
         margin: "auto",
 
     },
-    indicator: {
+   /* indicator: {
         height: "100%",
         width: "3.5%",
         borderBottomLeftRadius: 5,
         borderTopLeftRadius: 5,
         backgroundColor: "#FFD73F",
         float: "left",
-    },
+    },*/
     content: {
         width: "22vw",
         paddingLeft:12,
@@ -35,6 +35,9 @@ const styles = {
         backgroundColor: "#DDF3FD",
         height: "23%",
         borderTopRightRadius: 5,
+        marginLeft:4,
+        fontWeight:'bold',
+        color:'#0477BD'
         
        
     },
@@ -56,16 +59,17 @@ const styles = {
         
 
     },
-    tick:{
+ /*   tick:{
         
         width:30,
         height:30,
         marginTop:17,
         color:'#FFD73F',
         marginLeft:1,
+        cursor:'pointer',
         
 
-    },
+    },*/
     attribute1: {
         marginTop: 7,
         marginLeft: 15,
@@ -135,7 +139,7 @@ const styles = {
         float:'left',
         marginTop:20,
         color:'#858585',
-       
+       cursor:'pointer',
         backgroundColor:'#FFFFFF'
 
     },
@@ -144,7 +148,7 @@ const styles = {
         height:40,
         float:'left',
         marginTop:20,
-        cursor: "grabbing",
+        cursor: "pointer",
         backgroundColor:'#FFFFFF',
         color:'#00C952',
         
