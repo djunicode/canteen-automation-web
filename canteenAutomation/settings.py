@@ -39,6 +39,8 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "djoser",
+    "rest_framework.authtoken",
     "channels",
     "drf_yasg",
 ]
@@ -50,8 +52,12 @@ USER_APPS = ["canteenWeb"]
 INSTALLED_APPS = DJANGO_APPS + USER_APPS
 
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": [],
+    "DEFAULT_PERMISSION_CLASSES": {},
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ),
 }
 
 MIDDLEWARE = [
@@ -146,3 +152,11 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+DJOSER = {
+    "PASSWORD_RESET_CONFIRM_URL": "#/password/reset/confirm/{uid}/{token}",
+    "ACTIVATION_URL": "",
+    "SEND_ACTIVATION_EMAIL": False,
+    "SERIALIZERS": {},
+    "TOKEN_MODEL": "rest_framework.authtoken.models.Token",
+}
