@@ -7,16 +7,16 @@ import BarButton from "./core/BarButton";
 import BorderAppBar from "./core/BorderAppBar";
 import LargeToolbar from "./core/LargeToolbar";
 
-const styles = {
-    ordersToolbar: {
-        justifyContent: "space-between",
-    },
-};
+//const styles = {
+  //  ordersToolbar: {
+    //    justifyContent: "space-between",
+    //},
+//};
 
-function OrdersBar({ classes }) {
+function OrdersBar() {
     return (
         <BorderAppBar position='static' color='secondary'>
-            <LargeToolbar className={classes.ordersToolbar}>
+            <LargeToolbar  style={{justifyContent:'space-between'}}>
                 <div>
                     <BarButton component={Link} to='/orders/pending'>
                         Pending
@@ -33,4 +33,4 @@ function OrdersBar({ classes }) {
     );
 }
 
-export default withStyles(styles)(OrdersBar);
+export default OrdersBar;

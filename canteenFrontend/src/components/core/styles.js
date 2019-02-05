@@ -68,7 +68,6 @@ const styles = {
         marginLeft:1,
         cursor:'pointer',
         
-
     },*/
     attribute1: {
         marginTop: 7,
@@ -264,7 +263,6 @@ const styles = {
         width: '70%',
         float: 'left',
         backgroundColor:'red',
-
     },
     attribute4: {
         position: "absolute",
@@ -276,9 +274,7 @@ const styles = {
         width: '50%',
         float: 'left',
         backgroundColor:'grey',
-
     },
-
     attribute5: {
         marginTop: 7,
         marginLeft: 35,
@@ -329,6 +325,72 @@ const styles = {
     float:'right',
     padding:10,
     transform: "translateY(-74%)"
-   }
+   },
+         //Trapezium shaped Tabs
+         firstColor: {
+            backgroundColor: "#0477BD",
+            color: "white",
+            fontSize: 23,
+            textAlign: "center",
+            height: "90%",
+            width: "20%",
+            margin: 0,
+            float: "left",
+            borderRadius: 0,
+            clipPath: "polygon(10% 0%, 90% 0, 100% 100%, 0% 100%)",
+            position: "absolute",
+            bottom: 0,
+        },
+        first: {
+            backgroundColor: "#EEEEEE",
+            fontSize: 23,
+            textAlign: "center",
+            height: "90%",
+            width: "20%",
+            margin: 0,
+            float: "left",
+            borderRadius: 0,
+            clipPath: "polygon(10% 0%, 90% 0, 100% 100%, 0% 100%)",
+            position: "absolute",
+            bottom: 0,
+            color: "0477BD",
+        },
+        second: {
+            fontSize: 23,
+            backgroundColor: "#EEEEEE",
+            outline: "solid 3px #9E9E9E",
+            height: "90%",
+            width: "20%",
+            float: "left",
+            margin: 0,
+            borderRadius: 0,
+            clipPath: "polygon(10% 0%, 90% 0, 100% 100%, 0% 100%)",
+            position: "absolute",
+            bottom: 0,
+            left: "19.25%",
+            zIndex: -1,
+        },
+        secondColor: {
+            fontSize: 23,
+            backgroundColor: "#0477BD",
+            outline: "solid 3px #9E9E9E",
+            height: "90%",
+            width: "20%",
+            float: "left",
+            margin: 0,
+            borderRadius: 0,
+            clipPath: "polygon(10% 0%, 90% 0, 100% 100%, 0% 100%)",
+            position: "absolute",
+            bottom: 0,
+            left: "19.25%",
+            zIndex: 1,
+            color: "white"
+        },
+        padLeftZero: {
+            paddingLeft: 0,
+            zIndex: -100,
+        },
+    
 };
+
 export default styles;
