@@ -156,11 +156,11 @@ const styles = {
     },
 
     attribute3: {
-        marginTop: 5,
+        marginTop: 10,
         marginLeft: 5,
         //marginRight: 7,
         height: '35%',
-        backgroundColor: '#FFFFFF',
+        backgroundColor:'#EEEEE',
         width: '35%',
         float: 'left',
         fontWeight: "bold",
@@ -168,11 +168,11 @@ const styles = {
         color:'#C7C7C7',
     },
     attribute4: {
-        marginTop: 5,
+        marginTop: 10,
         marginLeft: 5,
         //marginRight: 7,
         height: '35%',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#EEEEE',
         width: '60%',
         float: 'left',
         fontWeight: "bold",

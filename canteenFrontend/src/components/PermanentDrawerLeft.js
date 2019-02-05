@@ -77,6 +77,7 @@ class PermanentDrawerLeft extends React.Component {
                                     backgroundColor: "white",
                                     borderBottom: "3px solid #D0D8DD",
                                     borderRight: "3px solid #D0D8DD",
+                                    
                                 }}
                             >
                                 <div>
