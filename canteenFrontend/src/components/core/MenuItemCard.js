@@ -1,10 +1,10 @@
 import React from 'react';
 // import styles from './Style_ItemsCard'
-
 import styles from './styles'
 import Typography from "@material-ui/core/Typography";
 import { Divider } from '@material-ui/core';
-function ItemCard(props) {
+
+function MenuItemCard(props) {
     return (
         <div>
             <br />
@@ -33,4 +33,4 @@ function ItemCard(props) {
     );
 }
 
-export default ItemCard;
+export default MenuItemCard;

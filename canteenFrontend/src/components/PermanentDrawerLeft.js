@@ -9,11 +9,12 @@ import DialogContent from "@material-ui/core/DialogContent";
 import OutlinedTextFields from "./OutlinedTextFields";
 import Button from "@material-ui/core/Button";
 import RoundSearchBar from "./RoundSearchBar";
-import "./core/style.css";
-import ItemCard from "./core/ItemCard";
+import MenuItemCard from "./core/MenuItemCard";
 import Card from '@material-ui/core/Card';
 import styles from './core/styles';
 import Category from "./core/Category";
+
+import "./core/style.css";
 
 class PermanentDrawerLeft extends React.Component {
     state = {
@@ -31,7 +32,7 @@ class PermanentDrawerLeft extends React.Component {
 
     render() {
         return (
-            <div  >
+            <div>
                 <div className="main"
                     style={{
                         float: "left",
@@ -175,9 +176,9 @@ class PermanentDrawerLeft extends React.Component {
                                 <div
                                     style={{ height: 390, backgroundColor: "#DDF3FD",overflow:"auto" }}
                                 >
-                                     <ItemCard Name="Masala Dosa" Ing="Masala, Chutney" Price="RS. 49" />
-                                     <ItemCard Name="Pav Bhaji" Ing="Pav, Potatoes" Price="60" />
-                                     <ItemCard Name="Sada Dosa" Ing="Butter, Sambhar" Price="60" />
+                                     <MenuItemCard Name="Masala Dosa" Ing="Masala, Chutney" Price="RS. 49" />
+                                     <MenuItemCard Name="Pav Bhaji" Ing="Pav, Potatoes" Price="60" />
+                                     <MenuItemCard Name="Sada Dosa" Ing="Butter, Sambhar" Price="60" />
                                 </div>
                          </div>
                     </div>

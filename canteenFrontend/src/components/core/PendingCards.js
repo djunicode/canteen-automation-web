@@ -10,8 +10,8 @@ function PendingCard (props){
         borderTopLeftRadius: 5,
         backgroundColor: props.Color,
         float: "left",
-    
     };
+
     const style_tick={
         width:30,
         height:30,
@@ -19,7 +19,6 @@ function PendingCard (props){
         color:props.Color,
         marginLeft:1,
         cursor:'pointer',
-        
     };
 
     return(
