@@ -14,7 +14,6 @@ import ItemCard from "./core/ItemCard";
 import Card from '@material-ui/core/Card';
 import styles from './core/styles';
 import Category from "./core/Category";
-import { AxiosWrapper } from "../util/client";
 
 class PermanentDrawerLeft extends React.Component {
     state = {
@@ -22,24 +21,12 @@ class PermanentDrawerLeft extends React.Component {
         orders: [],
     };
 
-    constructor(props) {
-        super(props);
-        this.client = new AxiosWrapper();
-    }
-
     handleClickOpen = () => {
         this.setState({ open: true });
     }
 
     handleClose = () => {
         this.setState({ open: false });
-    }
-
-    componentDidMount = () => {
-        this.client.get('orders')()
-        .then(response => response.status)
-        .then(alert)
-        .catch(alert);
     }
 
     render() {

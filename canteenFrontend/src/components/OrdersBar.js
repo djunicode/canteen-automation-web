@@ -21,7 +21,6 @@ function OrdersBar(props) {
     if (props.pos === "completed") {
         style1 = styles.firstsm
         style2 = styles.secondColorsm
-
     }
 
 
@@ -30,7 +29,7 @@ function OrdersBar(props) {
         <BorderAppBar position='static' color='secondary' style={styles.padLeftZero}>
             <LargeToolbar style={styles.ordersToolbar}>
                 <div>
-                    <BarButton style={style1} component={Link} to='/orders/pending '>
+                    <BarButton style={style1} component={Link} to='/orders/pending'>
                         Pending
                     </BarButton>
                     <BarButton style={style2} component={Link} to='/orders/completed'>
