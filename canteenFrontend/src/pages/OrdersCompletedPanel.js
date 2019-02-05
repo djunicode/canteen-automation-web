@@ -1,10 +1,13 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import PendingCards from "../components/core/PendingCards"
+import OrdersBar from "../components/OrdersBar";
 
 function Completed() {
     return (
+
         <div>
+            <OrdersBar pos="completed"/>
         <div
             style={{
                 width: "100%",
