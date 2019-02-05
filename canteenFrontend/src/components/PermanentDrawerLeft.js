@@ -10,34 +10,47 @@ import OutlinedTextFields from "./OutlinedTextFields";
 import Button from "@material-ui/core/Button";
 import RoundSearchBar from "./RoundSearchBar";
 import "./core/style.css";
-//import { Grow } from "@material-ui/core";
 import ItemCard from "./core/ItemCard";
 import Card from '@material-ui/core/Card';
 import styles from './core/styles';
 import Category from "./core/Category";
+import { AxiosWrapper } from "../util/client";
 
 class PermanentDrawerLeft extends React.Component {
     state = {
         open: false,
+        orders: [],
     };
+
+    constructor(props) {
+        super(props);
+        this.client = new AxiosWrapper();
+    }
 
     handleClickOpen = () => {
         this.setState({ open: true });
-    };
+    }
 
     handleClose = () => {
         this.setState({ open: false });
-    };
+    }
+
+    componentDidMount = () => {
+        this.client.get('orders')()
+        .then(response => response.status)
+        .then(alert)
+        .catch(alert);
+    }
+
     render() {
         return (
             <div  >
                 <div className="main"
                     style={{
                         float: "left",
-                        width: "26%",
-                        //height: '82.6%',
-                       // height: 84.5vh,//605,84.5
-                        backgroundColor: "#E9E9E9",
+                        width: "30%",
+                        height: 581,
+                        backgroundColor: "#E9E9Es9",
                         borderRight: "3px solid #D0D8DD",
                         overflow:"auto"
                     }}
@@ -45,7 +58,6 @@ class PermanentDrawerLeft extends React.Component {
                     <Typography
                         variant='h6'
                         align='center'
-                        color='#607D8B'
                         padding='50px'
                     >
                         PENDING ORDERS
