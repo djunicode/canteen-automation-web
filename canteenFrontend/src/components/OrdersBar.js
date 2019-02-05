@@ -1,27 +1,39 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import styles  from "./core/styles";
 
 import RoundSearchBar from "./RoundSearchBar";
 import BarButton from "./core/BarButton";
 import BorderAppBar from "./core/BorderAppBar";
 import LargeToolbar from "./core/LargeToolbar";
 
-const styles = {
-    ordersToolbar: {
-        justifyContent: "space-between",
-    },
-};
+// const styles = {
+//     ordersToolbar: {
+//         justifyContent: "space-between",
+//     },
+// };
 
-function OrdersBar({ classes }) {
+function OrdersBar(props) {
+    
+    let style1 = styles.firstColorsm
+    let style2 = styles.secondsm
+    if (props.pos === "completed") {
+        style1 = styles.firstsm
+        style2 = styles.secondColorsm
+
+    }
+
+
+
     return (
-        <BorderAppBar position='static' color='secondary'>
-            <LargeToolbar className={classes.ordersToolbar}>
+        <BorderAppBar position='static' color='secondary' style={styles.padLeftZero}>
+            <LargeToolbar style={styles.ordersToolbar}>
                 <div>
-                    <BarButton component={Link} to='/orders/pending'>
+                    <BarButton style={style1} component={Link} to='/orders/pending '>
                         Pending
                     </BarButton>
-                    <BarButton component={Link} to='/orders/completed'>
+                    <BarButton style={style2} component={Link} to='/orders/completed'>
                         Completed
                     </BarButton>
                 </div>

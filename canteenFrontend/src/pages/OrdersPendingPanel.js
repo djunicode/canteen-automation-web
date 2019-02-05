@@ -1,9 +1,13 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import PendingCards from "../components/core/PendingCards"
+import OrdersBar from "../components/OrdersBar";
 function Pending() {
     return (
+        
+        
         <div>
+        <OrdersBar pos="pending"/>
             <div
                 style={{
                     width: "100%",

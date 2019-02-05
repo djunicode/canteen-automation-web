@@ -23,7 +23,9 @@ function ItemCard(props) {
                 </div>
                 <div style={styles.wrap}>
                     <div style={styles.icon_tick} className="fa fa-check-circle fa-2x" aria-hidden="true" ></div>
+                    {/* <div style={styles.icon_trash} className="fa fa-pencil-square fa-2x" aria-hidden="true" ></div> */}
                     <div style={styles.icon_trash} className="fa fa-trash fa-2x" aria-hidden="true" ></div>
+
                     <div style={styles.edit_button}><button>EDIT</button></div>
                 </div>
             </div>
