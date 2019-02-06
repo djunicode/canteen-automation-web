@@ -10,6 +10,7 @@ import OutlinedTextFields from "./OutlinedTextFields";
 import Button from "@material-ui/core/Button";
 import RoundSearchBar from "./RoundSearchBar";
 import "./core/style.css";
+//import { Grow } from "@material-ui/core";
 import ItemCard from "./core/ItemCard";
 import Card from '@material-ui/core/Card';
 import styles from './core/styles';
@@ -18,26 +19,26 @@ import Category from "./core/Category";
 class PermanentDrawerLeft extends React.Component {
     state = {
         open: false,
-        orders: [],
     };
 
     handleClickOpen = () => {
         this.setState({ open: true });
-    }
+    };
 
     handleClose = () => {
         this.setState({ open: false });
-    }
-
+        
+    };
     render() {
         return (
             <div  >
                 <div className="main"
                     style={{
                         float: "left",
-                        width: "30%",
-                        height: 581,
-                        backgroundColor: "#E9E9Es9",
+                        width: "26%",
+                        //height: '82.6%',
+                       // height: 84.5vh,//605,84.5
+                        backgroundColor: "#E9E9E9",
                         borderRight: "3px solid #D0D8DD",
                         overflow:"auto"
                     }}
@@ -45,6 +46,7 @@ class PermanentDrawerLeft extends React.Component {
                     <Typography
                         variant='h6'
                         align='center'
+                        color='#607D8B'
                         padding='50px'
                     >
                         PENDING ORDERS
@@ -76,6 +78,7 @@ class PermanentDrawerLeft extends React.Component {
                                     backgroundColor: "white",
                                     borderBottom: "3px solid #D0D8DD",
                                     borderRight: "3px solid #D0D8DD",
+                                    
                                 }}
                             >
                                 <div>
