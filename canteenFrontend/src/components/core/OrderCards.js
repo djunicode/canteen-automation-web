@@ -4,33 +4,34 @@ import Typography from "@material-ui/core/Typography";
 
 class OrderCard extends React.Component {
     state={
-        color:'#FFD73F'
+        color:'#FFD73F',
+        pending :this.props.pendingStatus
+    };
 
-    };
     handleColorChange = () => {
-        this.setState({ color: '#00C952' });
-        
+        if(this.props.editable){
+          this.setState({ pending: !this.state.pending });  
+        }
     };
-   
 
     render(){
+        let varcolor = this.state.pending ? '#FFD73F' : '#00C952';
         const style_indicator={
             height: "100%",
             width: "3.5%",
             borderBottomLeftRadius: 5,
             borderTopLeftRadius: 5,
-            backgroundColor:this.state.color,
+            backgroundColor:varcolor,
             float: "left",
-        
         };
         const style_tick={
             width:30,
             height:30,
             marginTop:17,
-            color:this.state.color,
+            color:varcolor,
             marginLeft:1,
             cursor:'pointer',
-            
+
         };
 
     return(
@@ -46,7 +47,7 @@ class OrderCard extends React.Component {
                     </div>
                         <div style={styles.tick_box}>
                             <div onClick={this.handleColorChange} style={style_tick} className="fa fa-check-circle-o fa-2x" aria-hidden="true">
-                           
+
                             </div>
                         </div>
             </div>

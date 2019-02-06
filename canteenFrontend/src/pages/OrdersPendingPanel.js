@@ -6,18 +6,15 @@ import OrdersBar from "../components/OrdersBar";
 class Pending extends React.Component {
     state={
         food:[
-            {Name:'masala dosa', Quantity:'2',Color:'#FFD73F'},
-            {Name:'sada dosa' ,Quantity:'3',Color:'#FFD73F'},
-            {Name:'masala dosa', Quantity:'4',Color:'#FFD73F'},
-        
+            {Name:'masala dosa', Quantity:'2'},
+            {Name:'sada dosa' ,Quantity:'3'},
+            {Name:'masala dosa', Quantity:'4'},
         ]
     }
     render(){
-        
-        const cards = this.state.food.map(e => 
-            <OrderCard Name={e.Name} Quantity={e.Quantity}  Color={e.Color} />
-            
-            
+
+        const cards = this.state.food.map(e =>
+            <OrderCard Name={e.Name.toUpperCase()} Quantity={e.Quantity}  Color={e.Color} pendingStatus={true} editable={true}/>
         );
     return (
 
@@ -38,25 +35,25 @@ class Pending extends React.Component {
                         <br/>
                         {cards}
                         <br/>
-                        
-                        
-    
+
+
+
                </div>
                <div style={{backgroundColor:'#EEEEEE',width:'33.3%',height:'100%'}}>
                         <br/>
                         <br/>
                         {cards}
                         <br/>
-                        
+
                </div>
                <div style={{backgroundColor:'#EEEEEE',width:'33.3%',height:'100%'}}>
                         <br/>
                         <br/>
                         {cards}
-                        <br/>                     
-              
+                        <br/>
+
                </div>
-            
+
         </div>
         <div
             style={{

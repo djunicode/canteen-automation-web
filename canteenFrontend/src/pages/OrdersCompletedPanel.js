@@ -6,18 +6,16 @@ import OrdersBar from "../components/OrdersBar";
 class Completed extends React.Component {
     state={
         food:[
-            {Name:'masala dosa', Quantity:'2',Color:'#00C952'},
-            {Name:'sada dosa' ,Quantity:'3',Color:'#00C952'},
-            {Name:'masala dosa', Quantity:'4',Color:'#00C952'},
-        
+            {Name:'masala dosa', Quantity:'2'},
+            {Name:'sada dosa' ,Quantity:'3'},
+            {Name:'masala dosa', Quantity:'4'},
+
         ]
     }
     render(){
-        
-        const cards = this.state.food.map(e => 
-            <OrderCard Name={e.Name} Quantity={e.Quantity}  Color={e.Color} />
-            
-            
+
+        const cards = this.state.food.map(e =>
+            <OrderCard Name={e.Name.toUpperCase()} Quantity={e.Quantity}  pendingStatus={false} editable={false}/>
         );
     return (
 
@@ -27,7 +25,7 @@ class Completed extends React.Component {
             style={{
                 width: "100%",
                 height: 455,
-                backgroundColor: "orange",
+                backgroundColor: "green",
                 borderBottom: "3px solid #D0D8DD",
                 display:'flex',
                 flexDirection:'row',
@@ -38,25 +36,25 @@ class Completed extends React.Component {
                         <br/>
                         {cards}
                         <br/>
-                        
-                        
-    
+
+
+
                </div>
                <div style={{backgroundColor:'#EEEEEE',width:'33.3%',height:'100%'}}>
                         <br/>
                         <br/>
                         {cards}
                         <br/>
-                        
+
                </div>
                <div style={{backgroundColor:'#EEEEEE',width:'33.3%',height:'100%'}}>
                         <br/>
                         <br/>
                         {cards}
-                        <br/>                     
-              
+                        <br/>
+
                </div>
-            
+
         </div>
         <div
             style={{
