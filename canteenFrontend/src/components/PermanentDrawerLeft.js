@@ -27,6 +27,7 @@ class PermanentDrawerLeft extends React.Component {
 
     handleClose = () => {
         this.setState({ open: false });
+        
     };
     render() {
         return (
