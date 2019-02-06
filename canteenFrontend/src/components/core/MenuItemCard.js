@@ -1,8 +1,5 @@
-import React from 'react';
-// import styles from './Style_ItemsCard'
+import React from 'react'
 import styles from './styles'
-import Typography from "@material-ui/core/Typography";
-import { Divider } from '@material-ui/core';
 
 function MenuItemCard(props) {
     return (

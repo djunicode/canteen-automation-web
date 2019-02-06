@@ -84,7 +84,7 @@ class PermanentDrawerLeft extends React.Component {
                                             
                                            <div>
                                                <div style={styles.main_category}>CATEGORIES</div>
-                                            <a style={styles.icon_plus} className="fa fa-plus-circle" aria-hidden="true"/>
+                                            <span style={styles.icon_plus} className="fa fa-plus-circle" aria-hidden="true"/>
                                             </div>
                                     </Card>
                                 </div>

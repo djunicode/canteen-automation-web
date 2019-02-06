@@ -4,7 +4,6 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from "./theme";
 
 import TopBar from "./components/TopBar";
-import PrimaryBar from "./components/PrimaryBar";
 import HomePage from "./pages/HomePage";
 import OrdersPage from "./pages/OrdersPage";
 

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles'
 import Typography from "@material-ui/core/Typography";
 
-function PendingCard (props){
+function PendingCard(props) {
     const style_indicator={
         height: "100%",
         width: "3.5%",

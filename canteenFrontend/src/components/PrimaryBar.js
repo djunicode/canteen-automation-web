@@ -4,7 +4,6 @@ import styles  from "./core/styles";
 import BarButton from "./core/BarButton";
 import BorderAppBar from "./core/BorderAppBar";
 import LargeToolbar from "./core/LargeToolbar";
-import Home from "../pages/HomePage";
 
 function PrimaryBar(props) {
     
@@ -31,7 +30,7 @@ function PrimaryBar(props) {
                     >
                     Orders
                 </BarButton>
-            </LargeToolbar >
+            </LargeToolbar>
         </BorderAppBar>
     );
 }
