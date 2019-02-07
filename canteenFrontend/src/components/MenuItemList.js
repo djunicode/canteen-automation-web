@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import MenuItem from './core/MenuItemCard';
-import endpoint from '../util/client';
-import axios from 'axios';
+import MenuItem from "./core/MenuItemCard";
+import endpoint from "../util/client";
+import axios from "axios";
 
-const menuEndpoint = endpoint.directory('menu');
+const menuEndpoint = endpoint.directory("menu");
 
 class menuList extends React.Component {
     state = {
-        data: []
+        data: [],
     };
 
     componentDidMount = async () => {
@@ -16,21 +16,17 @@ class menuList extends React.Component {
         const response = await axios.get(url);
         if (response.status === 200) {
             this.setState({
-                data: response.data
+                data: response.data,
             });
         } else {
             alert(`Couldn't GET /categories/ ERROR ${response.status}`);
         }
-    }
+    };
 
     render = () => {
-        const menuItemsList = this.state.data.map(e => <MenuItem {...e} />)
-        return (
-            <div>
-                { menuItemsList }
-            </div>
-        );
-    }
+        const menuItemsList = this.state.data.map((e) => <MenuItem {...e} />);
+        return <div>{menuItemsList}</div>;
+    };
 }
 
 export default menuList;

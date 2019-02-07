@@ -1,0 +1,11 @@
+.HomeGridContainer {
+    display: grid;
+    grid-template-rows: auto 75% 10% 5%;
+    grid-template-columns: 25% 20% auto;
+    grid-template-areas: 
+        "pending search search"
+        "pending categoryHeader menuHeader"
+        "pending categoryBody menuBody"
+        "pending footer footer"
+    ;
+}
