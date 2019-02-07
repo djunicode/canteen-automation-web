@@ -1,11 +1,10 @@
 .HomeGridContainer {
     display: grid;
-    grid-template-rows: auto 75% 10% 5%;
-    grid-template-columns: 25% 20% auto;
+    grid-template-rows: 10% 85% 5%;
+    grid-template-columns: 25% 20% 55%;
     grid-template-areas: 
         "pending search search"
-        "pending categoryHeader menuHeader"
-        "pending categoryBody menuBody"
-        "pending footer footer"
-    ;
+        "pending category menu"
+        "pending footer footer";
+    max-height: inherit;
 }

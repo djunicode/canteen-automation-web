@@ -13,6 +13,10 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 
 const styles = {
+    appbar: {
+        background: "#0477BD"
+    },
+
     topToolbar: {
         justifyContent: "space-between",
     },
@@ -23,7 +27,7 @@ const styles = {
     },
 };
 
-class TopBar extends React.Component {
+class CustomAppBar extends React.Component {
     state = {
         anchorEl: null,
     };
@@ -46,7 +50,7 @@ class TopBar extends React.Component {
         const open = Boolean(anchorEl);
 
         return (
-            <AppBar position='sticky' color='primary'>
+            <AppBar position='sticky' className={classes.appbar}>
                 <Toolbar className={classes.topToolbar}>
                     <div>
                         <IconButton
@@ -101,4 +105,4 @@ class TopBar extends React.Component {
     }
 }
 
-export default withStyles(styles)(TopBar);
+export default withStyles(styles)(CustomAppBar);

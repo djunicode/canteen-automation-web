@@ -1,11 +1,11 @@
 import React from "react";
 
 import Typography from "@material-ui/core/Typography";
-import styles from "./Footer.css";
+import "./Footer.css";
 
 function Footer({ total, orderCount }) {
     return (
-        <div className={styles.footer}>
+        <div className="footer">
             <Typography align='right' color='white' variant='h6'>
                 <span>TOTAL Rs. {total} </span>
                 <span>ORDERS {orderCount}</span>

@@ -29,7 +29,7 @@ function Category ({ classes, name }) {
     return (
         <Card className={classes.sub_category}>
             <span className={classes.item_category}>{name}</span>
-            <span className={classes.icon_cross} className="fa fa-times-circle-o" aria-hidden="true" />
+            <span className={"fa fa-times-circle-o"} aria-hidden="true" />
         </Card>
     );   
 }

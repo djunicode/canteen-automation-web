@@ -1,12 +1,12 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import styles from "./core/styles";
+import styles from "../core/styles";
 
-import RoundSearchBar from "./RoundSearchBar";
-import BarButton from "./core/BarButton";
-import BorderAppBar from "./core/BorderAppBar";
-import LargeToolbar from "./core/LargeToolbar";
+import RoundSearchBar from "../core/RoundSearchBar";
+import BarButton from "../core/BarButton";
+import BorderAppBar from "../core/BorderAppBar";
+import LargeToolbar from "../core/LargeToolbar";
 
 // const styles = {
 //     ordersToolbar: {
@@ -14,7 +14,7 @@ import LargeToolbar from "./core/LargeToolbar";
 //     },
 // };
 
-function OrdersBar(props) {
+function OrdersNavBar(props) {
     let style1 = styles.firstColorsm;
     let style2 = styles.secondsm;
     if (props.pos === "completed") {
@@ -25,7 +25,7 @@ function OrdersBar(props) {
     return (
         <BorderAppBar
             position='static'
-            color='secondary'
+            color='#ffffff'
             style={styles.padLeftZero}
         >
             <LargeToolbar style={styles.ordersToolbar}>
@@ -53,4 +53,4 @@ function OrdersBar(props) {
     );
 }
 
-export default withStyles(styles)(OrdersBar);
+export default withStyles(styles)(OrdersNavBar);

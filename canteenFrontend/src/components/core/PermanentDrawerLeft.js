@@ -2,21 +2,16 @@ import React from "react";
 
 import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 
-import PendingColumn from "./core/PendingColumn";
+import CategoryList from "../CategoryList";
+import MenuItemColumn from "../MenuItemColumn";
+import Footer from "../Footer";
+import OutlinedTextFields from "../core/OutlinedTextFields";
 
-import CategoryList from "./CategoryList";
-import MenuItemList from "./MenuItemList";
-import RoundSearchBar from "./RoundSearchBar";
-import OutlinedTextFields from "./OutlinedTextFields";
-import Footer from "./Footer";
-
-import styles from "./core/styles";
-
+import styles from "./styles";
 import "./core/style.css";
 
 class PermanentDrawerLeft extends React.Component {
@@ -35,20 +30,6 @@ class PermanentDrawerLeft extends React.Component {
         return (
             <div>
                 <div className='wrapper'>
-                    <div
-                        className='nav'
-                        style={{
-                            width: "100%",
-                            height: 70,
-                            backgroundColor: "#FFFFFF",
-                            borderBottom: "3px solid #D0D8DD",
-                            textAlign: "center",
-                        }}
-                    >
-                        <div style={{ display: "inline-block", marginTop: 10 }}>
-                            <RoundSearchBar />
-                        </div>
-                    </div>
 
                     <div className='drawer'>
                         <div
@@ -166,7 +147,7 @@ class PermanentDrawerLeft extends React.Component {
                                     overflow: "auto",
                                 }}
                             >
-                                <MenuItemList />
+                                <MenuItemColumn />
                             </div>
                         </div>
                     </div>

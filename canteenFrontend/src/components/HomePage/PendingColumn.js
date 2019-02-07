@@ -1,7 +1,8 @@
 import React from "react";
-import OrderCard from "./OrderCard";
+import OrderCard from "../core/OrderCard";
+import SectionHeading from "../core/SectionHeading";
 
-import styles from "./styles";
+import "../core/styles";
 
 class PendingColumn extends React.Component {
     state = {
@@ -25,7 +26,14 @@ class PendingColumn extends React.Component {
             />
         ));
 
-        return <div style={styles.container}>{cards}</div>;
+        return (
+            <div className="PendingColumn">
+                <SectionHeading>
+                    PENDING ORDERS
+                </SectionHeading>
+                <div>{cards}</div>
+            </div>
+        );
     };
 }
 

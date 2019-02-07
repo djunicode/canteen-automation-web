@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./core/styles";
-import BarButton from "./core/BarButton";
-import BorderAppBar from "./core/BorderAppBar";
-import LargeToolbar from "./core/LargeToolbar";
+import BarButton from "../core/BarButton";
+import BorderAppBar from "../core/BorderAppBar";
+import LargeToolbar from "../core/LargeToolbar";
 
-function PrimaryBar(props) {
+import styles from "../core/styles";
+
+function NavBar(props) {
     let style1 = styles.firstColor;
     let style2 = styles.second;
     if (props.pos === "home") {
@@ -14,7 +15,7 @@ function PrimaryBar(props) {
     }
 
     return (
-        <BorderAppBar position='sticky' color='secondary'>
+        <BorderAppBar position='sticky' color='#ffffff'>
             <LargeToolbar style={styles.padLeftZero}>
                 <BarButton style={style1} component={Link} to='/'>
                     Home
@@ -27,4 +28,4 @@ function PrimaryBar(props) {
     );
 }
 
-export default PrimaryBar;
+export default NavBar;

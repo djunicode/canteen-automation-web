@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import OrderCard from "../components/core/OrderCard";
-import OrdersBar from "../components/OrdersBar";
+import OrdersNavBar from "../components/common/OrdersNavBar";
 
 class Completed extends React.Component {
     state = {
@@ -22,7 +22,7 @@ class Completed extends React.Component {
         ));
         return (
             <div>
-                <OrdersBar pos='completed' />
+                <OrdersNavBar pos='completed' />
                 <div
                     style={{
                         width: "100%",

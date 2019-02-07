@@ -436,7 +436,6 @@ secondColorsm: {
     left: "14.25%",
     zIndex: 1,
     color: "white",
-    zIndex: 1
 },
     
 };

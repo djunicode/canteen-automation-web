@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import OrderCard from "../components/core/OrderCard";
-import OrdersBar from "../components/OrdersBar";
+import OrdersNavBar from "../components/common/OrdersNavBar";
 
 class Pending extends React.Component {
     state = {
@@ -23,7 +23,7 @@ class Pending extends React.Component {
         ));
         return (
             <div>
-                <OrdersBar pos='pending' />
+                <OrdersNavBar pos='pending' />
                 <div
                     style={{
                         width: "100%",

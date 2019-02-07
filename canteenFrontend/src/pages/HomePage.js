@@ -1,15 +1,24 @@
 import React from "react";
-import PrimaryBar from "../components/PrimaryBar";
-import PermanentDrawerLeft from "../components/PermanentDrawerLeft";
+import NavBar from "../components/common/NavBar";
 
-import styles from "./HomePage.css";
+import Footer from "../components/common/Footer";
+import SearchRow from "../components/HomePage/SearchRow";
+import MenuItemColumn from "../components/HomePage/MenuItemColumn";
+import PendingColumn from "../components/HomePage/PendingColumn";
+import CategoryColumn from "../components/HomePage/CategoryColumn";
+
+import "./HomePage.css";
 
 function HomePage() {
     return (
         <React.Fragment>
-            <PrimaryBar pos='first' />
-            <div className={styles.HomeGridContainer}>
-                <PermanentDrawerLeft />
+            <NavBar pos='first' />
+            <div className='HomeGridContainer'>
+                <PendingColumn />
+                <SearchRow />
+                <CategoryColumn />
+                <MenuItemColumn />
+                <Footer />
             </div>
         </React.Fragment>
     );
