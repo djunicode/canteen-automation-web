@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles';
-import OrderCard from './OrderCards';
+import OrderCard from './OrderCard';
 // import axios frim axios;
 class PendingDrawer extends React.Component{
     state={

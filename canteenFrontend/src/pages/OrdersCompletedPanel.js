@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import OrderCard from "../components/core/OrderCards"
+import OrderCard from "../components/core/OrderCard"
 import OrdersBar from "../components/OrdersBar";
 
 class Completed extends React.Component {

@@ -1,18 +1,20 @@
-//import PendingCards from "./core/PendingCards";
-import { Divider } from "@material-ui/core";
-import PendingDrawer from "./core/PendingDrawer";
 import React from "react";
+
 import Typography from "@material-ui/core/Typography";
+import Card from '@material-ui/core/Card';
+import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import OutlinedTextFields from "./OutlinedTextFields";
-import Button from "@material-ui/core/Button";
-import RoundSearchBar from "./RoundSearchBar";
-import MenuItemCard from "./core/MenuItemCard";
-import Card from '@material-ui/core/Card';
-import styles from './core/styles';
+
 import CategoryList from "./CategoryList";
+import MenuItemList from "./MenuItemList";
+import RoundSearchBar from "./RoundSearchBar";
+import OutlinedTextFields from "./OutlinedTextFields";
+import PendingDrawer from "./core/PendingDrawer";
+
+import styles from './core/styles';
 
 import "./core/style.css";
 
@@ -174,9 +176,7 @@ class PermanentDrawerLeft extends React.Component {
                                 <div
                                     style={{ height: 390, backgroundColor: "#DDF3FD",overflow:"auto" }}
                                 >
-                                     <MenuItemCard Name="Masala Dosa" Ing="Masala, Chutney" Price="RS. 49" />
-                                     <MenuItemCard Name="Pav Bhaji" Ing="Pav, Potatoes" Price="60" />
-                                     <MenuItemCard Name="Sada Dosa" Ing="Butter, Sambhar" Price="60" />
+                                     <MenuItemList />
                                 </div>
                          </div>
                     </div>

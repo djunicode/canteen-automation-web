@@ -438,7 +438,6 @@ secondColorsm: {
     color: "white",
     zIndex: 1
 },
-
     
 };
 

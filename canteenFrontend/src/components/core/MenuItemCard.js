@@ -9,13 +9,13 @@ function MenuItemCard(props) {
                 <div style={styles.item1}>
                     <div style={styles.left_con}>
                         <div style={styles.attribute3}>NAME</div>
-                        <div style={styles.attribute4}>{props.Name}</div>
-                        <div style={styles.attribute3}>INGREDIENTS</div>
-                        <div style={styles.attribute4}>{props.Ing}</div>
+                        <div style={styles.attribute4}>{props.name}</div>
+                        <div style={styles.attribute3}>OPTIONS</div>
+                        <div style={styles.attribute4}>{props.options}</div>
                     </div>
                     <div style={styles.right_con}>
                         <div style={styles.attribute5}>PRICE</div>
-                        <div style={styles.attribute6}>{props.Price}</div>
+                        <div style={styles.attribute6}>{props.price}</div>
                     </div>
                 </div>
                 <div style={styles.wrap}>
