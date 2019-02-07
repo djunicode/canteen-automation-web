@@ -2,7 +2,7 @@ import React from "react";
 import OrderCard from "../core/OrderCard";
 import SectionHeading from "../core/SectionHeading";
 
-import "../core/styles";
+import "./PendingColumn.css";
 
 class PendingColumn extends React.Component {
     state = {

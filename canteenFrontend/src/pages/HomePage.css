@@ -1,6 +1,6 @@
 .HomeGridContainer {
     display: grid;
-    grid-template-rows: 10% 85% 5%;
+    grid-template-rows: 12% 83% 5%;
     grid-template-columns: 25% 20% 55%;
     grid-template-areas: 
         "pending search search"
