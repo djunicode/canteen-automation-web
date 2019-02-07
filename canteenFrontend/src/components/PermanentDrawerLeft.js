@@ -11,6 +11,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import CategoryList from "./CategoryList";
 import MenuItemList from "./MenuItemList";
 import RoundSearchBar from "./RoundSearchBar";
+import Footer from "./Footer";
 import OutlinedTextFields from "./OutlinedTextFields";
 import PendingDrawer from "./core/PendingDrawer";
 
@@ -181,21 +182,7 @@ class PermanentDrawerLeft extends React.Component {
                          </div>
                     </div>
                
-                <div className="footer"
-                    style={{
-                        width: "100%",
-                        height: 50,
-                        backgroundColor: "#0477BD",
-                        
-                    }}
-                >
-                    <Typography align='right' color='default' variant='h6'>
-                        TOTAL Rs. 12,500       ,
-                        <span >
-                         ORDERS 150
-                        </span>
-                    </Typography>
-                </div>
+                    <Footer total={12500} orderCount={150} />
                 </div>
             </div>
         );
