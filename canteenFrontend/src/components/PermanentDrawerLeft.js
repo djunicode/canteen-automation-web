@@ -12,7 +12,7 @@ import RoundSearchBar from "./RoundSearchBar";
 import MenuItemCard from "./core/MenuItemCard";
 import Card from '@material-ui/core/Card';
 import styles from './core/styles';
-import Category from "./core/Category";
+import CategoryList from "./CategoryList";
 
 import "./core/style.css";
 
@@ -91,11 +91,7 @@ class PermanentDrawerLeft extends React.Component {
                                     </Card>
                                 </div>
                                 <div>
-                                  <Category />
-                                  <Category />
-                                  <Category />
-                                  <Category />
-
+                                  <CategoryList />
                                 </div>
                             </div>
                             <div className="right"
