@@ -1,9 +1,22 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import PendingCards from "../components/core/PendingCards"
+import OrderCard from "../components/core/OrderCards"
 import OrdersBar from "../components/OrdersBar";
 
-function Completed() {
+class Completed extends React.Component {
+    state={
+        food:[
+            {Name:'masala dosa', Quantity:'2'},
+            {Name:'sada dosa' ,Quantity:'3'},
+            {Name:'masala dosa', Quantity:'4'},
+
+        ]
+    }
+    render(){
+
+        const cards = this.state.food.map(e =>
+            <OrderCard Name={e.Name.toUpperCase()} Quantity={e.Quantity}  pendingStatus={false} editable={false}/>
+        );
     return (
 
         <div>
@@ -12,39 +25,36 @@ function Completed() {
             style={{
                 width: "100%",
                 height: 455,
-                backgroundColor: "orange",
+                backgroundColor: "green",
                 borderBottom: "3px solid #D0D8DD",
                 display:'flex',
                 flexDirection:'row',
             }}
          >
                <div style={{backgroundColor:'#EEEEEE',width:'33.3%',height:'100%',flexDirection:'column'}}>
-                        <br/>                           
-                        <PendingCards Name="wada" Quantity="5" Color="#00C952"/>
                         <br/>
-                        <PendingCards Name="sandwich" Quantity="6" Color="#00C952"/>
                         <br/>
-                        <PendingCards Name="wada" Quantity="5" Color="#00C952"/>
-    
+                        {cards}
+                        <br/>
+
+
+
                </div>
                <div style={{backgroundColor:'#EEEEEE',width:'33.3%',height:'100%'}}>
-                        <br/>                           
-                        <PendingCards Name="wada" Quantity="5" Color="#00C952"/>
                         <br/>
-                        <PendingCards Name="sandwich" Quantity="6" Color="#00C952"/>
                         <br/>
-                        <PendingCards Name="wada" Quantity="5" Color="#00C952"/>
+                        {cards}
+                        <br/>
+
                </div>
                <div style={{backgroundColor:'#EEEEEE',width:'33.3%',height:'100%'}}>
-               <br/>                           
-                        <PendingCards Name="wada" Quantity="5" Color="#00C952"/>
                         <br/>
-                        <PendingCards Name="sandwich" Quantity="6" Color="#00C952"/>
                         <br/>
-                        <PendingCards Name="wada" Quantity="5" Color="#00C952"/>
-               
+                        {cards}
+                        <br/>
+
                </div>
-            
+
         </div>
         <div
             style={{
@@ -62,5 +72,6 @@ function Completed() {
         </div>
     </div>
     );
+}
 }
 export default Completed;

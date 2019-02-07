@@ -13,7 +13,7 @@ function App() {
             <Router>
                 <React.Fragment>
                     <TopBar />
-                    {/* <PrimaryBar pos="home"/> */}
+                    {/*<PrimaryBar pos='home'/>*/}
 
                     <Route exact path='/' component={HomePage} />
                     <Route path='/orders' component={OrdersPage} />
