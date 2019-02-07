@@ -1,8 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import PrimaryBar from "../components/PrimaryBar";
-
+import NavBar from "../components/common/NavBar";
 
 import OrdersPendingPanel from "./OrdersPendingPanel";
 import OrdersCompletedPanel from "./OrdersCompletedPanel";
@@ -10,8 +9,7 @@ import OrdersCompletedPanel from "./OrdersCompletedPanel";
 function OrdersPage({ match }) {
     return (
         <React.Fragment>
-
-            <PrimaryBar pos="home"/>
+            <NavBar pos='home' />
 
             <Route
                 path={match.url + "/pending"}

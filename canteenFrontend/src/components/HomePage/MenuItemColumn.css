@@ -1,0 +1,5 @@
+.MenuItemColumn {
+    grid-area: menu;
+    background-color: #DDF3FD;
+    border-bottom: 3px solid #D0D8DD;
+}
