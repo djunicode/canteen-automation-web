@@ -1,38 +1,33 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import { withStyles } from "@material-ui/core/styles";
 
-const styles = {
-    sub_category:{
-        borderRadius:0,
-        height:55,
-        paddingLeft:18,
-        paddingRight:10,
-        
-    },
-    item_category:{
-        fontSize:20,
-        color:'#607D8B',
-        paddingTop:10,
-        paddingLeft:5
-   },
-   icon_cross:{
-    fontSize:24,
-    color:'#E8453E',
-    float:'right',
-    padding:10,
-    transform: "translateY(-74%)"
-   }
-};
+import './CategoryCard.css';
 
-function Category ({ classes, name }) {
+const StyledCard = withStyles({
+    root: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+
+        borderRadius: 0,
+        padding: "0 16px 0 32px",
+        height: "72px",
+        color: "#9E9E9E",
+        fontSize: "20px",
+    }
+})(Card);
+
+// -----
+
+function Category (props) {
     return (
-        <Card className={classes.sub_category}>
-            <span className={classes.item_category}>{name}</span>
-            <span className={"fa fa-times-circle-o"} aria-hidden="true" />
-        </Card>
+        <StyledCard>
+            <span>{props.name}</span>
+            <span className="fa fa-times-circle-o icon-cross" aria-hidden="true" />
+        </StyledCard>
     );   
 }
 
 
-export default withStyles(styles)(Category);
+export default Category;
