@@ -28,3 +28,11 @@
 .main{
  height: 80.5vh;
 }
+.display-block {
+    display: block;
+  }
+  
+  .display-none {
+    display: none;
+  }
+  

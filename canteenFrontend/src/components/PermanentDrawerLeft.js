@@ -15,6 +15,7 @@ import ItemCard from "./core/ItemCard";
 import Card from '@material-ui/core/Card';
 import styles from './core/styles';
 import Category from "./core/Category";
+//import AddItemModal from './AddItemModal'
 
 class PermanentDrawerLeft extends React.Component {
     state = {
@@ -129,6 +130,7 @@ class PermanentDrawerLeft extends React.Component {
                                             height: 57,
                                         }}
                                     >
+                                        
                                         <button
                                             onClick={this.handleClickOpen}
                                             style={{
@@ -145,6 +147,7 @@ class PermanentDrawerLeft extends React.Component {
                                         >
                                             <strong>ADD ITEM</strong>
                                         </button>
+                                        {/*<AddItemModal open={this.state.open} handleClose={this.handleClose} />*/}
 
                                         <Dialog
                                             open={this.state.open}
@@ -172,7 +175,7 @@ class PermanentDrawerLeft extends React.Component {
                                                     ADD ITEM
                                                 </Button>
                                             </DialogActions>
-                                        </Dialog>
+                                            </Dialog>
                                      </div>
                                  </div>
                                 <div
