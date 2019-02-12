@@ -1,5 +1,6 @@
 import React from "react";
 
+import SectionHeading from "../core/SectionHeading";
 import MenuItem from "../core/MenuItemCard";
 import endpoint from "../../util/client";
 import axios from "axios";
@@ -25,7 +26,14 @@ class MenuItemColumn extends React.Component {
 
     render = () => {
         const menuItemsList = this.state.data.map((e) => <MenuItem {...e} />);
-        return <div className="MenuItemColumn">{menuItemsList}</div>;
+        return (
+            <div className="MenuItemColumn">
+                <SectionHeading className="menu-column-heading">
+                    Items
+                </SectionHeading>
+                {menuItemsList}
+            </div>
+        );
     };
 }
 

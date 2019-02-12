@@ -42,8 +42,8 @@ class OrderCard extends React.Component {
                     <div style={styles.item}>
                         <div style={styles.attribute1}><Typography><strong>ITEMS</strong></Typography></div>
                         <div style={styles.attribute2}><Typography><strong>QTY</strong></Typography></div>
-                        <div style={styles.attribute1}><Typography><strong>{this.props.Name}</strong></Typography></div>
-                        <div style={styles.attribute2}><Typography><strong>{this.props.Quantity}</strong></Typography></div>
+                        <div style={styles.attribute1}><Typography><strong>{this.props.name}</strong></Typography></div>
+                        <div style={styles.attribute2}><Typography><strong>{this.props.quantity}</strong></Typography></div>
                     </div>
                         <div style={styles.tick_box}>
                             <div onClick={this.handleColorChange} style={style_tick} className="fa fa-check-circle-o fa-2x" aria-hidden="true">

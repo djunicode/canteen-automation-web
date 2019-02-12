@@ -6,16 +6,16 @@ import OrdersNavBar from "../components/common/OrdersNavBar";
 class Pending extends React.Component {
     state = {
         food: [
-            { Name: "masala dosa", Quantity: "2" },
-            { Name: "sada dosa", Quantity: "3" },
-            { Name: "masala dosa", Quantity: "4" },
+            { name: "masala dosa", quantity: "2" },
+            { name: "sada dosa", quantity: "3" },
+            { name: "masala dosa", quantity: "4" },
         ],
     };
     render() {
         const cards = this.state.food.map((e) => (
             <OrderCard
-                Name={e.Name.toUpperCase()}
-                Quantity={e.Quantity}
+                name={e.name.toUpperCase()}
+                quantity={e.quantity}
                 Color={e.Color}
                 pendingStatus={true}
                 editable={true}

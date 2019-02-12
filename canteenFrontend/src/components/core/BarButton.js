@@ -5,6 +5,7 @@ const styles = (theme) => ({
     root: {
         color: "#0477BD",
         margin: theme.spacing.unit,
+        fontSize: 23,
     },
 });
 

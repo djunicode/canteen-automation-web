@@ -7,20 +7,26 @@ import "./PendingColumn.css";
 class PendingColumn extends React.Component {
     state = {
         data: [
-            { Name: "masala dosa", Quantity: "2" },
-            { Name: "sada dosa", Quantity: "3" },
-            { Name: "masala dosa", Quantity: "4" },
-            { Name: "sandwhich", Quantity: "4" },
-            { Name: "pav bhaji", Quantity: "4" },
-            { Name: "vada pav", Quantity: "4" },
+            { name: "masala dosa", quantity: "2" },
+            { name: "sada dosa", quantity: "3" },
+            { name: "masala dosa", quantity: "4" },
+            { name: "sandwhich", quantity: "4" },
+            { name: "pav bhaji", quantity: "4" },
+            { name: "vada pav", quantity: "4" },
+            { name: "masala dosa", quantity: "2" },
+            { name: "sada dosa", quantity: "3" },
+            { name: "masala dosa", quantity: "4" },
+            { name: "sandwhich", quantity: "4" },
+            { name: "pav bhaji", quantity: "4" },
+            { name: "vada pav", quantity: "4" },
         ],
     };
 
     render = () => {
         const cards = this.state.data.map((e) => (
             <OrderCard
-                Name={e.Name.toUpperCase()}
-                Quantity={e.Quantity}
+                name={e.name.toUpperCase()}
+                quantity={e.quantity}
                 pendingStatus={true}
                 editable={true}
             />
@@ -29,9 +35,11 @@ class PendingColumn extends React.Component {
         return (
             <div className="PendingColumn">
                 <SectionHeading>
-                    PENDING ORDERS
+                    Pending Orders
                 </SectionHeading>
-                <div>{cards}</div>
+                <div className="cards">
+                    {cards}
+                </div>
             </div>
         );
     };

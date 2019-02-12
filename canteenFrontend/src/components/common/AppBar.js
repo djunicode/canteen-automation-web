@@ -35,7 +35,7 @@ class CustomAppBar extends React.Component {
         const open = Boolean(anchorEl);
 
         return (
-            <AppBar position='sticky' className="appbar">
+            <AppBar position='relative' className="appbar">
                 <Toolbar className="topToolbar">
                     <div>
                         <IconButton

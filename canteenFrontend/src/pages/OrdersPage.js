@@ -9,7 +9,7 @@ import OrdersCompletedPanel from "./OrdersCompletedPanel";
 function OrdersPage({ match }) {
     return (
         <React.Fragment>
-            <NavBar pos='home' />
+            <NavBar pos='orders' />
 
             <Route
                 path={match.url + "/pending"}
