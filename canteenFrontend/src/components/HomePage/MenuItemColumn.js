@@ -14,15 +14,16 @@ import "./Cards.css";
 
 const StyledButton = withStyles({
     root: {
-        backgroundColor: "#0477BD",
+        color: "#0477BD",
+        backgroundColor: "white",
         textAlign: "center",
         textTransform: "uppercase",
-        color: "white",
-        right: 25,
-        bottom: "20",
+        fontWeight: "bold",
+        
         padding: "8px 32px 8px 32px",
-        border: "solid 1px",
+        border: "solid 3px",
         borderRadius: "26px",
+        
         position: "absolute",
         right: "16px",
         left: "auto",
@@ -54,7 +55,7 @@ class MenuItemColumn extends React.Component {
             <div className='MenuItemColumn'>
                 <SectionHeading className='menu-column-heading'>
                     Items
-                    <StyledButton disableRipple>Add Item</StyledButton>
+                <StyledButton disableRipple>Add Item</StyledButton>
                 </SectionHeading>
                 <div className="cards-section">
                     {menuItemsList}
