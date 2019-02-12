@@ -56,7 +56,9 @@ class MenuItemColumn extends React.Component {
                     Items
                     <StyledButton disableRipple>Add Item</StyledButton>
                 </SectionHeading>
-                {menuItemsList}
+                <div className="cards-section">
+                    {menuItemsList}
+                </div>
             </div>
         );
     };
