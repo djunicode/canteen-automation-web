@@ -5,7 +5,7 @@ import "./Footer.css";
 
 function Footer({ total, orderCount }) {
     return (
-        <div className="footer">
+        <div className='footer'>
             <Typography align='right' color='white' variant='h6'>
                 <span>TOTAL Rs. {total} </span>
                 <span>ORDERS {orderCount}</span>

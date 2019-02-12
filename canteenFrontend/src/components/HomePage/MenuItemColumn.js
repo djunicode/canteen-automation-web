@@ -1,11 +1,33 @@
 import React from "react";
 
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+
 import SectionHeading from "../core/SectionHeading";
 import MenuItem from "../core/MenuItemCard";
-import endpoint from "../../util/client";
+
 import axios from "axios";
+import endpoint from "../../util/client";
 
 import "./MenuItemColumn.css";
+import "./Cards.css";
+
+const StyledButton = withStyles({
+    root: {
+        backgroundColor: "#0477BD",
+        textAlign: "center",
+        textTransform: "uppercase",
+        color: "white",
+        right: 25,
+        bottom: "20",
+        padding: "8px 32px 8px 32px",
+        border: "solid 1px",
+        borderRadius: "26px",
+        position: "absolute",
+        right: "16px",
+        left: "auto",
+    },
+})(Button);
 
 class MenuItemColumn extends React.Component {
     state = {
@@ -13,7 +35,9 @@ class MenuItemColumn extends React.Component {
     };
 
     componentDidMount = async () => {
-        const url = endpoint().directory("menu").toString();
+        const url = endpoint()
+            .directory("menu")
+            .toString();
         const response = await axios.get(url);
         if (response.status === 200) {
             this.setState({
@@ -27,9 +51,10 @@ class MenuItemColumn extends React.Component {
     render = () => {
         const menuItemsList = this.state.data.map((e) => <MenuItem {...e} />);
         return (
-            <div className="MenuItemColumn">
-                <SectionHeading className="menu-column-heading">
+            <div className='MenuItemColumn'>
+                <SectionHeading className='menu-column-heading'>
                     Items
+                    <StyledButton disableRipple>Add Item</StyledButton>
                 </SectionHeading>
                 {menuItemsList}
             </div>

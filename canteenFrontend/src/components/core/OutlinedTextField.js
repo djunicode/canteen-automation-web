@@ -4,9 +4,21 @@ import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles/";
 
-import "./OutlinedTextFields.css";
+import "./OutlinedTextField.css";
 
-class OutlinedTextFields extends React.Component {
+const styles = (theme) => ({
+    container: {
+        display: "flex",
+        flexWrap: "wrap",
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 400,
+    },
+});
+
+class OutlinedTextField extends React.Component {
     state = {
         multiline: "Controlled",
     };
@@ -19,13 +31,13 @@ class OutlinedTextFields extends React.Component {
 
     render() {
         return (
-            <form className="container" noValidate autoComplete='off'>
+            <form className='container' noValidate autoComplete='off'>
                 <TextField
                     id='outlined-textarea'
                     label='Name'
                     placeholder='Name'
                     multiline
-                    className="textField"
+                    className='textField'
                     margin='normal'
                     variant='outlined'
                 />
@@ -34,7 +46,7 @@ class OutlinedTextFields extends React.Component {
                     label='Ingredients'
                     placeholder='Ingredients'
                     multiline
-                    className="textField"
+                    className='textField'
                     margin='normal'
                     variant='outlined'
                 />
@@ -43,7 +55,7 @@ class OutlinedTextFields extends React.Component {
                     label='Price'
                     placeholder='Price'
                     multiline
-                    className="textField"
+                    className='textField'
                     margin='normal'
                     variant='outlined'
                 />
@@ -52,8 +64,8 @@ class OutlinedTextFields extends React.Component {
     }
 }
 
-OutlinedTextFields.propTypes = {
+OutlinedTextField.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(OutlinedTextFields);
+export default withStyles(styles)(OutlinedTextField);

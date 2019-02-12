@@ -11,9 +11,3 @@
 .PendingColumn > .column-heading {
     background: inherit;
 }
-
-.PendingColumn > .cards {
-    height: inherit;
-    overflow: auto;
-    max-height: inherit;
-}

@@ -20,11 +20,19 @@ function NavBar(props) {
 
     return (
         <BorderAppBar position='relative' color='#ffffff'>
-            <LargeToolbar className="pad-zero-left">
-                <BarButton className={homeClasses.join(' ')} component={Link} to='/'>
+            <LargeToolbar className='pad-zero-left'>
+                <BarButton
+                    className={homeClasses.join(" ")}
+                    component={Link}
+                    to='/'
+                >
                     Home
                 </BarButton>
-                <BarButton className={ordersClasses.join(' ')} component={Link} to='/orders/pending'>
+                <BarButton
+                    className={ordersClasses.join(" ")}
+                    component={Link}
+                    to='/orders/pending'
+                >
                     Orders
                 </BarButton>
             </LargeToolbar>

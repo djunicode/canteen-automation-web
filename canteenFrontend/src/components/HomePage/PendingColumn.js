@@ -3,6 +3,7 @@ import OrderCard from "../core/OrderCard";
 import SectionHeading from "../core/SectionHeading";
 
 import "./PendingColumn.css";
+import "./Cards.css";
 
 class PendingColumn extends React.Component {
     state = {
@@ -33,13 +34,9 @@ class PendingColumn extends React.Component {
         ));
 
         return (
-            <div className="PendingColumn">
-                <SectionHeading>
-                    Pending Orders
-                </SectionHeading>
-                <div className="cards">
-                    {cards}
-                </div>
+            <div className='PendingColumn'>
+                <SectionHeading>Pending Orders</SectionHeading>
+                <div className='cards-section'>{cards}</div>
             </div>
         );
     };

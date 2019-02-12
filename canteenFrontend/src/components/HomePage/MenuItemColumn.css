@@ -3,3 +3,8 @@
     background-color: #DDF3FD;
     border-bottom: 3px solid #D0D8DD;
 }
+
+.MenuItemColumn > .column-heading {
+    display: flex;
+    justify-content: center;
+}

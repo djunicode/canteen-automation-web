@@ -30,7 +30,7 @@ const StyledPaper = withStyles({
 const StyledSearchIcon = withStyles({
     root: {
         color: "#8FC7E6",
-    }
+    },
 })(SearchIcon);
 
 function RoundSearchBar(props) {

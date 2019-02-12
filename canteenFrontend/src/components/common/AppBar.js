@@ -35,11 +35,11 @@ class CustomAppBar extends React.Component {
         const open = Boolean(anchorEl);
 
         return (
-            <AppBar position='relative' className="appbar">
-                <Toolbar className="topToolbar">
+            <AppBar position='relative' className='appbar'>
+                <Toolbar className='topToolbar'>
                     <div>
                         <IconButton
-                            className="menuButton"
+                            className='menuButton'
                             color='inherit'
                             aria-label='Menu'
                             component={Link}
@@ -49,7 +49,7 @@ class CustomAppBar extends React.Component {
                         </IconButton>
                     </div>
 
-                    <div className="authTools">
+                    <div className='authTools'>
                         <Typography variant='h6' align='right' color='inherit'>
                             John
                         </Typography>
