@@ -53,9 +53,9 @@ class MenuItemColumn extends React.Component {
         const menuItemsList = this.state.data.map((e) => <MenuItem {...e} />);
         return (
             <div className='MenuItemColumn'>
-                <SectionHeading className='menu-column-heading'>
+                <SectionHeading>
                     Items
-                <StyledButton disableRipple>Add Item</StyledButton>
+                    <StyledButton disableRipple>Add Item</StyledButton>
                 </SectionHeading>
                 <div className="cards-section">
                     {menuItemsList}

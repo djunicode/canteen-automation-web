@@ -1,5 +1,8 @@
 import React from "react";
 
+import Fab from "@material-ui/core/Fab";
+import { AddIcon } from "@material-ui/icons";
+
 import SectionHeading from "../core/SectionHeading";
 import CategoryItem from "../core/CategoryCard";
 import endpoint from "../../util/client";
@@ -33,8 +36,12 @@ class CategoryList extends React.Component {
         ));
         return (
             <div className='CategoryColumn'>
-                <SectionHeading className='menu-column-heading'>
+                <SectionHeading className='category-column-heading'>
                     Categories
+                    <Fab
+                        size="small">
+                        <AddIcon />
+                    </Fab>
                 </SectionHeading>
                 <div className='cards-section'>{categoryItemsList}</div>
             </div>
