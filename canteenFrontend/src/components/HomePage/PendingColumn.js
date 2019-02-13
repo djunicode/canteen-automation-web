@@ -23,13 +23,25 @@ class PendingColumn extends React.Component {
         ],
     };
 
+    componentDidMount = () => {
+        this.ws = new WebSocket("ws://localhost:8000/ws/admin/");
+        this.ws.onmessage = e => {
+            console.log(e.data);
+            let data = JSON.parse(e.data);
+            // this.setState({
+            //     data,
+            // });
+        };
+    };
+
     render = () => {
-        const cards = this.state.data.map((e) => (
+        const cards = this.state.data.map((e, i) => (
             <OrderCard
                 name={e.name.toUpperCase()}
                 quantity={e.quantity}
                 pendingStatus={true}
                 editable={true}
+                key={i}
             />
         ));
 

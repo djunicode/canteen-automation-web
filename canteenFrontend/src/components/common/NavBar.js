@@ -19,7 +19,10 @@ function NavBar(props) {
     }
 
     return (
-        <BorderAppBar position='relative' color='#ffffff'>
+        <BorderAppBar 
+            position='relative'
+            color='#ffffff'
+        >
             <LargeToolbar className='pad-zero-left'>
                 <BarButton
                     className={homeClasses.join(" ")}

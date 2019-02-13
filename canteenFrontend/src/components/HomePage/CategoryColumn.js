@@ -20,7 +20,7 @@ const RightFab = withStyles({
     },
 })(Fab);
 
-class CategoryList extends React.Component {
+class CategoryColumn extends React.Component {
     state = {
         data: [],
     };
@@ -40,8 +40,8 @@ class CategoryList extends React.Component {
     };
 
     render = () => {
-        const categoryItemsList = this.state.data.map((e) => (
-            <CategoryItem name={e.name} />
+        const categoryItemsList = this.state.data.map((e, i) => (
+            <CategoryItem name={e.name} key={i} />
         ));
         return (
             <div className='CategoryColumn'>
@@ -58,4 +58,4 @@ class CategoryList extends React.Component {
     };
 }
 
-export default CategoryList;
+export default CategoryColumn;

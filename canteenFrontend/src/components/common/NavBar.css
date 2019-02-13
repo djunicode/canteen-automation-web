@@ -6,11 +6,13 @@
 .active {
     background-color: #0477BD !important;
     color: white !important;
+    z-index: 3 !important;
 }
 
-.background {
+.inactive {
     background-color: #EEEEEE !important;
     color: #0477BD !important;
+    z-index: 2 !important;
 }
 
 .first-color {
@@ -51,7 +53,6 @@
     position: absolute !important;
     bottom: 0 !important;
     left: 19.25% !important;
-    z-index: -1 !important;
 }
 
 .second-color {
@@ -66,5 +67,4 @@
     position: absolute !important;
     bottom: 0 !important;
     left: 19.25% !important;
-    z-index: 1 !important;
 }
