@@ -1,8 +1,9 @@
 import React from "react";
 
 import Fab from "@material-ui/core/Fab";
-import { AddIcon } from "@material-ui/icons";
+import AddIcon from "@material-ui/icons/Add";
 
+import { withStyles } from "@material-ui/core";
 import SectionHeading from "../core/SectionHeading";
 import CategoryItem from "../core/CategoryCard";
 import endpoint from "../../util/client";
@@ -10,6 +11,14 @@ import axios from "axios";
 
 import "./CategoryColumn.css";
 import "./Cards.css";
+
+const RightFab = withStyles({
+    root: {
+        position: "absolute",
+        right: "16px",
+        left: "auto",
+    },
+})(Fab);
 
 class CategoryList extends React.Component {
     state = {
@@ -38,10 +47,10 @@ class CategoryList extends React.Component {
             <div className='CategoryColumn'>
                 <SectionHeading className='category-column-heading'>
                     Categories
-                    <Fab
+                    <RightFab
                         size="small">
                         <AddIcon />
-                    </Fab>
+                    </RightFab>
                 </SectionHeading>
                 <div className='cards-section'>{categoryItemsList}</div>
             </div>
