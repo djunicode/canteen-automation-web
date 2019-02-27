@@ -10,7 +10,8 @@
 .drawer {
     display: flex;
     flex-direction: row;
-  flex: 1;
+    flex: 1;
+    
 }
 .left{
     flex:1;
@@ -20,10 +21,7 @@
     flex:3;
     height:63.3vh;
 }
-.footer {
-  
-  flex: 1;
-}
+
 .main{
  height: 80.5vh;
 }

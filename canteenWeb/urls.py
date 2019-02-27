@@ -19,8 +19,8 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register("orders", views.OrderViewSet)
-router.register("menus", views.MenuViewSet)
 router.register("bills", views.BillViewSet)
+router.register("menu", views.MenuViewSet)
 router.register("categories", views.CategoryViewSet)
 router.register("ingredients", views.IngredientsViewset)
 
