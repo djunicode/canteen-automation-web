@@ -5,6 +5,8 @@ import OrderCard from "../core/OrderCard";
 import endpoint from "../../util/client";
 import axios from "axios";
 
+import "./CommonLayout.css";
+
 class Completed extends React.Component {
     state = {
         food: [
@@ -16,8 +18,7 @@ class Completed extends React.Component {
 
     componentDidMount = async () => {
         const url = endpoint()
-            .directory("orders")
-            .directory("completed")
+            .directory("orders/completed")
             .toString();
         const response = await axios.get(url);
         if (response.status === 200) {
@@ -40,24 +41,15 @@ class Completed extends React.Component {
         ));
 
         return (
-            <React.Fragment>
-                <div
-                    style={{
-                        width: "100%",
-                        height: 455,
-                        backgroundColor: "green",
-                        borderBottom: "3px solid #D0D8DD",
-                        display: "flex",
-                        flexDirection: "row",
-                    }}>
+            <div className="OrdersLayout">
+                <div className="CardsSection">
                     <div
                         style={{
                             backgroundColor: "#EEEEEE",
                             width: "33.3%",
                             height: "100%",
                             flexDirection: "column",
-                        }}
-                    >
+                        }}>
                         <br />
                         <br />
                         {cards}
@@ -68,8 +60,7 @@ class Completed extends React.Component {
                             backgroundColor: "#EEEEEE",
                             width: "33.3%",
                             height: "100%",
-                        }}
-                    >
+                        }}>
                         <br />
                         <br />
                         {cards}
@@ -80,21 +71,15 @@ class Completed extends React.Component {
                             backgroundColor: "#EEEEEE",
                             width: "33.3%",
                             height: "100%",
-                        }}
-                    >
+                        }}>
                         <br />
                         <br />
                         {cards}
                         <br />
                     </div>
                 </div>
-                <div
-                    style={{
-                        width: "100%",
-                        height: 51,
-                        backgroundColor: "#0477BD",
-                    }}
-                >
+
+                <div className="FooterSection">
                     <Typography align='right' color='textPrimary' variant='h6'>
                         TOTAL Rs. 12,500
                         <span style={{ paddingLeft: 40, paddingRight: 40 }}>
@@ -102,7 +87,7 @@ class Completed extends React.Component {
                         </span>
                     </Typography>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }

@@ -1,7 +1,3 @@
-.body {
-    max-height: 100vh;
-}
-
 .App {
-    max-height: inherit;
+    max-height: 100vh;
 }

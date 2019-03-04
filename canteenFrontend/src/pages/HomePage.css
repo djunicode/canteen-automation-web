@@ -6,5 +6,9 @@
         "pending search search"
         "pending category menu"
         "pending footer footer";
-    max-height: 83vh;
+        
+    max-height: 100%;
+    max-height: -moz-available;
+    max-height: -webkit-fill-available;
+    max-height: fill-available;
 }
