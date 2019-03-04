@@ -2,6 +2,8 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import OrderCard from "../core/OrderCard";
 
+import "./CommonLayout.css";
+
 class Pending extends React.Component {
     state = {
         food: [
@@ -15,7 +17,7 @@ class Pending extends React.Component {
     componentDidMount = () => {
         this.ws = new WebSocket("ws://localhost:8000/ws/admin/");
         this.ws.onmessage = e => {
-            console.log(e.data);
+            console.log("PENDING ORDERS PAGE: ", e.data);
             let data = JSON.parse(e.data);
             this.setState({
                 data,
@@ -33,26 +35,17 @@ class Pending extends React.Component {
                 editable={true}
             />
         ));
+
         return (
-            <React.Fragment>
-                <div
-                    style={{
-                        width: "100%",
-                        height: 455,
-                        backgroundColor: "orange",
-                        borderBottom: "3px solid #D0D8DD",
-                        display: "flex",
-                        flexDirection: "row",
-                    }}
-                >
+            <div className="OrdersLayout">
+                <div className="CardsSection">
                     <div
                         style={{
                             backgroundColor: "#EEEEEE",
                             width: "33.3%",
                             height: "100%",
                             flexDirection: "column",
-                        }}
-                    >
+                        }}>
                         <br />
                         <br />
                         {cards}
@@ -63,8 +56,7 @@ class Pending extends React.Component {
                             backgroundColor: "#EEEEEE",
                             width: "33.3%",
                             height: "100%",
-                        }}
-                    >
+                        }}>
                         <br />
                         <br />
                         {cards}
@@ -75,21 +67,15 @@ class Pending extends React.Component {
                             backgroundColor: "#EEEEEE",
                             width: "33.3%",
                             height: "100%",
-                        }}
-                    >
+                        }}>
                         <br />
                         <br />
                         {cards}
                         <br />
                     </div>
                 </div>
-                <div
-                    style={{
-                        width: "100%",
-                        height: 51,
-                        backgroundColor: "#0477BD",
-                    }}
-                >
+
+                <div className="FooterSection">
                     <Typography align='right' color='textPrimary' variant='h6'>
                         TOTAL Rs. 12,500
                         <span style={{ paddingLeft: 40, paddingRight: 40 }}>
@@ -97,7 +83,7 @@ class Pending extends React.Component {
                         </span>
                     </Typography>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }

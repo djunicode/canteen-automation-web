@@ -30,14 +30,14 @@ class CategoryColumn extends React.Component {
         const url = endpoint()
             .directory("categories")
             .toString();
-        const response = await axios.get(url);
-        if (response.status === 200) {
+        try {
+            const response = await axios.get(url);
             this.setState({
                 data: response.data,
             });
-        } else {
-            alert(`Couldn't GET /categories/ ERROR ${response.status}`);
-        }
+        } catch(e) {
+            alert(`Couldn't GET /categories/ ERROR ${e}`);
+        };
     };
 
     render = () => {

@@ -14,20 +14,21 @@ class Completed extends React.Component {
             { name: "sada dosa",   quantity: "3" },
             { name: "masala dosa", quantity: "4" },
         ],
+        data: [],
     };
 
     componentDidMount = async () => {
         const url = endpoint()
             .directory("orders/completed")
             .toString();
-        const response = await axios.get(url);
-        if (response.status === 200) {
+        try {
+            const response = await axios.get(url);
             this.setState({
-                food: response.data,
+                data: response.data,
             });
-        } else {
-            alert(`Couldn't GET /orders/completed/ ERROR ${response.status}`);
-        }
+        } catch(e) {
+            alert(`Couldn't GET /orders/completed/ ERROR ${e}`)
+        };
     };
 
     render() {
