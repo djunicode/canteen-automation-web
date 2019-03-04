@@ -1,40 +1,55 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import OrderCard from "../components/core/OrderCard";
-import OrdersNavBar from "../components/common/OrdersNavBar";
+import OrderCard from "../core/OrderCard";
 
-class Pending extends React.Component {
+import endpoint from "../../util/client";
+import axios from "axios";
+
+class Completed extends React.Component {
     state = {
         food: [
             { name: "masala dosa", quantity: "2" },
-            { name: "sada dosa", quantity: "3" },
+            { name: "sada dosa",   quantity: "3" },
             { name: "masala dosa", quantity: "4" },
         ],
     };
-    
+
+    componentDidMount = async () => {
+        const url = endpoint()
+            .directory("orders")
+            .directory("completed")
+            .toString();
+        const response = await axios.get(url);
+        if (response.status === 200) {
+            this.setState({
+                food: response.data,
+            });
+        } else {
+            alert(`Couldn't GET /orders/completed/ ERROR ${response.status}`);
+        }
+    };
+
     render() {
         const cards = this.state.food.map((e) => (
             <OrderCard
                 name={e.name.toUpperCase()}
                 quantity={e.quantity}
-                Color={e.Color}
-                pendingStatus={true}
-                editable={true}
+                pendingStatus={false}
+                editable={false}
             />
         ));
+
         return (
-            <div>
-                <OrdersNavBar pos='pending' />
+            <React.Fragment>
                 <div
                     style={{
                         width: "100%",
                         height: 455,
-                        backgroundColor: "orange",
+                        backgroundColor: "green",
                         borderBottom: "3px solid #D0D8DD",
                         display: "flex",
                         flexDirection: "row",
-                    }}
-                >
+                    }}>
                     <div
                         style={{
                             backgroundColor: "#EEEEEE",
@@ -87,8 +102,8 @@ class Pending extends React.Component {
                         </span>
                     </Typography>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }
-export default Pending;
+export default Completed;

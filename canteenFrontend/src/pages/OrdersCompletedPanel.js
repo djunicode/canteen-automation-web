@@ -3,14 +3,33 @@ import Typography from "@material-ui/core/Typography";
 import OrderCard from "../components/core/OrderCard";
 import OrdersNavBar from "../components/common/OrdersNavBar";
 
+import endpoint from "../util/client";
+import axios from "axios";
+
 class Completed extends React.Component {
     state = {
         food: [
             { name: "masala dosa", quantity: "2" },
-            { name: "sada dosa", quantity: "3" },
+            { name: "sada dosa",   quantity: "3" },
             { name: "masala dosa", quantity: "4" },
         ],
     };
+
+    componentDidMount = async () => {
+        const url = endpoint()
+            .directory("orders")
+            .directory("completed")
+            .toString();
+        const response = await axios.get(url);
+        if (response.status === 200) {
+            this.setState({
+                data: response.data,
+            });
+        } else {
+            alert(`Couldn't GET /orders/completed/ ERROR ${response.status}`);
+        }
+    };
+
     render() {
         const cards = this.state.food.map((e) => (
             <OrderCard

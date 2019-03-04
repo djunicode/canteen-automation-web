@@ -3,7 +3,7 @@ import OrderCard from "../core/OrderCard";
 import SectionHeading from "../core/SectionHeading";
 
 import "./PendingColumn.css";
-import "./Cards.css";
+import "../common/Cards.css";
 
 class PendingColumn extends React.Component {
     state = {

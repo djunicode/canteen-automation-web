@@ -6,11 +6,12 @@ import AddIcon from "@material-ui/icons/Add";
 import { withStyles } from "@material-ui/core";
 import SectionHeading from "../core/SectionHeading";
 import CategoryItem from "../core/CategoryCard";
+
 import endpoint from "../../util/client";
 import axios from "axios";
 
 import "./CategoryColumn.css";
-import "./Cards.css";
+import "../common/Cards.css";
 
 const RightFab = withStyles({
     root: {

@@ -1,7 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import OrderCard from "../components/core/OrderCard";
-import OrdersNavBar from "../components/common/OrdersNavBar";
+import OrderCard from "../core/OrderCard";
 
 class Pending extends React.Component {
     state = {
@@ -23,8 +22,7 @@ class Pending extends React.Component {
             />
         ));
         return (
-            <div>
-                <OrdersNavBar pos='pending' />
+            <React.Fragment>
                 <div
                     style={{
                         width: "100%",
@@ -87,7 +85,7 @@ class Pending extends React.Component {
                         </span>
                     </Typography>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }

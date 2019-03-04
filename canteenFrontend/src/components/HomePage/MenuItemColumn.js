@@ -10,7 +10,7 @@ import axios from "axios";
 import endpoint from "../../util/client";
 
 import "./MenuItemColumn.css";
-import "./Cards.css";
+import "../common/Cards.css";
 
 const StyledButton = withStyles({
     root: {
