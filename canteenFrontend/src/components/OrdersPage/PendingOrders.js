@@ -2,11 +2,6 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import OrderCard from "../core/OrderCard";
 
-import endpoint from "../../util/client";
-import axios from "axios";
-
-import "./CommonLayout.css";
-
 class Pending extends React.Component {
     state = {
         food: [
@@ -14,20 +9,18 @@ class Pending extends React.Component {
             { name: "sada dosa", quantity: "3" },
             { name: "masala dosa", quantity: "4" },
         ],
+        data: [],
     };
 
-    componentDidMount = async () => {
-        const url = endpoint()
-            .directory("orders/completed")
-            .toString();
-        const response = await axios.get(url);
-        if (response.status === 200) {
+    componentDidMount = () => {
+        this.ws = new WebSocket("ws://localhost:8000/ws/admin/");
+        this.ws.onmessage = e => {
+            console.log(e.data);
+            let data = JSON.parse(e.data);
             this.setState({
-                food: response.data,
+                data,
             });
-        } else {
-            alert(`Couldn't GET /orders/completed/ ERROR ${response.status}`);
-        }
+        };
     };
     
     render() {

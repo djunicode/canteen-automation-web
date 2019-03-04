@@ -7,7 +7,7 @@ import "../common/Cards.css";
 
 class PendingColumn extends React.Component {
     state = {
-        data: [
+        food: [
             { name: "masala dosa", quantity: "2" },
             { name: "sada dosa", quantity: "3" },
             { name: "masala dosa", quantity: "4" },
@@ -21,6 +21,7 @@ class PendingColumn extends React.Component {
             { name: "pav bhaji", quantity: "4" },
             { name: "vada pav", quantity: "4" },
         ],
+        data: [],
     };
 
     componentDidMount = () => {
@@ -28,14 +29,14 @@ class PendingColumn extends React.Component {
         this.ws.onmessage = e => {
             console.log(e.data);
             let data = JSON.parse(e.data);
-            // this.setState({
-            //     data,
-            // });
+            this.setState({
+                data,
+            });
         };
     };
 
     render = () => {
-        const cards = this.state.data.map((e, i) => (
+        const cards = this.state.food.map((e, i) => (
             <OrderCard
                 name={e.name.toUpperCase()}
                 quantity={e.quantity}
