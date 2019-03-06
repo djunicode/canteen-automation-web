@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 import RoundSearchBar from "../core/RoundSearchBar";
 
-import './SearchRow.css';
+import "./SearchRow.css";
 
 function SearchRow() {
     return (
-        <div className="SearchRow">
+        <div className='SearchRow'>
             <RoundSearchBar />
         </div>
     );

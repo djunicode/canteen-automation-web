@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build ",
-    "pretty": "prettier --write ./src/**/*.js",
+    "pretty": "prettier --write \"**/*.js\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

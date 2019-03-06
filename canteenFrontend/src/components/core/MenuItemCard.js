@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './styles'
+import React from "react";
+import styles from "./styles";
 
 function MenuItemCard(props) {
     return (
@@ -19,9 +19,19 @@ function MenuItemCard(props) {
                     </div>
                 </div>
                 <div style={styles.wrap}>
-                    <div style={styles.icon_tick} className="fa fa-check-circle fa-2x" aria-hidden="true" ></div>
-                    <div style={styles.icon_trash} className="fa fa-trash fa-2x" aria-hidden="true" ></div>
-                    <div style={styles.edit_button}><button>EDIT</button></div>
+                    <div
+                        style={styles.icon_tick}
+                        className='fa fa-check-circle fa-2x'
+                        aria-hidden='true'
+                    />
+                    <div
+                        style={styles.icon_trash}
+                        className='fa fa-trash fa-2x'
+                        aria-hidden='true'
+                    />
+                    <div style={styles.edit_button}>
+                        <button>EDIT</button>
+                    </div>
                 </div>
             </div>
         </div>

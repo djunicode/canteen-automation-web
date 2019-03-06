@@ -8,12 +8,6 @@ import BarButton from "../core/BarButton";
 import BorderAppBar from "../core/BorderAppBar";
 import LargeToolbar from "../core/LargeToolbar";
 
-// const styles = {
-//     ordersToolbar: {
-//         justifyContent: "space-between",
-//     },
-// };
-
 function OrdersNavBar(props) {
     let style1 = styles.firstColorsm;
     let style2 = styles.secondsm;

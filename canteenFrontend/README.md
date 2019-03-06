@@ -8,4 +8,4 @@ React: 16.7.0
 ## Code Formatting
 
 Run this command in this directory:
-`npx prettier --write ./src/**/*.js`
+`npx prettier --write "**/*.js"`
