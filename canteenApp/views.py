@@ -44,6 +44,9 @@ class UserOrderViewSet(viewsets.ModelViewSet):
             completed_orders = Order.objects.filter(is_fulfilled=True,user=user)
             serializer = self.get_serializer(completed_orders, many=True)
             return Response(serializer.data)
+        else:
+             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
     @swagger_auto_schema(responses={200: OrderSerializer(many=True)})
     @action(detail=False,methods=["post"])
@@ -59,6 +62,9 @@ class UserOrderViewSet(viewsets.ModelViewSet):
             )  # Should not be fulfilled and status should be positive.
             serializer = self.get_serializer(pending_orders, many=True)
             return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
     
