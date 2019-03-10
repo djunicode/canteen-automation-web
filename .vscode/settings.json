@@ -1,0 +1,4 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.pythonPath": "/home/nshmadhani/anaconda2/envs/web36/bin/python"
+}
