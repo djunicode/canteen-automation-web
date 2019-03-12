@@ -1,0 +1,30 @@
+.OrdersLayout {
+    display: grid;
+    height: 100%;
+    height: -moz-available;
+    height: -webkit-fill-available;
+    height: fill-available;
+
+    grid-template-rows: 100% 52px;
+    grid-template-columns: 100%;
+    grid-template-areas: 
+        "cards"
+        "footer";
+}
+
+.CardsSection {
+    grid-area: "cards";
+    width: 100%;
+    height: 100%;
+    background: green;
+    border-bottom: "3px solid #D0D8DD";
+  /*  display: flex;
+    flex-direction: row;*/
+}
+
+.FooterSection {
+    grid-area: "footer";
+    width: 100%;
+    height: 100%;
+    background: #0477BD;
+}

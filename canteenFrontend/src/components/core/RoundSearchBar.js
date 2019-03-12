@@ -15,7 +15,7 @@ const RoundInputBase = withStyles({
     },
 })(InputBase);
 
-const styles = {
+const StyledPaper = withStyles({
     root: {
         padding: "2px 4px",
         display: "flex",
@@ -25,19 +25,23 @@ const styles = {
         border: "3px solid #0477BD",
         borderRadius: 50,
     },
-};
+})(Paper);
+
+const StyledSearchIcon = withStyles({
+    root: {
+        color: "#8FC7E6",
+    },
+})(SearchIcon);
 
 function RoundSearchBar(props) {
-    const { classes } = props;
-
     return (
-        <Paper className={classes.root} elevation={1}>
-            <IconButton className={classes.iconButton} aria-label='Menu'>
-                <SearchIcon />
+        <StyledPaper elevation={1}>
+            <IconButton aria-label='Menu'>
+                <StyledSearchIcon />
             </IconButton>
             <RoundInputBase placeholder='Search' onChange={props.onChange} />
-        </Paper>
+        </StyledPaper>
     );
 }
 
-export default withStyles(styles)(RoundSearchBar);
+export default RoundSearchBar;

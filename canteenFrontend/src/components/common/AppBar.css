@@ -1,0 +1,8 @@
+.topToolbar {
+    justify-content: space-between;
+}
+
+.authTools {
+    display: inherit;
+    align-items: inherit;
+}

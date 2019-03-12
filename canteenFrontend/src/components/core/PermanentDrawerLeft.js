@@ -9,10 +9,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import CategoryList from "../CategoryList";
 import MenuItemColumn from "../MenuItemColumn";
 import Footer from "../Footer";
-import OutlinedTextFields from "../core/OutlinedTextFields";
+import OutlinedTextField from "../core/OutlinedTextField";
 
 import styles from "./styles";
-import "./core/style.css";
 
 class PermanentDrawerLeft extends React.Component {
     state = {
@@ -30,7 +29,6 @@ class PermanentDrawerLeft extends React.Component {
         return (
             <div>
                 <div className='wrapper'>
-
                     <div className='drawer'>
                         <div
                             className='left'
@@ -118,7 +116,7 @@ class PermanentDrawerLeft extends React.Component {
                                     >
                                         <div style={{ width: 400 }}>
                                             <DialogContent>
-                                                <OutlinedTextFields />
+                                                <OutlinedTextField />
                                             </DialogContent>
                                         </div>
                                         <DialogActions>

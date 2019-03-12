@@ -12,7 +12,7 @@ import "./HomePage.css";
 function HomePage() {
     return (
         <React.Fragment>
-            <NavBar pos='first' />
+            <NavBar pos='home' />
             <div className='HomeGridContainer'>
                 <PendingColumn />
                 <SearchRow />
