@@ -15,8 +15,8 @@ import "../common/Cards.css";
 
 const RightFab = withStyles({
     root: {
-        position: "absolute",
-        right: "16px",
+        position: "relative",
+        right: "-16px",
         left: "auto",
     },
 })(Fab);

@@ -1,4 +1,8 @@
 {
+<<<<<<< HEAD
+    "python.pythonPath": "C:\\Users\\DELL_PC\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe"
+=======
     "python.linting.pylintEnabled": true,
     "python.pythonPath": "/home/nshmadhani/anaconda2/envs/web36/bin/python"
+>>>>>>> c6abb591f3d478cf26c1786315ef9e9d8e178d01
 }
