@@ -1,0 +1,14 @@
+.HomeGridContainer {
+    display: grid;
+    grid-template-rows: 64px auto 5%;
+    grid-template-columns: 25% 20% 55%;
+    grid-template-areas: 
+        "pending search search"
+        "pending category menu"
+        "pending footer footer";
+        
+    max-height: 100%;
+    max-height: -moz-available;
+    max-height: -webkit-fill-available;
+    max-height: fill-available;
+}

@@ -1,0 +1,70 @@
+.pad-zero-left {
+    padding-left: 0;
+    z-index: -100;
+}
+
+.active {
+    background-color: #0477BD !important;
+    color: white !important;
+    z-index: 3 !important;
+}
+
+.inactive {
+    background-color: #EEEEEE !important;
+    color: #0477BD !important;
+    z-index: 2 !important;
+}
+
+.first-color {
+    font-size: 23 !important;
+    text-align: center !important;
+    height: 90% !important;
+    width: 20% !important;
+    margin: 0 !important;
+    float: left !important;
+    border-radius: 0 !important;
+    clip-path: polygon(10% 0%, 90% 0, 100% 100%, 0% 100%) !important;
+    position: absolute !important;
+    bottom: 0 !important;
+}
+
+.first {
+    font-size: 23 !important;
+    text-align: center !important;
+    height: 90% !important;
+    width: 20% !important;
+    margin: 0 !important;
+    float: left !important;
+    border-radius: 0 !important;
+    clip-path: polygon(10% 0%, 90% 0, 100% 100%, 0% 100%) !important;
+    position: absolute !important;
+    bottom: 0 !important;
+}
+
+.second {
+    font-size: 23 !important;
+    outline: solid 3px #9E9E9E !important;
+    height: 90% !important;
+    width: 20% !important;
+    float: left !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    clip-path: polygon(10% 0%, 90% 0, 100% 100%, 0% 100%) !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 19.25% !important;
+}
+
+.second-color {
+    font-size: 23 !important;
+    outline: solid 3px #9E9E9E !important;
+    height: 90% !important;
+    width: 20% !important;
+    float: left !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    clip-path: polygon(10% 0%, 90% 0, 100% 100%, 0% 100%) !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 19.25% !important;
+}

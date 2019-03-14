@@ -1,0 +1,7 @@
+.SearchRow {
+    grid-area: search;
+    display: flex;
+    justify-content: center;
+    padding: 8px 0 8px 0;
+    border-bottom: solid 5px #D0D8DD;
+}

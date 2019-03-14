@@ -47,6 +47,13 @@ class Category(models.Model):
         return self.name
 
 
+class Ingredients(models.Model):
+    name = models.CharField(max_length=32, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 class MenuItem(models.Model):
     name = models.CharField(max_length=20, null=False, blank=False, unique=True)
     price = models.PositiveIntegerField(blank=False, null=False)
@@ -56,6 +63,7 @@ class MenuItem(models.Model):
         max_length=8, choices=choices.MENU_ITEM_CHOICES, default="NON JAIN"
     )
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    ingredients = models.ManyToManyField(Ingredients, blank=True)
 
     def __str__(self):
         return self.name

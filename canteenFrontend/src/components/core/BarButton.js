@@ -3,8 +3,9 @@ import Button from "@material-ui/core/Button";
 
 const styles = (theme) => ({
     root: {
-        color: theme.palette.primary.main,
+        color: "#0477BD",
         margin: theme.spacing.unit,
+        fontSize: 23,
     },
 });
 
