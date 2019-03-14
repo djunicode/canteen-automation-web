@@ -1,17 +1,11 @@
-import React from 'react';
-import Typography from "@material-ui/core/Typography";
+import React from "react";
 
-function SectionHeading({ children }) {
-    return (
-        <Typography
-            variant='h6'
-            align='center'
-            color='#607D8B'
-            padding='50px'
-        >
-            { children }
-        </Typography>
-    );
+import "./SectionHeading.css";
+
+function SectionHeading({ className, children }) {
+    const classes = className || "";
+
+    return <div className={classes + " column-heading"}>{children}</div>;
 }
 
 export default SectionHeading;

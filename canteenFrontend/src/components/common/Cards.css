@@ -1,0 +1,4 @@
+.cards-section {
+    overflow: auto;
+    height: inherit;
+}
