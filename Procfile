@@ -1,0 +1,1 @@
+web: gunicorn canteenAutomation.wsgi --log-file -
