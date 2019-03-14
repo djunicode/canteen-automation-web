@@ -5,8 +5,11 @@ import Button from "@material-ui/core/Button";
 
 import SectionHeading from "../core/SectionHeading";
 import MenuItem from "../core/MenuItemCard";
-
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
 import axios from "axios";
+import OutlinedTextField from "../core/OutlinedTextField";
 import endpoint from "../../util/client";
 
 import "./MenuItemColumn.css";
@@ -33,7 +36,16 @@ const StyledButton = withStyles({
 class MenuItemColumn extends React.Component {
     state = {
         data: [],
+        open:false,
     };
+    handleClickOpen = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
+    };
+
 
     componentDidMount = async () => {
         const url = endpoint()
@@ -51,13 +63,44 @@ class MenuItemColumn extends React.Component {
 
     render = () => {
         const menuItemsList = this.state.data.map((e, i) => (
-            <MenuItem {...e} key={i} />
+            <MenuItem 
+                name={e.name.toUpperCase()}
+                price={e.price}
+                category={e.category}
+                key={i} />
         ));
         return (
             <div className='MenuItemColumn'>
                 <SectionHeading>
                     Items
-                    <StyledButton disableRipple>Add Item</StyledButton>
+                    <StyledButton disableRipple onClick={this.handleClickOpen}>Add Item</StyledButton>
+                                <Dialog
+                                        open={this.state.open}
+                                        onClose={this.handleClose}
+                                        aria-labelledby='form-dialog-title'
+                                    >
+                                        <div style={{ width: 400 }}>
+                                            <DialogContent>
+                                                <OutlinedTextField />
+                                            </DialogContent>
+                                        </div>
+                                        <DialogActions>
+                                            <Button
+                                                onClick={this.handleClose}
+                                                style={{
+                                                    backgroundColor: "#0477BD",
+                                                    textAlign: "center",
+                                                    color: "white",
+                                                    borderRadius: 7,
+                                                    width: 335,
+                                                    right: 25,
+                                                    bottom: 20,
+                                                }}
+                                            >
+                                                ADD ITEM
+                                            </Button>
+                                        </DialogActions>
+                                    </Dialog>
                 </SectionHeading>
                 <div className="cards-section">
                     {menuItemsList}
