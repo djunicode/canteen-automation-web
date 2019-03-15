@@ -10,7 +10,7 @@ import CategoryList from "../CategoryList";
 import MenuItemColumn from "../MenuItemColumn";
 import Footer from "../Footer";
 import OutlinedTextField from "../core/OutlinedTextField";
-
+import Addcategory from "./Addcategory";
 import styles from "./styles";
 
 class PermanentDrawerLeft extends React.Component {
@@ -46,17 +46,22 @@ class PermanentDrawerLeft extends React.Component {
                                         <div style={styles.main_category}>
                                             CATEGORIES
                                         </div>
-                                        <span
-                                            style={styles.icon_plus}
-                                            className='fa fa-plus-circle'
-                                            aria-hidden='true'
-                                        />
+                                        <div>
+                                            {/* <button>
+                                            <span
+                                                style={styles.icon_plus}
+                                                className='fa fa-plus-circle'
+                                                aria-hidden='true'
+                                            />
+                                            </button> */}
+                                            <Addcategory />
+                                        </div>
                                     </div>
                                 </Card>
                             </div>
-                            <div>
+                            {/* <div>
                                 <CategoryList />
-                            </div>
+                            </div> */}
                         </div>
                         <div
                             className='right'
@@ -150,7 +155,7 @@ class PermanentDrawerLeft extends React.Component {
                         </div>
                     </div>
 
-                    <Footer total={12500} orderCount={150} />
+                     <Footer total={12500} orderCount={150} /> 
                 </div>
             </div>
         );
