@@ -97,50 +97,9 @@ class PermanentDrawerLeft extends React.Component {
                                         height: 57,
                                     }}
                                 >
-                                    <button
-                                        onClick={this.handleClickOpen}
-                                        style={{
-                                            marginTop: 18,
-                                            borderRadius: 20,
-                                            backgroundColor: "white",
-                                            color: "#0477BD",
-                                            borderColor: "#0477BD",
-                                            padding: 7,
-                                            width: 110,
-                                            cursor: "pointer",
-                                            textAlign: "center",
-                                        }}
-                                    >
-                                        <strong>ADD ITEM</strong>
-                                    </button>
+                                    
 
-                                    <Dialog
-                                        open={this.state.open}
-                                        onClose={this.handleClose}
-                                        aria-labelledby='form-dialog-title'
-                                    >
-                                        <div style={{ width: 400 }}>
-                                            <DialogContent>
-                                                <OutlinedTextField />
-                                            </DialogContent>
-                                        </div>
-                                        <DialogActions>
-                                            <Button
-                                                onClick={this.handleClose}
-                                                style={{
-                                                    backgroundColor: "#0477BD",
-                                                    textAlign: "center",
-                                                    color: "white",
-                                                    borderRadius: 7,
-                                                    width: 335,
-                                                    right: 25,
-                                                    bottom: 20,
-                                                }}
-                                            >
-                                                ADD ITEM
-                                            </Button>
-                                        </DialogActions>
-                                    </Dialog>
+                                    
                                 </div>
                             </div>
                             <div
