@@ -52,6 +52,8 @@ class Pending extends React.Component {
                             marginLeft:'10%',
                             display:'flex',
                             flexWrap:'wrap',
+                            flexDirection:"row",
+                            
                             }}>
                         
                         <br/>

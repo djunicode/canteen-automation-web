@@ -2,12 +2,13 @@ const styles = {
     // For Pending Card:
     box: {
         backgroundColor: "E9E9E9",
-
-        width: 350,
+        flexShrink:2,
+        width: "30%",
         height: 90,
         borderRadius: 5,
         padding: 10,
         margin: "auto",
+        
     },
     /* indicator: {
         height: "100%",
