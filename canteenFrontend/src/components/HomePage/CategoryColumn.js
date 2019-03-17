@@ -12,6 +12,7 @@ import axios from "axios";
 
 import "./CategoryColumn.css";
 import "../common/Cards.css";
+import Addcategory from "../core/Addcategory";
 
 const RightFab = withStyles({
     root: {
@@ -25,6 +26,7 @@ class CategoryColumn extends React.Component {
     state = {
         data: [],
     };
+ 
 
     componentDidMount = async () => {
         const url = endpoint()
@@ -50,9 +52,11 @@ class CategoryColumn extends React.Component {
                     Categories
                     <RightFab
                         size="small">
-                        <AddIcon />
+                        {/* <AddIcon /> */}
+                        <Addcategory />
                     </RightFab>
                 </SectionHeading>
+
                 <div className='cards-section'>{categoryItemsList}</div>
             </div>
         );

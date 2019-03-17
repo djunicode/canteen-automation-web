@@ -286,7 +286,7 @@ const styles = {
         color: "#019BE5",
         padding: 10,
         top: "0%",
-        transform: "translateY(-81%)",
+        transform: "translateY(-9%)",
     },
     ordersToolbar: {
         justifyContent: "space-between",

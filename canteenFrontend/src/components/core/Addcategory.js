@@ -6,6 +6,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import styles from './styles';
+import AddIcon from "@material-ui/icons/Add";
+import './Addcategory.css';
 
 export default class Addcategory extends React.Component {
   state = {
@@ -23,38 +26,46 @@ export default class Addcategory extends React.Component {
   render() {
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}  style={styles.icon_plus}
-                                                className='fa fa-plus-circle'
-                                                aria-hidden='true'>
-          Open form dialog
-        </Button>
+        
+        <AddIcon variant="outlined" color="primary" onClick={this.handleClickOpen}  style={styles.icon_plus}
+                 className='fa fa-plus-circle'
+                />
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          
           <DialogContent>
-            <DialogContentText>
-              To subscribe to this website, please enter your email address here. We will send
-              updates occasionally.
-            </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Email Address"
-              type="email"
-              fullWidth
-            />
+            <DialogContentText> </DialogContentText>
+            <form className='container' noValidate autoComplete='off'>
+                <TextField
+                    id='outlined-textarea'
+                    label='Category Name'
+                    placeholder='Category'
+                   // multiline
+                    className='textField'
+                    margin='normal'
+                    variant='outlined'
+                />
+              </form>
+        
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.handleClose} color="primary">
-              Subscribe
-            </Button>
+            <Button
+               onClick={this.handleClose}
+                   style={{
+                       backgroundColor: "#0477BD",
+                        textAlign: "center",
+                        color: "white",
+                        borderRadius: 7,
+                        width: 335,
+                         right: 25,
+                         bottom: 20,
+                          }}
+              >
+                 ADD CATEGORY
+               </Button>
           </DialogActions>
         </Dialog>
       </div>
