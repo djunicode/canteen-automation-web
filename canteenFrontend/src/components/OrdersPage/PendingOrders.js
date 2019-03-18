@@ -3,6 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import OrderCard from "../core/OrderCard";
 
 import "./CommonLayout.css";
+import { Hidden } from "@material-ui/core";
 
 class Pending extends React.Component {
     state = {
@@ -43,14 +44,16 @@ class Pending extends React.Component {
         ));
 
         return (
-            <div style={{backgroundColor:'#EEEEEE'}}>
+            <div style={{backgroundColor:'#EEEEEE',overflowY:'hidden'}}>
                
                <div style={{backgroundColor:'#EEEEEE',
                             width:'80vw',
-                            height:'63vh',
+                            height:'64.7vh',
                             marginLeft:'10%',
                             display:'flex',
                             flexWrap:'wrap',
+                            flexDirection:"row",
+                            
                             }}>
                         
                         <br/>
@@ -69,6 +72,8 @@ class Pending extends React.Component {
                 width: "100%",
                 height:51,
                 backgroundColor: "#0477BD",
+                bottom:"0%",
+                marginBottom:"0px"
             }}
         >
             <Typography align='right' color='textPrimary' variant='h6'>
