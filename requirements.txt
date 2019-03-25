@@ -11,3 +11,5 @@ channels_redis==2.3.3
 drf_yasg==1.12.1
 djoser==1.4.0
 django-cors-headers==2.4.0
+django-heroku==0.3.1
+gunicorn==19.9.0
