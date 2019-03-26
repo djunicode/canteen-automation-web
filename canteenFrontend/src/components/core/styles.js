@@ -22,7 +22,7 @@ const styles = {
         width: "22vw",
         paddingLeft: 12,
         height: "100%",
-        backgroundColor: "#EEEEEE",
+        backgroundColor: "#DDF3FD",
         //float: "right",
         boxShadow: "5px 5px 7px #C0C0C0",
         borderTopRightRadius: 5,
