@@ -44,7 +44,7 @@ class CategoryColumn extends React.Component {
 
     render = () => {
         const categoryItemsList = this.state.data.map((e, i) => (
-            <CategoryItem name={e.name} key={i} />
+            <CategoryItem {...e} key={i} />
         ));
         return (
             <div className='CategoryColumn'>

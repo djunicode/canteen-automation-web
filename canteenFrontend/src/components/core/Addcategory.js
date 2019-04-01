@@ -8,10 +8,15 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import styles from './styles';
 import AddIcon from "@material-ui/icons/Add";
+
+import endpoint from "../../util/client";
+import axios from "axios";
+
 import './Addcategory.css';
 
 export default class Addcategory extends React.Component {
   state = {
+    category: '',
     open: false,
   };
 
@@ -19,8 +24,16 @@ export default class Addcategory extends React.Component {
     this.setState({ open: true });
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
+  handleChange = (e) => this.setState({
+    category: e.target.value,
+  });
+
+  handleSubmit = () => {
+    const url = endpoint().directory('categories').toString();
+    axios.post(url, {
+      name: this.state.category,
+    })
+    .then(() => this.setState({ open: false }));
   };
 
   render() {
@@ -43,17 +56,18 @@ export default class Addcategory extends React.Component {
                     id='outlined-textarea'
                     label='Category Name'
                     placeholder='Category'
-                   // multiline
                     className='textField'
                     margin='normal'
                     variant='outlined'
+                    value={this.state.category}
+                    onChange={this.handleChange}
                 />
               </form>
         
           </DialogContent>
           <DialogActions>
             <Button
-               onClick={this.handleClose}
+               onClick={this.handleSubmit}
                    style={{
                        backgroundColor: "#0477BD",
                         textAlign: "center",

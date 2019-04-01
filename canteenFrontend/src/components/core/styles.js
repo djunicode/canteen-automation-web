@@ -7,7 +7,6 @@ const styles = {
         height: 90,
         borderRadius: 5,
         padding: 10,
-        margin: "auto",
         
     },
     /* indicator: {
