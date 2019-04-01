@@ -50,10 +50,10 @@ class Completed extends React.Component {
         return (
             
 
-           <div style={{backgroundColor:'#EEEEEE'}}>
+           <div style={{backgroundColor:'#EEEEEE',overflowY:'hidden'}}>
                <div style={{backgroundColor:'#EEEEEE',
                             width:'80vw',
-                            height:'63vh',
+                            height:'64.7vh',
                             marginLeft:'10%',
                             display:'flex',
                             flexWrap:'wrap',

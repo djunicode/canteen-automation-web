@@ -1,4 +1,7 @@
 .cards-section {
-    overflow: auto;
-    height: inherit;
+    overflow-y: auto;
+    justify-self: start;
+    margin-left: -12vw;
+    
+    
 }

@@ -1,11 +1,12 @@
 .PendingColumn {
-    background-color: #F3F3F3;
-    height: 100%;
-    max-height: inherit;
+    background-color:#F3F3F3;
+    height: 81vh;
+    overflow-y: auto;
+    overflow-x: hidden;
     grid-area: pending;
     border-right: 5px solid #D0D8DD;
-    display: flex;
-    flex-direction: column;
+    
+    
 }
 
 .PendingColumn > .column-heading {

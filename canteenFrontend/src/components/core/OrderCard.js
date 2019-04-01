@@ -19,7 +19,7 @@ class OrderCard extends React.Component {
         let varcolor = this.state.pending ? "#FFD73F" : "#00C952";
         const style_indicator = {
             height: "100%",
-            width: "3.5%",
+            width: "4%",
             borderBottomLeftRadius: 5,
             borderTopLeftRadius: 5,
             backgroundColor: varcolor,

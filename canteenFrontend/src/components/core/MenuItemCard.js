@@ -10,8 +10,8 @@ function MenuItemCard(props) {
                     <div style={styles.left_con}>
                         <div style={styles.attribute3}>NAME</div>
                         <div style={styles.attribute4}>{props.name}</div>
-                        <div style={styles.attribute3}>OPTIONS</div>
-                        <div style={styles.attribute4}>{props.options}</div>
+                        <div style={styles.attribute3}>CATEGORY</div>
+                        <div style={styles.attribute4}>{props.category}</div>
                     </div>
                     <div style={styles.right_con}>
                         <div style={styles.attribute5}>PRICE</div>

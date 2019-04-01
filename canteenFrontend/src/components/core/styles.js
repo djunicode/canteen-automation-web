@@ -2,12 +2,13 @@ const styles = {
     // For Pending Card:
     box: {
         backgroundColor: "E9E9E9",
-
-        width: 350,
+        flexShrink:2,
+        width: "30%",
         height: 90,
         borderRadius: 5,
         padding: 10,
         margin: "auto",
+        
     },
     /* indicator: {
         height: "100%",
@@ -21,7 +22,7 @@ const styles = {
         width: "22vw",
         paddingLeft: 12,
         height: "100%",
-        backgroundColor: "#EEEEEE",
+        backgroundColor: "#DDF3FD",
         //float: "right",
         boxShadow: "5px 5px 7px #C0C0C0",
         borderTopRightRadius: 5,
@@ -286,7 +287,7 @@ const styles = {
         color: "#019BE5",
         padding: 10,
         top: "0%",
-        transform: "translateY(-81%)",
+        transform: "translateY(-9%)",
     },
     ordersToolbar: {
         justifyContent: "space-between",
