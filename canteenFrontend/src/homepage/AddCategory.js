@@ -5,16 +5,33 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import styles from './styles';
 import AddIcon from "@material-ui/icons/Add";
 
-import endpoint from "../../util/client";
+import endpoint from "../util/client";
 import axios from "axios";
+import { withStyles } from '@material-ui/core';
 
-import './Addcategory.css';
+const styles =  {
+  "container": {
+    "display": "flex",
+    "flexWrap": "wrap"
+  },
+  "textField": {
+    "marginLeft": "8px",
+    "marginRight": "8px",
+    "width": "350px"
+  },
+  "icon_plus": {
+    float: "right",
+    fontSize: 30,
+    color: "#019BE5",
+    padding: 10,
+    top: "0%",
+    transform: "translateY(-9%)",
+},
+};
 
-export default class Addcategory extends React.Component {
+class AddCategory extends React.Component {
   state = {
     category: '',
     open: false,
@@ -86,3 +103,5 @@ export default class Addcategory extends React.Component {
     );
   }
 }
+
+export default withStyles(styles)(AddCategory);

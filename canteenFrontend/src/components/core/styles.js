@@ -280,14 +280,7 @@ const styles = {
         paddingLeft: 5,
         color: "#607D8B",
     },
-    icon_plus: {
-        float: "right",
-        fontSize: 30,
-        color: "#019BE5",
-        padding: 10,
-        top: "0%",
-        transform: "translateY(-9%)",
-    },
+    
     ordersToolbar: {
         justifyContent: "space-between",
     },

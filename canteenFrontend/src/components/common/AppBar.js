@@ -10,8 +10,17 @@ import MenuItem from "@material-ui/core/MenuItem";
 import AppIcon from "@material-ui/icons/Fastfood";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
+import { withStyles } from "@material-ui/core/styles";
 
-import "./AppBar.css";
+const styles = {
+    "topToolbar": {
+      "justifyContent": "space-between"
+    },
+    "authTools": {
+      "display": "inherit",
+      "alignItems": "inherit"
+    }
+  };
 
 class CustomAppBar extends React.Component {
     state = {
@@ -31,12 +40,13 @@ class CustomAppBar extends React.Component {
     };
 
     render() {
+        const { classes } = this.props;
         const { anchorEl } = this.state;
         const open = Boolean(anchorEl);
 
         return (
             <AppBar position='relative' className='appbar'>
-                <Toolbar className='topToolbar'>
+                <Toolbar className={classes.topToolbar}>
                     <div>
                         <IconButton
                             className='menuButton'
@@ -49,7 +59,7 @@ class CustomAppBar extends React.Component {
                         </IconButton>
                     </div>
 
-                    <div className='authTools'>
+                    <div className={classes.authTools}>
                         <Typography variant='h6' align='right' color='inherit'>
                             John
                         </Typography>
@@ -90,4 +100,4 @@ class CustomAppBar extends React.Component {
     }
 }
 
-export default CustomAppBar;
+export default withStyles(styles)(CustomAppBar);

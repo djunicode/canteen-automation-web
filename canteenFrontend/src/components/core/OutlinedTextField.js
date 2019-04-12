@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles/";
 
-import "./OutlinedTextField.css";
-
 const styles = (theme) => ({
     container: {
         display: "flex",
@@ -30,14 +28,16 @@ class OutlinedTextField extends React.Component {
     };
 
     render() {
+        const { classes } = this.props;
+
         return (
-            <form className='container' noValidate autoComplete='off'>
+            <form className={classes.container} noValidate autoComplete='off'>
                 <TextField
                     id='outlined-textarea'
                     label='Name'
                     placeholder='Name'
                     multiline
-                    className='textField'
+                    className={classes.textField}
                     margin='normal'
                     variant='outlined'
                 />
@@ -46,7 +46,7 @@ class OutlinedTextField extends React.Component {
                     label='Ingredients'
                     placeholder='Ingredients'
                     multiline
-                    className='textField'
+                    className={classes.textField}
                     margin='normal'
                     variant='outlined'
                 />
@@ -55,7 +55,7 @@ class OutlinedTextField extends React.Component {
                     label='Price'
                     placeholder='Price'
                     multiline
-                    className='textField'
+                    className={classes.textField}
                     margin='normal'
                     variant='outlined'
                 />

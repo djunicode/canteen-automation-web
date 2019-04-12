@@ -3,17 +3,16 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
-import SectionHeading from "../core/SectionHeading";
-import MenuItem from "../core/MenuItemCard";
+import SectionHeading from "../components/core/SectionHeading";
+import MenuItem from "../components/core/MenuItemCard";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import axios from "axios";
-import OutlinedTextField from "../core/OutlinedTextField";
-import endpoint from "../../util/client";
+import OutlinedTextField from "../components/core/OutlinedTextField";
+import endpoint from "../util/client";
 
-import "./MenuItemColumn.css";
-import "../common/Cards.css";
+import "../components/common/Cards.css";
 
 const StyledButton = withStyles({
     root: {
@@ -33,11 +32,26 @@ const StyledButton = withStyles({
     },
 })(Button);
 
+const styles = {
+    "MenuItemColumn": {
+      "gridArea": "menu",
+      "backgroundColor": "#DDF3FD",
+      "borderBottom": "3px solid #D0D8DD",
+      "display": "flex",
+      "flexDirection": "column"
+    },
+    "MenuItemColumn____column_heading": {
+      "display": "flex",
+      "justifyContent": "center"
+    }
+};
+
 class MenuItemColumn extends React.Component {
     state = {
         data: [],
         open:false,
     };
+
     handleClickOpen = () => {
         this.setState({ open: true });
     };
@@ -45,7 +59,6 @@ class MenuItemColumn extends React.Component {
     handleClose = () => {
         this.setState({ open: false });
     };
-
 
     componentDidMount = async () => {
         const url = endpoint()
@@ -62,6 +75,8 @@ class MenuItemColumn extends React.Component {
     };
 
     render = () => {
+        const { classes } = this.props;
+
         const menuItemsList = this.state.data.map((e, i) => (
             <MenuItem 
                 name={e.name.toUpperCase()}
@@ -69,8 +84,9 @@ class MenuItemColumn extends React.Component {
                 category={e.category}
                 key={i} />
         ));
+
         return (
-            <div className='MenuItemColumn'>
+            <div className={classes.MenuItemColumn}>
                 <SectionHeading>
                     Items
                     <StyledButton disableRipple onClick={this.handleClickOpen}>Add Item</StyledButton>
@@ -110,4 +126,4 @@ class MenuItemColumn extends React.Component {
     };
 }
 
-export default MenuItemColumn;
+export default withStyles(styles)(MenuItemColumn);

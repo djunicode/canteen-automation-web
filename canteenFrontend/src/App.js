@@ -5,8 +5,8 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from "./theme";
 
 import AppBar from "./components/common/AppBar";
-import HomePage from "./pages/HomePage";
-import OrdersPage from "./pages/OrdersPage";
+import HomePage from "./homepage/HomePage";
+import OrdersPage from "./orderspage/OrdersPage";
 
 import "./App.css";
 

@@ -1,11 +1,9 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import OrderCard from "../core/OrderCard";
+import OrderCard from "../components/core/OrderCard";
 
-import endpoint from "../../util/client";
+import endpoint from "../util/client";
 import axios from "axios";
-
-import "./CommonLayout.css";
 
 class Completed extends React.Component {
     state = {

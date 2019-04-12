@@ -1,9 +1,24 @@
 import React from "react";
-import OrderCard from "../core/OrderCard";
-import SectionHeading from "../core/SectionHeading";
 
-import "./PendingColumn.css";
-import "../common/Cards.css";
+import { withStyles } from "@material-ui/core/styles";
+import OrderCard from "../components/core/OrderCard";
+import SectionHeading from "../components/core/SectionHeading";
+
+import "../components/common/Cards.css";
+
+const styles = {
+    "PendingColumn": {
+      "backgroundColor": "#F3F3F3",
+      "height": "81vh",
+      "overflowY": "auto",
+      "overflowX": "hidden",
+      "gridArea": "pending",
+      "borderRight": "5px solid #D0D8DD"
+    },
+    "PendingColumn____column_heading": {
+      "background": "inherit"
+    }
+};
 
 class PendingColumn extends React.Component {
     state = {
@@ -36,6 +51,8 @@ class PendingColumn extends React.Component {
     };
 
     render = () => {
+        const { classes } = this.props;
+
         const cards = this.state.food.map((e, i) => (
             <OrderCard
                 name={e.name.toUpperCase()}
@@ -47,7 +64,7 @@ class PendingColumn extends React.Component {
         ));
 
         return (
-            <div className='PendingColumn'>
+            <div className={classes.PendingColumn}>
                 <SectionHeading>Pending Orders</SectionHeading>
                 <div className='cards-section'>{cards}</div>
             </div>
@@ -55,4 +72,4 @@ class PendingColumn extends React.Component {
     };
 }
 
-export default PendingColumn;
+export default withStyles(styles)(PendingColumn);

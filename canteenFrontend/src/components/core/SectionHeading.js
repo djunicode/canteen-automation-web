@@ -1,11 +1,24 @@
 import React from "react";
 
-import "./SectionHeading.css";
+import classnames from "classnames";
+import { withStyles } from "@material-ui/core/styles";
 
-function SectionHeading({ className, children }) {
-    const classes = className || "";
+const styles = {
+    "column_heading": {
+      "background": "white",
+      "color": "#607D8B",
+      "textTransform": "uppercase",
+      "fontSize": "24px",
+      "padding": "16px",
+      "display": "flex",
+      "justifyContent": "center",
+      "alignItems": "center"
+    }
+};
 
-    return <div className={classes + " column-heading"}>{children}</div>;
+function SectionHeading({ className, children, classes }) {
+
+    return <div className={(className || "") + " " + classes.column_heading}>{children}</div>;
 }
 
-export default SectionHeading;
+export default withStyles(styles)(SectionHeading);
