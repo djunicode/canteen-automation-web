@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import styles from "../components/core/styles";
+import styles from "../components/styles";
 
-import RoundSearchBar from "../components/core/RoundSearchBar";
-import BarButton from "../components/core/BarButton";
-import BorderAppBar from "../components/core/BorderAppBar";
-import LargeToolbar from "../components/core/LargeToolbar";
+import RoundSearchBar from "../components/RoundSearchBar";
+import BarButton from "../components/BarButton";
+import BorderAppBar from "../components/BorderAppBar";
+import LargeToolbar from "../components/LargeToolbar";
 
 function OrdersNavBar(props) {
     let style1 = styles.firstColorsm;

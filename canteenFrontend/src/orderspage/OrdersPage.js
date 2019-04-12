@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 
 import { withStyles } from "@material-ui/core/styles";
 
-import NavBar from "../components/common/NavBar";
+import NavBar from "../components/NavBar";
 import OrdersNavBar from "./OrdersNavBar";
 import CompletedOrders from "./CompletedOrders";
 import PendingOrders from "./PendingOrders";

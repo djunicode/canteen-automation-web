@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import BarButton from "../core/BarButton";
-import BorderAppBar from "../core/BorderAppBar";
-import LargeToolbar from "../core/LargeToolbar";
+import BarButton from "./BarButton";
+import BorderAppBar from "./BorderAppBar";
+import LargeToolbar from "./LargeToolbar";
 import { withStyles } from "@material-ui/core";
 
 const styles = {

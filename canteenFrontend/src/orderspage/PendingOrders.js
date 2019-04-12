@@ -1,8 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import OrderCard from "../components/core/OrderCard";
-
-import { Hidden } from "@material-ui/core";
+import OrderCard from "../components/OrderCard";
 
 class Pending extends React.Component {
     state = {

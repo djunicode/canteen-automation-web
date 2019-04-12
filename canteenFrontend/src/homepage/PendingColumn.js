@@ -1,10 +1,10 @@
 import React from "react";
 
 import { withStyles } from "@material-ui/core/styles";
-import OrderCard from "../components/core/OrderCard";
-import SectionHeading from "../components/core/SectionHeading";
+import OrderCard from "../components/OrderCard";
+import SectionHeading from "../components/SectionHeading";
 
-import "../components/common/Cards.css";
+import "../components/Cards.css";
 
 const styles = {
     "PendingColumn": {

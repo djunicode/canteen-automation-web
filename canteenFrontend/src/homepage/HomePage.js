@@ -2,9 +2,9 @@ import React from "react";
 
 import { withStyles } from "@material-ui/core/styles";
 
-import NavBar from "../components/common/NavBar";
-import Footer from "../components/common/Footer";
-import RoundSearchBar from "../components/core/RoundSearchBar";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+import RoundSearchBar from "../components/RoundSearchBar";
 import MenuItemColumn from "./MenuItemColumn";
 import PendingColumn from "./PendingColumn";
 import CategoryColumn from "./CategoryColumn";

@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import OrderCard from "../components/core/OrderCard";
+import OrderCard from "../components/OrderCard";
 
 import endpoint from "../util/client";
 import axios from "axios";

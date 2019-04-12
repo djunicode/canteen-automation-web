@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from "./theme";
 
-import AppBar from "./components/common/AppBar";
+import AppBar from "./components/AppBar";
 import HomePage from "./homepage/HomePage";
 import OrdersPage from "./orderspage/OrdersPage";
 

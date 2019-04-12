@@ -3,16 +3,17 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
-import SectionHeading from "../components/core/SectionHeading";
-import MenuItem from "../components/core/MenuItemCard";
+import SectionHeading from "../components/SectionHeading";
+import MenuItem from "./MenuItemCard";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
+
 import axios from "axios";
-import OutlinedTextField from "../components/core/OutlinedTextField";
+import OutlinedTextField from "../components/OutlinedTextField";
 import endpoint from "../util/client";
 
-import "../components/common/Cards.css";
+import "../components/Cards.css";
 
 const StyledButton = withStyles({
     root: {

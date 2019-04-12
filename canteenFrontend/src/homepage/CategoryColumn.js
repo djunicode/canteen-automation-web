@@ -3,13 +3,13 @@ import React from "react";
 import Fab from "@material-ui/core/Fab";
 import { withStyles } from "@material-ui/core";
 
-import SectionHeading from "../components/core/SectionHeading";
-import CategoryItem from "../components/core/CategoryCard";
+import SectionHeading from "../components/SectionHeading";
+import CategoryItem from "./CategoryCard";
 
 import endpoint from "../util/client";
 import axios from "axios";
 
-import "../components/common/Cards.css";
+import "../components/Cards.css";
 import AddCategory from "./AddCategory";
 
 const RightFab = withStyles({
