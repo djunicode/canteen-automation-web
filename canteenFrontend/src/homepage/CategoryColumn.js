@@ -1,18 +1,16 @@
 import React from "react";
 
 import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
-
 import { withStyles } from "@material-ui/core";
-import SectionHeading from "../core/SectionHeading";
-import CategoryItem from "../core/CategoryCard";
 
-import endpoint from "../../util/client";
+import SectionHeading from "../components/SectionHeading";
+import CategoryItem from "./CategoryCard";
+
+import endpoint from "../util/client";
 import axios from "axios";
 
-import "./CategoryColumn.css";
-import "../common/Cards.css";
-import Addcategory from "../core/Addcategory";
+import "../components/Cards.css";
+import AddCategory from "./AddCategory";
 
 const RightFab = withStyles({
     root: {
@@ -22,12 +20,25 @@ const RightFab = withStyles({
     },
 })(Fab);
 
+const styles = {
+    "CategoryColumn": {
+      "gridArea": "category",
+      "overflow": "auto",
+      "borderRight": "5px solid #D0D8DD",
+      "display": "flex",
+      "flexDirection": "column"
+    },
+    "CategoryColumn____column_heading": { // ____ ka matlab hai .CategoryColumn > .column_heading. This is react syntax.
+      "display": "flex",
+      "justifyContent": "center"
+    }
+};
+
 class CategoryColumn extends React.Component {
     state = {
         data: [],
     };
  
-
     componentDidMount = async () => {
         const url = endpoint()
             .directory("categories")
@@ -43,17 +54,20 @@ class CategoryColumn extends React.Component {
     };
 
     render = () => {
+        const { classes } = this.props;
+
         const categoryItemsList = this.state.data.map((e, i) => (
-            <CategoryItem name={e.name} key={i} />
+            <CategoryItem {...e} key={i} />
         ));
+
         return (
-            <div className='CategoryColumn'>
-                <SectionHeading className='category-column-heading'>
+            <div className={classes.CategoryColumn}>
+                <SectionHeading className={classes.CategoryColumn____column_heading}>
                     Categories
                     <RightFab
                         size="small">
                         {/* <AddIcon /> */}
-                        <Addcategory />
+                        <AddCategory />
                     </RightFab>
                 </SectionHeading>
 
@@ -63,4 +77,4 @@ class CategoryColumn extends React.Component {
     };
 }
 
-export default CategoryColumn;
+export default withStyles(styles)(CategoryColumn);
