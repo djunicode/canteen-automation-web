@@ -1,10 +1,12 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import PropTypes from "prop-types";
-import TextField from "@material-ui/core/TextField";
-import { withStyles } from "@material-ui/core/styles/";
-import axios from "axios";
+
 import endpoint from "../util/client";
+import axios from "axios";
+import { withStyles } from '@material-ui/core';
+
 const styles = (theme) => ({
     container: {
         display: "flex",
@@ -17,25 +19,37 @@ const styles = (theme) => ({
     },
 });
 
-class OutlinedTextField extends React.Component {
+class AddMenuItem extends React.Component {
     state = {
         data: [],
+        name: "",
+        category: 0,
+        price: 0,
+        options: "",
         multiline: "Controlled",
         open: false,
     };
+
+    handleClickOpen = () => {
+        this.setState({ open: true });
+      };
 
     handleChange = (name) => (event) => {
         this.setState({
             [name]: event.target.value,
         });
     };
+
     handleClose = () => {
         this.setState({ open: false });
     };
     handleSubmit = () => {
         const url = endpoint().directory('menu').toString();
         axios.post(url, {
-          data: this.state.data,
+          name: this.state.name,
+          price: this.state.price,
+          options: this.state.options,
+          category: this.state.category,
         })
         .then(() => this.setState({ open: false }));
       };
@@ -68,30 +82,30 @@ class OutlinedTextField extends React.Component {
                     className={classes.textField}
                     margin='normal'
                     variant='outlined'
-                    value={this.state.data.name}
+                    value={this.state.name}
                     onChange={this.handleChange('name')}
                 />
                 <TextField
                     id='outlined-textarea'
-                    label='price'
-                    placeholder='price'
+                    label='Price'
+                    placeholder='Price'
                     multiline
                     className={classes.textField}
                     margin='normal'
                     variant='outlined'
-                    value={this.state.data.price}
+                    value={this.state.price}
                     onChange={this.handleChange('price')}
                 />
                 <TextField
                     id='outlined-textarea'
-                    label='option'
-                    placeholder='option'
+                    label='Options'
+                    placeholder='Options'
                     multiline
                     className={classes.textField}
                     margin='normal'
                     variant='outlined'
-                    value={this.state.data.options}
-                    onChange={this.handleChange('option')}
+                    value={this.state.options}
+                    onChange={this.handleChange('options')}
                 />
                 <TextField
                     id='outlined-textarea'
@@ -101,32 +115,33 @@ class OutlinedTextField extends React.Component {
                     className={classes.textField}
                     margin='normal'
                     variant='outlined'
-                    value={this.state.data.category}
+                    value={this.state.category}
                     onChange={this.handleChange('category')}
                 />
-                                         <Button
-                                                onClick={this.handleSubmit}
-                                                onClose={this.handleClose}
-                                                style={{
-                                                    backgroundColor: "#0477BD",
-                                                    textAlign: "center",
-                                                    color: "white",
-                                                    borderRadius: 7,
-                                                    width: 335,
-                                                    right: 25,
-                                                    bottom: 20,
-                                                }}
-                                            >
-                                                ADD ITEM
-                                            </Button>
+                <Button
+                    onClick={this.handleSubmit}
+                    onClose={this.handleClose}
+                    open={this.state.open}
+                    style={{
+                        backgroundColor: "#0477BD",
+                        textAlign: "center",
+                        color: "white",
+                        borderRadius: 7,
+                        width: 335,
+                        right: 25,
+                        bottom: 20,
+                    }}
+                >
+                    ADD ITEM
+                </Button>
                
             </form>
         );
     }
 }
 
-OutlinedTextField.propTypes = {
+AddMenuItem.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(OutlinedTextField);
+export default withStyles(styles)(AddMenuItem);

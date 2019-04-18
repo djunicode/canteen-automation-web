@@ -50,7 +50,8 @@ class AddCategory extends React.Component {
     axios.post(url, {
       name: this.state.category,
     })
-    .then(() => this.setState({ open: false }));
+    .then(() => this.setState({ open: false }))
+    .then(() => this.props.finishcb());
   };
 
   render() {

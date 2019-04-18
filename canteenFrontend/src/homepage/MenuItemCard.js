@@ -1,7 +1,15 @@
 import React from "react";
 import styles from "../components/styles";
+import axios from 'axios';
+import endpoint from "../util/client"
+
 
 function MenuItemCard(props) {
+    const url = endpoint().directory("menu/"+props.id)
+
+    const handleDelete = () => {
+        axios.delete(url);
+    };
     return (
         <div>
             <br />
@@ -28,6 +36,8 @@ function MenuItemCard(props) {
                         style={styles.icon_trash}
                         className='fa fa-trash fa-2x'
                         aria-hidden='true'
+                        onClick={handleDelete}
+
                     />
                     <div style={styles.edit_button}>
                         <button>EDIT</button>

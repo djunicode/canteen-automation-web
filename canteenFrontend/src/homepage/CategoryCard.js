@@ -45,11 +45,11 @@ function Category(props) {
     return (
         <StyledCard>
             <span>{props.name}</span>
-            <span
+            <button
                 className={classnames('fa', 'fa-times-circle-o', classes.icon_cross)}
                 aria-hidden='true'
-                onClick={handleDelete}
-            />
+                onClick={handleDelete}>
+            </button>
         </StyledCard>
     );
 }

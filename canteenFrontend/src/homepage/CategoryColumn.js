@@ -37,20 +37,32 @@ const styles = {
 class CategoryColumn extends React.Component {
     state = {
         data: [],
+        fetchCategories: true,
     };
  
-    componentDidMount = async () => {
+    componentDidMount = () => {
+        this.getCategories();
+    };
+
+    componentDidUpdate = () => {
+        if (this.state.fetchCategories) {
+            this.getCategories();
+        }
+    };
+
+    getCategories = async () => {
         const url = endpoint()
             .directory("categories")
             .toString();
-        try {
-            const response = await axios.get(url);
-            this.setState({
-                data: response.data,
-            });
-        } catch(e) {
-            alert(`Couldn't GET /categories/ ERROR ${e}`);
-        };
+            try {
+                const response = await axios.get(url);
+                this.setState({
+                    data: response.data,
+                    fetchCategories: false,
+                });
+            } catch(e) {
+                alert(`Couldn't GET /categories/ ERROR ${e}`);
+            };
     };
 
     render = () => {
@@ -67,7 +79,9 @@ class CategoryColumn extends React.Component {
                     <RightFab
                         size="small">
                         {/* <AddIcon /> */}
-                        <AddCategory />
+                        <AddCategory finishcb={() => this.setState({
+                            fetchCategories: true,
+                        })} />
                     </RightFab>
                 </SectionHeading>
 

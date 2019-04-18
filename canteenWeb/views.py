@@ -48,7 +48,7 @@ class IsAdminUserOrReadOnly(permissions.BasePermission):
 class MenuViewSet(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
-    permission_classes = (IsAdminUserOrReadOnly,)
+    # permission_classes = (IsAdminUserOrReadOnly,)
 
 
 class BillViewSet(viewsets.ReadOnlyModelViewSet):

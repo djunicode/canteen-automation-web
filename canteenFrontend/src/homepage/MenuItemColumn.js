@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 
 import SectionHeading from "../components/SectionHeading";
 import MenuItem from "./MenuItemCard";
+import AddMenuItem from "./AddMenuItem";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -60,18 +61,21 @@ class MenuItemColumn extends React.Component {
     handleClose = () => {
         this.setState({ open: false });
     };
+    
+    
 
     componentDidMount = async () => {
         const url = endpoint()
             .directory("menu")
             .toString();
+            
         try {
             const response = await axios.get(url);
             this.setState({
                 data: response.data,
             });
         } catch(e) {
-            alert(`Couldn't GET /categories/ ERROR ${e}`);
+            alert(`Couldn't GET /menu/ ERROR ${e}`);
         };
     };
 
@@ -90,7 +94,7 @@ class MenuItemColumn extends React.Component {
             <div className={classes.MenuItemColumn}>
                 <SectionHeading>
                     Items
-                    <StyledButton disableRipple onClick={this.handleClickOpen}>Add Item</StyledButton>
+                    <StyledButton disableRipple onClick={this.handleClickOpen}>Addd Item</StyledButton>
                                 <Dialog
                                         open={this.state.open}
                                         onClose={this.handleClose}
@@ -98,12 +102,13 @@ class MenuItemColumn extends React.Component {
                                     >
                                         <div style={{ width: 400 }}>
                                             <DialogContent>
-                                                <OutlinedTextField />
+                                                <AddMenuItem />
                                             </DialogContent>
                                         </div>
-                                        <DialogActions>
+                                        {/* <DialogActions>
                                             <Button
-                                                onClick={this.handleClose}
+                                                onClick={this.handleSubmit}
+                                                onClose={this.handleClose}
                                                 style={{
                                                     backgroundColor: "#0477BD",
                                                     textAlign: "center",
@@ -116,7 +121,7 @@ class MenuItemColumn extends React.Component {
                                             >
                                                 ADD ITEM
                                             </Button>
-                                        </DialogActions>
+                                        </DialogActions> */}
                                     </Dialog>
                 </SectionHeading>
                 <div className="cards-section">

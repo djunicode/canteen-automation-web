@@ -11,3 +11,4 @@ channels_redis==2.3.3
 drf_yasg==1.12.1
 django-cors-headers==2.4.0
 djoser
+pywin32==224
