@@ -94,7 +94,7 @@ class MenuItemColumn extends React.Component {
             <div className={classes.MenuItemColumn}>
                 <SectionHeading>
                     Items
-                    <StyledButton disableRipple onClick={this.handleClickOpen}>Addd Item</StyledButton>
+                    <StyledButton disableRipple onClick={this.handleClickOpen}>Add Item</StyledButton>
                                 <Dialog
                                         open={this.state.open}
                                         onClose={this.handleClose}

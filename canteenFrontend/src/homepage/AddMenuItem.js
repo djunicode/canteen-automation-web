@@ -23,14 +23,15 @@ class AddMenuItem extends React.Component {
     state = {
         data: [],
         name: "",
-        category: 0,
-        price: 0,
+        category: "",
+        price: '',
         options: "",
         multiline: "Controlled",
         open: false,
     };
 
     handleClickOpen = () => {
+        const url = endpoint().directory('menu').toString();
         this.setState({ open: true });
       };
 
@@ -46,10 +47,13 @@ class AddMenuItem extends React.Component {
     handleSubmit = () => {
         const url = endpoint().directory('menu').toString();
         axios.post(url, {
-          name: this.state.name,
-          price: this.state.price,
-          options: this.state.options,
-          category: this.state.category,
+        name: this.state.name,
+        price: this.state.price,
+        options: this.state.options,
+        category: this.state.category,
+        is_available: false,
+        preparation_time: null,
+        ingredients: []
         })
         .then(() => this.setState({ open: false }));
       };
@@ -61,6 +65,7 @@ class AddMenuItem extends React.Component {
             
         try {
             const response = await axios.get(url);
+            console.log(response.data)
             this.setState({
                 data: response.data,
             });
@@ -128,8 +133,9 @@ class AddMenuItem extends React.Component {
                         color: "white",
                         borderRadius: 7,
                         width: 335,
-                        right: 25,
-                        bottom: 20,
+                        left: 8,
+                        // right: 25,
+                        // bottom: 20,
                     }}
                 >
                     ADD ITEM
