@@ -92,7 +92,8 @@ class AddCategory extends React.Component {
                         color: "white",
                         borderRadius: 7,
                         width: 335,
-                         right: 25,
+                        left: 0,
+                        //  right: 25,
                          bottom: 20,
                           }}
               >
