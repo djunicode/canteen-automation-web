@@ -12,5 +12,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.urls import path
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from graphene_django.views import GraphQLView
+
+from .schema import schema
+
+
 urlpatterns = [
+    path("graphql/playground", lambda request: render(request, "playground.html")),
+    path("graphql/", csrf_exempt(GraphQLView.as_view(schema=schema, graphiql=True))),
 ]

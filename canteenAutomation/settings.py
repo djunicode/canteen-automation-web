@@ -39,27 +39,20 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "corsheaders",
-    "rest_framework",
     "djoser",
-    "rest_framework.authtoken",
-    "channels",
-    "drf_yasg",
+    "django_filters",
+    "graphene_django",
 ]
 
 # NOTE: Add new apps here.
-USER_APPS = ["canteenWeb"]
+USER_APPS = [
+    "canteenDb",
+    "canteenGraphql",
+]
 
 # User apps are appended to the end of the list.
 INSTALLED_APPS = DJANGO_APPS + USER_APPS
 
-REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": {},
-    "TEST_REQUEST_DEFAULT_FORMAT": "json",
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.TokenAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
-    ),
-}
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
@@ -92,9 +85,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "canteenAutomation.wsgi.application"
 
-# ASGI for Channels
-ASGI_APPLICATION = "canteenAutomation.routing.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -106,35 +96,26 @@ DATABASES = {
     }
 }
 
-# Channels
-CHANNEL_LAYERS = {
-    "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"},
-    "redis": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {"hosts": [("localhost", 6379)]},
-    },
-}
-
 
 # Custom auth user model.
 # https://docs.djangoproject.com/en/2.1/topics/auth/customizing/#extending-the-existing-user-model
-AUTH_USER_MODEL = "canteenWeb.User"
+AUTH_USER_MODEL = "canteenDb.User"
 
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
+
 # CORS headers for REST framework
 CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -162,5 +143,4 @@ DJOSER = {
     "ACTIVATION_URL": "",
     "SEND_ACTIVATION_EMAIL": False,
     "SERIALIZERS": {},
-    "TOKEN_MODEL": "rest_framework.authtoken.models.Token",
 }

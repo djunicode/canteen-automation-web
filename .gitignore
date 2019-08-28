@@ -3,6 +3,8 @@
 *.py[cod]
 *$py.class
 
+.DS_store
+
 # C extensions
 *.so
 
@@ -93,6 +95,12 @@ venv.bak/
 # Spyder project settings
 .spyderproject
 .spyproject
+
+# VSCode project settings
+.vscode/
+
+# Pycharm project settings
+.idea
 
 # Rope project settings
 .ropeproject
