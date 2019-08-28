@@ -21,6 +21,6 @@ from .schema import schema
 
 
 urlpatterns = [
-    path("graphql/playground", lambda request: render(request, "playground.html")),
-    path("graphql/", csrf_exempt(GraphQLView.as_view(schema=schema, graphiql=True))),
+    path("playground/", lambda request: render(request, "playground.html")),
+    path("", csrf_exempt(GraphQLView.as_view(schema=schema, graphiql=True))),
 ]
