@@ -53,6 +53,7 @@ DJANGO_APPS = [
     "corsheaders",
     "djoser",
     "django_filters",
+    "rest_framework",
     "graphene_django",
 ]
 
@@ -60,6 +61,7 @@ DJANGO_APPS = [
 USER_APPS = [
     "canteenDb",
     "canteenGraphql",
+    "canteenREST",
 ]
 
 # User apps are appended to the end of the list.
