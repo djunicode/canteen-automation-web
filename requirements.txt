@@ -18,3 +18,4 @@ six==1.12.0
 sqlparse==0.3.0
 gunicorn
 whitenoise
+django-environ
