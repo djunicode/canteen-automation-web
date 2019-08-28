@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import environ
+
+
+# Load django environment config
+env = environ.Env(
+    DEBUG=(bool, True)
+)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +30,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "ixt&v8&w@zkh0xa8i#^+!q!2$k&q!yt6+n+ktc1o9596zm2&6h"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = [
     '0.0.0.0',
@@ -91,17 +98,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "canteenAutomation.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+try:
+    DATABASES = {
+        "default": env.db(),
     }
-}
-
+except environ.ImproperlyConfigured as e:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        },
+    }
 
 # Custom auth user model.
 # https://docs.djangoproject.com/en/2.1/topics/auth/customizing/#extending-the-existing-user-model
