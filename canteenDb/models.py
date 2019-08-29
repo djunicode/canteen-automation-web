@@ -22,7 +22,7 @@ class User(AbstractUser):
     )  # to check whether the user is teacher
 
 
-class StudentProfile(models.Model):
+class StudentProfile(models.Model): # User
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     division = models.CharField(max_length=8, default="A")
     department = models.CharField(max_length=32, blank=True)
