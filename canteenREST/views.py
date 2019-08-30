@@ -1,13 +1,17 @@
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework import generics
 from canteenDb import choices
+
 
 from canteenDb.models import (
     Order,
     MenuItem,
     Bill,
     Category,
+    StudentProfile,
+    TeacherProfile
 )
 
 from .serializers import (
@@ -15,6 +19,8 @@ from .serializers import (
     MenuItemSerializer,
     BillSerializer,
     CategorySerializer,
+    StudentSignupSerializer,
+    TeacherSignupSerializer
 )
 
 
@@ -139,3 +145,32 @@ class OrderViewSet(viewsets.ModelViewSet):
             return Response(
                 {"error": "Missing status in request body"}, status.HTTP_400_BAD_REQUEST
             )
+
+class StudentSignUpView(generics.CreateAPIView):
+
+    serializer_class = StudentSignupSerializer
+    queryset = StudentProfile.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.validated_data["is_student"] = True
+        if len(serializer.validated_data["username"]) != 11 or serializer.validated_data["username"][0] == '6':
+            return Response({"error":"Incorrect Student Sap ID"}, status.HTTP_400_BAD_REQUEST)
+        self.perform_create(serializer)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+class TeacherSignUpView(generics.CreateAPIView):
+    
+    serializer_class = TeacherSignupSerializer
+    queryset = TeacherProfile.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.validated_data["is_student"] = False
+        serializer.validated_data["is_teacher"] = True
+        if len(serializer.validated_data["username"]) not in [3, 8]:
+            return Response({"error":"Incorrect Teacher Sap ID"}, status.HTTP_400_BAD_REQUEST)
+        self.perform_create(serializer)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

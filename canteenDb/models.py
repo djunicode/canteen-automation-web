@@ -22,17 +22,25 @@ class User(AbstractUser):
     )  # to check whether the user is teacher
 
 
-class StudentProfile(models.Model): # User
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+class StudentProfile(User): # User
+    # user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     division = models.CharField(max_length=8, default="A")
     department = models.CharField(max_length=32, blank=True)
     admission_year = models.PositiveSmallIntegerField(null=True)
 
+    class Meta:
+        verbose_name = "Student"
+        verbose_name_plural = "Students"
 
-class TeacherProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+
+class TeacherProfile(User):
+    # user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     floor = models.PositiveSmallIntegerField(null=True)
     department = models.CharField(max_length=32, null=True)
+
+    class Meta:
+        verbose_name = "Teacher"
+        verbose_name_plural = "Teachers"
 
 
 #####################

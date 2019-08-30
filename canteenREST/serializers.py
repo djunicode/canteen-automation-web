@@ -6,6 +6,8 @@ from canteenDb.models import (
     User,
     Bill,
     Category,
+    StudentProfile,
+    TeacherProfile
 )
 
 ###################
@@ -89,3 +91,42 @@ class BillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bill
         fields = "__all__"
+
+
+######################
+# USER SIGNUP SYSTEM #
+######################
+
+class StudentSignupSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(style={"input_type": "password"})
+    class Meta:
+        model = StudentProfile
+        fields = (
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "phone_number",
+            "division",
+            "department",
+            "admission_year",
+            "password",
+        )
+        read_only_fields = ("is_student", "is_teacher", "is_banned")
+
+
+class TeacherSignupSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(style={"input_type": "password"})
+    class Meta:
+        model = TeacherProfile
+        fields = (
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "phone_number",
+            "floor",
+            "department",
+            "password",
+        )
+        read_only_fields = ("is_student", "is_teacher", "is_banned")

@@ -27,4 +27,6 @@ urlpatterns = [
     path("auth/", include("djoser.urls")),
     path("auth/", include("djoser.urls.authtoken")),
     path("api-auth/", include("rest_framework.urls")),
+    path("student_signup/", views.StudentSignUpView.as_view(), name='student_signup'),
+    path("teacher_signup/", views.TeacherSignUpView.as_view(), name='teacher_signup'),
 ]
