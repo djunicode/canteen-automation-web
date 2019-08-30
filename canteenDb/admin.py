@@ -2,7 +2,10 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import UserChangeForm
-from .models import User, Category, MenuItem, Order, Bill
+from .models import (
+    User, Category, MenuItem, Order,
+    Bill, StudentProfile, TeacherProfile
+)
 
 
 # Our custom user model.
@@ -38,3 +41,5 @@ admin.site.register(Order)
 admin.site.register(Category)
 admin.site.register(MenuItem)
 admin.site.register(Bill)
+admin.site.register(StudentProfile)
+admin.site.register(TeacherProfile)

@@ -1,4 +1,4 @@
-djangorestframework
+djangorestframework==3.10.0
 aniso8601==7.0.0
 certifi==2019.6.16
 Django==2.2.4

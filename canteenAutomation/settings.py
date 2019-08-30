@@ -51,6 +51,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "corsheaders",
+    "rest_framework.authtoken",
     "djoser",
     "django_filters",
     "rest_framework",
@@ -118,6 +119,13 @@ except environ.ImproperlyConfigured as e:
 # Custom auth user model.
 # https://docs.djangoproject.com/en/2.1/topics/auth/customizing/#extending-the-existing-user-model
 AUTH_USER_MODEL = "canteenDb.User"
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
 
 
 # Password validation
