@@ -53,9 +53,23 @@ class DeleteMenuItemMutation(graphene.Mutation):
         return cls(ok=True)
 
 
+class DeleteOrderMutation(graphene.Mutation):
+    ok = graphene.Boolean()
+    class Arguments:
+        # The input arguments for this mutation
+        id = ID()
+
+    @classmethod
+    def mutate(cls, root, info, **args):
+        obj = Order.objects.get(pk=args["id"])
+        obj.delete()
+        return cls(ok=True)
+
+
 class Mutation(ObjectType):
     order_mutation = OrderMutation.Field()
     category_mutation = CategoryMutation.Field()
     menu_item_mutation = MenuItemMutation.Field()
     delete_category_mutation = DeleteCategoryMutation.Field()
     delete_menu_item_mutation = DeleteMenuItemMutation.Field()
+    delete_order_mutation = DeleteOrderMutation.Field()
