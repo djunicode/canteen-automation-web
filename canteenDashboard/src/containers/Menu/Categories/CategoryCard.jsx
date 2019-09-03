@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -28,7 +29,7 @@ export default function CategoryCard(props) {
   return (
     <Mutation mutation={queries.DELETE_CATEGORY_BY_ID}>
       {(performMutation, { data, error, loading }) => {
-        let config = {
+        const config = {
           disabled: false,
           text: '⤬',
         };

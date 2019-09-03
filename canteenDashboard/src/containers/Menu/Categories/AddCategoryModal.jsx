@@ -1,6 +1,6 @@
+/* eslint-disable linebreak-style */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import { Mutation } from 'react-apollo';
 import * as queries from '../../../helpers/graphql/queries';
 
