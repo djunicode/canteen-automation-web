@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -21,7 +22,7 @@ export default function PendingOrders(props) {
 
   const scheduleTimeObj = new Date(time_scheduled);
 
-  const orderItems = props.items.map((item, index) => <ListGroup.Item key={index}>{item.quantity} 𝗑 {item.info.name}</ListGroup.Item>)
+  const orderItems = props.items.map((item, index) => <ListGroup.Item key={index}>{item.quantity} 𝗑 {item.info.name}</ListGroup.Item>);
 
   return (
     <Card style={cardStyle} border={border}>
@@ -51,7 +52,7 @@ PendingOrders.propTypes = {
   is_fulfilled: PropTypes.bool,
   items: PropTypes.arrayOf(PropTypes.shape({
     info: PropTypes.shape({
-      name: PropTypes.string
+      name: PropTypes.string,
     }),
     quantity: PropTypes.number,
   })).isRequired,

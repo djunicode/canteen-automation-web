@@ -1,3 +1,5 @@
+/* eslint-disable linebreak-style */
+
 import React, { useState } from 'react';
 
 import { Query } from 'react-apollo';

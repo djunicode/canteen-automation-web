@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -15,14 +16,14 @@ export default function AddItemModal(props) {
   const { show, onHide } = props;
   const [name, setName] = useState();
   const [price, setPrice] = useState();
-  const [category_id, setCategoryId] = useState();
+  const [categoryId, setCategoryId] = useState();
 
   const onClick = (performMutation) => {
     performMutation({
       variables: {
         name,
         price,
-        category_id,
+        categoryId,
       },
     })
       .then(() => {
@@ -73,7 +74,7 @@ export default function AddItemModal(props) {
             {(performMutation, { loading, error }) => {
               const config = {
                 text: 'Add Item',
-                disabled: !name || !Number(price) || !category_id,
+                disabled: !name || !Number(price) || !categoryId,
               };
 
               if (loading) {

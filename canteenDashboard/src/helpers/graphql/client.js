@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import ApolloClient from 'apollo-client';
 
 import { WebSocketLink } from 'apollo-link-ws';
