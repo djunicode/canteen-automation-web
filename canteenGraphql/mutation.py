@@ -52,7 +52,7 @@ class DeleteMenuItemMutation(graphene.Mutation):
         obj.delete()
         return cls(ok=True)
 
-
+      
 class DeleteOrderMutation(graphene.Mutation):
     ok = graphene.Boolean()
     class Arguments:
@@ -64,7 +64,7 @@ class DeleteOrderMutation(graphene.Mutation):
         obj = Order.objects.get(pk=args["id"])
         obj.delete()
         return cls(ok=True)
-
+      
 
 class Mutation(ObjectType):
     order_mutation = OrderMutation.Field()
