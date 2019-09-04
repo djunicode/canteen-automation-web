@@ -2,6 +2,8 @@ from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import generics
+from django.contrib.auth.hashers import make_password
+from django.http import JsonResponse
 from canteenDb import choices
 
 
@@ -42,9 +44,9 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticated,)
 
-    @action(detail=True, methods=["put"], permission_classes=[permissions.IsAdminUser])
+    @action(detail=True, methods=["put"])
     def accept(self, request, pk=None):
         """
             Accept an order by PUT-ing to this end-point.
@@ -55,7 +57,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         order.save()
         return Response({"message": "Order accepted"})
 
-    @action(detail=True, methods=["put"], permission_classes=[permissions.IsAdminUser])
+    @action(detail=True, methods=["put"])
     def reject(self, request, pk=None):
         """
             Reject an order by PUT-ing to this end-point.
@@ -66,7 +68,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         order.save()
         return Response({"message": "Order rejected"})
 
-    @action(detail=True, methods=["put"], permission_classes=[permissions.IsAdminUser])
+    @action(detail=True, methods=["put"])
     def fulfil(self, request, pk=None):
         """
             Fulfil an order by PUT-ing to this end-point.
@@ -77,7 +79,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         order.save()
         return Response({"message": "Order fulfilled"})
 
-    @action(detail=True, methods=["put"], permission_classes=[permissions.IsAdminUser])
+    @action(detail=True, methods=["put"])
     def unfulfil(self, request, pk=None):
         """
             Set order fulfil to false by PUT-ing to this end-point.
@@ -88,7 +90,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         order.save()
         return Response({"message": "Order unfulfilled"})
 
-    @action(detail=False, permission_classes=[permissions.IsAdminUser])
+    @action(detail=False)
     def completed(self, request):
         """
             Return a list of all completed orders.
@@ -97,13 +99,13 @@ class OrderViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(completed_orders, many=True)
         return Response(serializer.data)
 
-    @action(detail=False, permission_classes=[permissions.IsAdminUser])
+    @action(detail=False)
     def pending(self, request):
         """
             Return a list of all pending orders.
         """
         pending_orders = Order.objects.filter(
-            is_fulfilled=False, status__gte=0
+            is_fulfilled=False
         )  # Should not be fulfilled and status should be positive.
         serializer = self.get_serializer(pending_orders, many=True)
         return Response(serializer.data)
@@ -155,8 +157,10 @@ class StudentSignUpView(generics.CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.validated_data["is_student"] = True
-        if len(serializer.validated_data["username"]) != 11 or serializer.validated_data["username"][0] == '6':
+        if len(serializer.validated_data["username"]) != 11 or serializer.validated_data["username"][0] != '6':
             return Response({"error":"Incorrect Student Sap ID"}, status.HTTP_400_BAD_REQUEST)
+        hashed_password = make_password(serializer.validated_data['password'])
+        serializer.validated_data['password'] = hashed_password
         self.perform_create(serializer)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -172,5 +176,36 @@ class TeacherSignUpView(generics.CreateAPIView):
         serializer.validated_data["is_teacher"] = True
         if len(serializer.validated_data["username"]) not in [3, 8]:
             return Response({"error":"Incorrect Teacher Sap ID"}, status.HTTP_400_BAD_REQUEST)
+        hashed_password = make_password(serializer.validated_data['password'])
+        serializer.validated_data['password'] = hashed_password
         self.perform_create(serializer)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+class CategoryWiseMenu(generics.ListAPIView):
+    serializer_class = MenuItemSerializer
+
+    def get_queryset(self):
+        menu_list = MenuItem.objects.filter(category=self.kwargs['category'])
+        return menu_list
+
+class UserOrders(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+    @action(detail=False)
+    def previous_orders(self, request):
+        """
+            Return a list of all previous orders.
+        """
+        previous_orders_list = Order.objects.filter(user=request.user.id, is_fulfilled=True)
+        serializer = self.get_serializer(previous_orders_list, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False)
+    def current_orders(self, request):
+        """
+            Return a list of all current orders.
+        """
+        current_orders_list = Order.objects.filter(user=request.user.id, is_fulfilled=False)
+        serializer = self.get_serializer(current_orders_list, many=True)
+        return Response(serializer.data)

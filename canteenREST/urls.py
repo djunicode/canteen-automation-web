@@ -21,6 +21,7 @@ router.register("orders", views.OrderViewSet)
 router.register("bills", views.BillViewSet)
 router.register("menu", views.MenuViewSet)
 router.register("categories", views.CategoryViewSet)
+router.register("user-orders", views.UserOrders)
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -29,4 +30,5 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     path("student_signup/", views.StudentSignUpView.as_view(), name='student_signup'),
     path("teacher_signup/", views.TeacherSignUpView.as_view(), name='teacher_signup'),
+    path("category-menu/<int:category>/", views.CategoryWiseMenu.as_view(), name='category_wise_menu'),
 ]
