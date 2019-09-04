@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import gql from 'graphql-tag';
 
 export const SUSCRIBE_PENDING_ORDERS = gql`
@@ -69,8 +70,9 @@ mutation deleteCategory($id: Int!) {
 
 export const ADD_CATEGORY = gql`
 mutation addCategory($name: String!) {
-  insert_categories(objects: { name: $name }) {
-    returning {
+  categoryMutation(input: { name: $name }) {
+    category {
+      name
       id
     }
   }
@@ -78,15 +80,16 @@ mutation addCategory($name: String!) {
 `;
 
 export const ADD_MENU_ITEM = gql`
-mutation addMenuItem($name: String!, $price: Int!, $category_id: Int!) {
-  insert_menu_items(objects: {
-    name: $name,
-    price: $price,
-    category_id: $category_id
-  })
-  {
-    returning {
+mutation addMenu($name: String!, $price: Int!, $categoryId: ID!) {
+  menuItemMutation(input: { name: $name, price: $price, category: $categoryId, options: "JAIN"}) {
+    menuItem {
       id
+      name
+      price
+      category{
+        id
+        name
+      }
     }
   }
 }

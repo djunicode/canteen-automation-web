@@ -64,6 +64,9 @@ class MenuItem(models.Model):
         max_length=8, choices=choices.MENU_ITEM_CHOICES, default="NON JAIN"
     )
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='menuImages/',
+        max_length=254, blank=True, null=True
+    )
 
     def __str__(self):
         return self.name
@@ -81,6 +84,7 @@ class Order(models.Model):
     time_sheduled = models.DateTimeField(null=True)
     time_prepared = models.DateTimeField(null=True)
     time_delivered = models.DateTimeField(null=True)
+    
     # payment_choices = models.CharField(
     #     max_length=8, choices=choices.PAYMENT_MODE_CHOICES, default="COD"
     # )
@@ -94,6 +98,9 @@ class Order(models.Model):
 class OrderItem(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
+    options = models.CharField(
+        max_length=8, choices=choices.MENU_ITEM_CHOICES, default="NON JAIN"
+    )
     quantity = models.SmallIntegerField()
     comment = models.TextField(blank=True)
 

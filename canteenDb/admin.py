@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.forms import UserChangeForm
 from .models import (
     User, Category, MenuItem, Order,
-    Bill, StudentProfile, TeacherProfile
+    Bill, StudentProfile, TeacherProfile, OrderItem
 )
 
 
@@ -38,6 +38,7 @@ admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
 
 admin.site.register(Order)
+admin.site.register(OrderItem)
 admin.site.register(Category)
 admin.site.register(MenuItem)
 admin.site.register(Bill)

@@ -29,7 +29,7 @@ class OrderSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     time_sheduled = serializers.DateTimeField(required=False)
 
-    status = serializers.CharField(read_only=True, source="get_status_display")
+    # status = serializers.CharField(read_only=True, source="get_status_display")
     time_issued = serializers.DateTimeField(read_only=True)
     time_prepared = serializers.DateTimeField(read_only=True)
     time_delivered = serializers.DateTimeField(read_only=True)
@@ -43,9 +43,9 @@ class OrderSerializer(serializers.ModelSerializer):
             "id",
             "user",
             "is_fulfilled",
-            "payment_choices",
-            "status",
-            "transaction_id",
+            # "payment_choices",
+            # "status",
+            # "transaction_id",
             "time_issued",
             "time_sheduled",
             "time_prepared",
