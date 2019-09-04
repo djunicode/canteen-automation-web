@@ -98,7 +98,11 @@ class BillSerializer(serializers.ModelSerializer):
 ######################
 
 class StudentSignupSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(style={"input_type": "password"})
+    password = serializers.CharField(
+        write_only=True,
+        required=True,
+        style={'input_type': 'password'},
+    )
     class Meta:
         model = StudentProfile
         fields = (
@@ -116,7 +120,11 @@ class StudentSignupSerializer(serializers.ModelSerializer):
 
 
 class TeacherSignupSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(style={"input_type": "password"})
+    password = serializers.CharField(
+        write_only=True,
+        required=True,
+        style={'input_type': 'password'},
+    )
     class Meta:
         model = TeacherProfile
         fields = (
