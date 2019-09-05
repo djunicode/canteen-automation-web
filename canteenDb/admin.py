@@ -31,6 +31,12 @@ class UserAdmin(UserAdmin):
         ),
     )
 
+class StudentProfileAdmin(UserAdmin):
+    list_display = ('username', 'admission_year', 'division', 'is_banned')
+
+
+class TeacherProfileAdmin(UserAdmin):
+    list_display = ('username', 'floor', 'is_banned')
 
 admin.site.register(User, UserAdmin)
 
@@ -42,5 +48,5 @@ admin.site.register(OrderItem)
 admin.site.register(Category)
 admin.site.register(MenuItem)
 admin.site.register(Bill)
-admin.site.register(StudentProfile)
-admin.site.register(TeacherProfile)
+admin.site.register(StudentProfile, StudentProfileAdmin)
+admin.site.register(TeacherProfile, TeacherProfileAdmin)
