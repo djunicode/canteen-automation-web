@@ -20,3 +20,4 @@ gunicorn
 whitenoise
 django-environ
 psycopg2
+Pillow
