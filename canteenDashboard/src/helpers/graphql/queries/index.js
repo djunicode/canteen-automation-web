@@ -11,6 +11,7 @@ query {
         name
       }
       quantity
+      comment
     } 
   }
 }
@@ -26,6 +27,7 @@ query {
         name
       }
       quantity
+      comment
     } 
   }
 }
@@ -94,6 +96,15 @@ export const DELETE_MENU_ITEM = gql`
 mutation deleteMenuItem($id: ID!) {
   deleteMenuItemMutation(id: $id) {
     ok
+  }
+}
+`;
+
+export const PREPARE_ORDER = gql`
+mutation prepareOrder($id: ID!, $timePrepared: DateTime!) {
+  orderMutation(input: { id: $id, timePrepared: $timePrepared, isFulfilled: true }) {
+    id
+    isFulfilled
   }
 }
 `;

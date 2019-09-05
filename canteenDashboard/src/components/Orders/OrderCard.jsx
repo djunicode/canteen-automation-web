@@ -1,10 +1,14 @@
 /* eslint-disable linebreak-style */
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
+
+import { Mutation } from 'react-apollo';
+import * as queries from 'helpers/graphql/queries';
 
 import {
   Card,
   ListGroup,
+  Button,
 } from 'react-bootstrap';
 
 const cardStyle = {
@@ -18,25 +22,81 @@ export default function PendingOrders(props) {
     is_fulfilled,
     time_scheduled,
   } = props;
+
+  const onPreparedClick = useCallback((mutate) => {
+    const variables = {
+      id,
+      timePrepared: new Date().toISOString(),
+    };
+    
+    mutate({
+      variables,
+    });
+  }, []);
+
   const border = is_fulfilled ? 'success' : 'warning';
 
   const scheduleTimeObj = new Date(time_scheduled);
 
-  const orderItems = props.items.map((item, index) => <ListGroup.Item key={index}>{item.quantity} 𝗑 {item.info.name}</ListGroup.Item>);
+  const orderItems = props.items.map((item, index) => (
+    <ListGroup.Item key={index}>
+      <p className="m-0 p-0">
+        {item.quantity} 𝗑 {item.info.name}
+      </p>
+      <small>{item.comment}</small>
+    </ListGroup.Item>
+  ));
+
+  const preparedButton = (
+    <Mutation mutation={queries.PREPARE_ORDER}>
+      {(performMutation, { data, loading, error }) => {
+        const config = {
+          disabled: false,
+          text: 'PREPARED',
+        };
+
+        if(loading || (data && 0)) {
+          config.disabled = true;
+          config.text = '...';
+        }
+
+        if(error) {
+          config.disabled = true;
+          config.text = 'ERR';
+        }
+
+        return (
+          <Button
+            onClick={() => onPreparedClick(performMutation)}
+            variant="info"
+            disabled={config.disabled}
+            size="sm">
+              {config.text}
+          </Button>
+        );
+      }}
+    </Mutation>
+  );
 
   return (
     <Card style={cardStyle} border={border}>
-      <Card.Header>
-        Order #{id}
+      <Card.Header className="d-flex align-items-center">
+        <span>Order #{id}</span>
+        <section className="ml-auto">
+          <Button variant="danger" size="sm">REJECT</Button>
+        </section>
       </Card.Header>
       <ListGroup variant="flush">
           {orderItems}
       </ListGroup>
 
-      <Card.Footer>
-        <div className="text-right">
-          {scheduleTimeObj.toLocaleTimeString()}
-        </div>
+      <Card.Footer className="d-flex align-items-center">
+        <section>
+          {preparedButton}
+        </section>
+        <section className="ml-auto">
+          Scheduled: {scheduleTimeObj.toLocaleTimeString()}
+        </section>
       </Card.Footer>
     </Card>
   );
