@@ -12,7 +12,6 @@ import {
   Row,
   Col,
   Button,
-  CardGroup,
 } from 'react-bootstrap';
 
 import MenuItem from './ItemCard';

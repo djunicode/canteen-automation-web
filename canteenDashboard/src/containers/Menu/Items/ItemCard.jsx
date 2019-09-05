@@ -31,14 +31,14 @@ export default function ItemCard(props) {
   };
 
   return (
-    <Mutation mutation={queries.DELETE_CATEGORY_BY_ID}>
+    <Mutation mutation={queries.DELETE_MENU_ITEM}>
       {(performMutation, { data, error, loading }) => {
         const config = {
           disabled: false,
           text: '⤬',
         };
 
-        if (loading || (data && data.delete_categories.affected_rows === 1)) {
+        if (loading || (data && data.deleteMenuItemMutation && data.deleteMenuItemMutation.ok)) {
           config.disabled = true;
           config.text = '...';
         }

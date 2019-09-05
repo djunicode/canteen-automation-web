@@ -56,14 +56,9 @@ export const GET_MENU = gql`
 `;
 
 export const DELETE_CATEGORY_BY_ID = gql`
-mutation deleteCategory($id: Int!) {
-  delete_categories(where: {
-    id: {
-      _eq: $id
-    }
-  }) 
-  {
-    affected_rows
+mutation deleteCategory($id: ID!) {
+  deleteCategoryMutation(id: $id) {
+    ok
   }
 }
 `;
@@ -91,6 +86,14 @@ mutation addMenu($name: String!, $price: Int!, $categoryId: ID!) {
         name
       }
     }
+  }
+}
+`;
+
+export const DELETE_MENU_ITEM = gql`
+mutation deleteMenuItem($id: ID!) {
+  deleteMenuItemMutation(id: $id) {
+    ok
   }
 }
 `;

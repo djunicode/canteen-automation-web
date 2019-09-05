@@ -16,7 +16,7 @@ export default function CategoryCard(props) {
   const onClick = async (performMutation) => {
     performMutation({
       variables: {
-        id,
+        id: String(id),
       },
     })
       .then(() => {
@@ -34,7 +34,7 @@ export default function CategoryCard(props) {
           text: '⤬',
         };
 
-        if (loading || (data && data.delete_categories.affected_rows === 1)) {
+        if (loading || (data && data.deleteCategoryMutation && data.deleteCategoryMutation.ok)) {
           config.disabled = true;
           config.text = '...';
         }

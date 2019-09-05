@@ -10,7 +10,7 @@ import CenteredSpinner from '../../components/Spinner/CenteredSpinner';
 export default function PendingOrders() {
   return (
     <CardDeck>
-      <Query query={queries.SUSCRIBE_PENDING_ORDERS} pollInterval={50}>
+      <Query query={queries.SUSCRIBE_PENDING_ORDERS} pollInterval={10 * 1000}>
         {({ data, loading, error }) => {
           if (loading) {
             return <CenteredSpinner />;
