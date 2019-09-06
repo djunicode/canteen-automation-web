@@ -15,7 +15,7 @@ class Query(ObjectType):
     menu = List(MenuItemType)
 
     def resolve_orders(self, info, is_fulfilled=None):
-        if is_fulfilled:
+        if is_fulfilled is not None:
             return Order.objects.filter(is_fulfilled=is_fulfilled)
         else:
             return Order.objects.all()

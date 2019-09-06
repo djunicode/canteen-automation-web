@@ -101,10 +101,9 @@ mutation deleteMenuItem($id: ID!) {
 `;
 
 export const PREPARE_ORDER = gql`
-mutation prepareOrder($id: ID!, $timePrepared: DateTime!) {
-  orderMutation(input: { id: $id, timePrepared: $timePrepared, isFulfilled: true }) {
-    id
-    isFulfilled
+mutation prepareOrder($id: ID!) {
+  fulfillOrderMutation(id: $id) {
+    ok
   }
 }
 `;

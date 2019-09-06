@@ -26,13 +26,12 @@ export default function PendingOrders(props) {
   const onPreparedClick = useCallback((mutate) => {
     const variables = {
       id,
-      timePrepared: new Date().toISOString(),
     };
-    
+
     mutate({
       variables,
     });
-  }, []);
+  }, [id]);
 
   const border = is_fulfilled ? 'success' : 'warning';
 
@@ -55,12 +54,12 @@ export default function PendingOrders(props) {
           text: 'PREPARED',
         };
 
-        if(loading || (data && 0)) {
+        if (loading || (data && 0)) {
           config.disabled = true;
           config.text = '...';
         }
 
-        if(error) {
+        if (error) {
           config.disabled = true;
           config.text = 'ERR';
         }
