@@ -14,7 +14,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = '__all__'
+        exclude = ('user', )
 
     def create(self, validated_data):
         items = validated_data.pop('items')
@@ -23,6 +23,11 @@ class OrderSerializer(serializers.ModelSerializer):
             OrderItem.objects.create(order=new_order, **item_data)
         return new_order
 
+    def update(self, instance, validated_data):
+        validated_data.pop('user')
+        validated_data.pop('items')
+
+        instance.save(**validated_data)
 
 class CategoryForm(forms.ModelForm):
     class Meta:

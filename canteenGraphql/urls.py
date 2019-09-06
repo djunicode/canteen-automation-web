@@ -14,13 +14,12 @@ Including another URLconf
 """
 from django.urls import path
 from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
-from graphene_django.views import GraphQLView
 
+from .views import  DRFAuthenticatedGraphQLView
 from .schema import schema
 
 
 urlpatterns = [
     path("playground/", lambda request: render(request, "playground.html")),
-    path("", csrf_exempt(GraphQLView.as_view(schema=schema, graphiql=True))),
+    path("", DRFAuthenticatedGraphQLView.as_view(schema=schema, graphiql=True)),
 ]

@@ -8,13 +8,16 @@ from graphene import ObjectType, Field, ID
 
 
 class OrderMutation(SerializerMutation):
-    # def perform_mutate(cls, serializer, info):
-    #     serializer.user = info.context.user
-    #     cls.perform_mutate(serializer, info)
+    @classmethod
+    def perform_mutate(cls, serializer, info):
+        if not info.context.user.is_authenticated:
+            raise Exception("User not authenticated! " + info.context.user.__str__())
+        obj = serializer.save(user=info.context.user)
+        return obj
 
     class Meta:
         serializer_class = OrderSerializer
-        model_operations = ('create', 'update', )
+        model_operations = ('create', )
         lookup_field = 'id'
 
 
