@@ -95,6 +95,25 @@ mutation addMenu($name: String!, $price: Int!, $categoryId: ID!,$choice:String!)
 }
 `;
 
+export const UPDATE_MENU_ITEM = gql`
+mutation updateMenuItem($menuItemId: ID! ,$name: String!, $price: Int!, $categoryId: ID!, $prepTime:String!, $isAvailable:Boolean!){
+  updateMenuItem(id:$menuItemId, input: { name: $name, price: $price, isAvailable: $isAvailable, preparationTime: $prepTime, category:$categoryId }) {
+    ok
+    menuItem{
+      id
+      name
+      price
+      isAvailable
+      preparationTime
+      category{
+        id
+        name
+      }
+    }
+  }
+}
+`;
+
 export const DELETE_MENU_ITEM = gql`
 mutation deleteMenuItem($id: ID!) {
   deleteMenuItemMutation(id: $id) {

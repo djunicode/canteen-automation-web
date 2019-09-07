@@ -1,4 +1,5 @@
 from .forms import *
+from .types import *
 from canteenDb.models import *
 
 import graphene
@@ -80,7 +81,49 @@ class DeleteOrderMutation(graphene.Mutation):
         obj = Order.objects.get(pk=args["id"])
         obj.delete()
         return cls(ok=True)
-      
+
+
+# Update Menu item
+class MenuItemInput(graphene.InputObjectType):
+    id = graphene.ID()
+    name = graphene.String()
+    price = graphene.Int()
+    is_available = graphene.Boolean()
+    preparation_time = graphene.types.datetime.Time()
+    category = graphene.ID()
+
+class UpdateMenuItem(graphene.Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+        input = MenuItemInput(required=True)
+
+    ok = graphene.Boolean()
+    menu_item = graphene.Field(MenuItemType)
+
+    @staticmethod
+    def mutate(root, info, id, input=None):
+        ok = False
+        menu_item_instance = MenuItem.objects.get(pk=id)
+        if menu_item_instance:
+            ok = True
+            if input.name:
+                menu_item_instance.name = input.name
+                menu_item_instance.save()
+            if input.price:
+                menu_item_instance.price = input.price
+                menu_item_instance.save()
+            if input.is_available != menu_item_instance.is_available:
+                menu_item_instance.is_available = input.is_available
+                menu_item_instance.save()
+            if input.preparation_time:
+                menu_item_instance.preparation_time = input.preparation_time
+                menu_item_instance.save()
+            if input.category:
+                menu_item_instance.category = input.category
+                menu_item_instance.save()
+            return UpdateMenuItem(ok=ok, menu_item=menu_item_instance)
+        return UpdateMenuItem(ok=ok, menu_item=None)
+
 
 class Mutation(ObjectType):
     order_mutation = OrderMutation.Field()
@@ -90,3 +133,4 @@ class Mutation(ObjectType):
     delete_menu_item_mutation = DeleteMenuItemMutation.Field()
     delete_order_mutation = DeleteOrderMutation.Field()
     fulfill_order_mutation = FulfillMutation.Field()
+    update_menu_item = UpdateMenuItem.Field()
