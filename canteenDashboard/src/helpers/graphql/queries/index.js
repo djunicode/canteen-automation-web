@@ -21,6 +21,7 @@ export const GET_COMPLETED_ORDERS = gql`
 query {
   orders(isFulfilled: true) {
     id
+    isFulfilled
     time_scheduled: timeSheduled
     items {
       info: menuItem {
