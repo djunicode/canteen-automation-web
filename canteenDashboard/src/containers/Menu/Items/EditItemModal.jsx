@@ -25,6 +25,7 @@ export default function EditItemModal(props) {
         price,
         categoryId,
         choice,
+        
       },
     })
       .then(() => {
