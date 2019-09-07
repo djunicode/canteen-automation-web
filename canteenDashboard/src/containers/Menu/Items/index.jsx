@@ -63,7 +63,7 @@ export default function Categories() {
             );
           }}
         </Query>
-      </Row>
+      </Row> 
     </Container>
   );
 }
