@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Mutation } from 'react-apollo';
@@ -13,10 +13,15 @@ import {
   Col,
   Row,
 } from 'react-bootstrap';
+import EditItemModal from './EditItemModal';
 
 export default function ItemCard(props) {
-  const { id, name, price, category, onDelete } = props;
-
+  const { id, name, price, category, options, onDelete } = props;
+  const [show, setShow] = useState(false);
+  const toggle = () => setShow(s => !s);
+  const onHide = () => {
+    toggle();
+  }
   const onClick = async (performMutation) => {
     performMutation({
       variables: {
@@ -52,7 +57,9 @@ export default function ItemCard(props) {
           <Card className="w-100 m-1">
             <Card.Header className="d-flex align-items-center">
               <span className="mr-auto">{name}</span>
-
+              <span className="mr-auto">{options}</span>
+              <Button className="mr-5" variant="success" size="sm" onClick={toggle}> edit </Button>             
+                <EditItemModal show={show} onHide={onHide} />
               <Button
                 onClick={() => onClick(performMutation)}
                 size="sm"
@@ -74,9 +81,11 @@ export default function ItemCard(props) {
                   </Col>
                 </Row>
               </Container>
-            </Card.Body>
+            </Card.Body>            
           </Card>
+          
         );
+        
       }}
     </Mutation>
   );
@@ -88,6 +97,7 @@ ItemCard.defaultProps = {
 
 ItemCard.propTypes = {
   id: PropTypes.number.isRequired,
+  options: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   category: PropTypes.shape({
     id: PropTypes.number.isRequired,

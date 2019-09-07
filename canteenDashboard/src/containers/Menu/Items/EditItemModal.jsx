@@ -12,7 +12,7 @@ import {
   Button,
 } from 'react-bootstrap';
 
-export default function AddItemModal(props) {
+export default function EditItemModal(props) {
   const { show, onHide } = props;
   const [name, setName] = useState();
   const [price, setPrice] = useState();
@@ -37,14 +37,14 @@ export default function AddItemModal(props) {
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header>
-        <Modal.Title>Add new menu item</Modal.Title>
+        <Modal.Title>Edit menu item</Modal.Title>
       </Modal.Header>
 
       <Form>
         <Modal.Body>
             <Form.Group controlId="itemFrom.name">
               <Form.Label>Item Name</Form.Label>
-              <Form.Control placeholder="Enter Item Name" onChange={e => setName(e.target.value)} />
+              <Form.Control value={name} onChange={e => setName(e.target.value)} />
             </Form.Group>
             <Form.Group controlId="itemFrom.price">
               <Form.Label>Price</Form.Label>
@@ -105,11 +105,11 @@ export default function AddItemModal(props) {
   );
 }
 
-AddItemModal.defaultProps = {
+EditItemModal.defaultProps = {
   onHide: null,
 };
 
-AddItemModal.propTypes = {
+EditItemModal.propTypes = {
   show: PropTypes.bool.isRequired,
   onHide: PropTypes.func,
 };

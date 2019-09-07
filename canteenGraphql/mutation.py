@@ -39,7 +39,7 @@ class DeleteCategoryMutation(graphene.Mutation):
     @classmethod
     def mutate(cls, root, info, **args):
         obj = Category.objects.get(pk=args["id"])
-        obj.delete()
+        obj.delete() 
         return cls(ok=True)
 
 
