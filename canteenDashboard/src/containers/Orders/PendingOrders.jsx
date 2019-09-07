@@ -11,7 +11,7 @@ export default function PendingOrders() {
   return (
     <CardDeck>
       <Query query={queries.SUSCRIBE_PENDING_ORDERS} pollInterval={10 * 1000}>
-        {({ data, loading, error }) => {
+        {({ data, loading, error, refetch }) => {
           if (loading) {
             return <CenteredSpinner />;
           }
@@ -20,7 +20,7 @@ export default function PendingOrders() {
             return `Error: ${error}`;
           }
 
-          return data.orders.map(o => <Card {...o} key={o.id} />);
+          return data.orders.map(o => <Card onPrepare={refetch} {...o} key={o.id} />);
         }}
       </Query>
     </CardDeck>

@@ -19,22 +19,26 @@ const cardStyle = {
 export default function PendingOrders(props) {
   const {
     id,
-    is_fulfilled,
+    isFulfilled,
     time_scheduled,
+    onPrepare
   } = props;
 
   const onPreparedClick = useCallback((mutate) => {
     const variables = {
       id,
-      timePrepared: new Date().toISOString(),
     };
-    
+
     mutate({
       variables,
+    }).then(() => {
+      if (onPrepare) {
+        onPrepare();
+      }
     });
-  }, []);
+  }, [id]);
 
-  const border = is_fulfilled ? 'success' : 'warning';
+  const border = isFulfilled ? 'success' : 'warning';
 
   const scheduleTimeObj = new Date(time_scheduled);
 
@@ -55,12 +59,12 @@ export default function PendingOrders(props) {
           text: 'PREPARED',
         };
 
-        if(loading || (data && 0)) {
+        if (loading || (data && data.fulfillOrderMutation && data.fulfillOrderMutation.ok)) {
           config.disabled = true;
           config.text = '...';
         }
 
-        if(error) {
+        if (error) {
           config.disabled = true;
           config.text = 'ERR';
         }
@@ -82,9 +86,6 @@ export default function PendingOrders(props) {
     <Card style={cardStyle} border={border}>
       <Card.Header className="d-flex align-items-center">
         <span>Order #{id}</span>
-        <section className="ml-auto">
-          <Button variant="danger" size="sm">REJECT</Button>
-        </section>
       </Card.Header>
       <ListGroup variant="flush">
           {orderItems}
@@ -92,7 +93,7 @@ export default function PendingOrders(props) {
 
       <Card.Footer className="d-flex align-items-center">
         <section>
-          {preparedButton}
+          {!isFulfilled && preparedButton}
         </section>
         <section className="ml-auto">
           Scheduled: {scheduleTimeObj.toLocaleTimeString()}
@@ -103,13 +104,13 @@ export default function PendingOrders(props) {
 }
 
 PendingOrders.defaultProps = {
-  is_fulfilled: false,
+  isFulfilled: false,
 };
 
 PendingOrders.propTypes = {
   id: PropTypes.number.isRequired,
   time_scheduled: PropTypes.string.isRequired,
-  is_fulfilled: PropTypes.bool,
+  isFulfilled: PropTypes.bool,
   items: PropTypes.arrayOf(PropTypes.shape({
     info: PropTypes.shape({
       name: PropTypes.string,

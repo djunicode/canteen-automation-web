@@ -17,7 +17,7 @@ class DRFAuthenticatedGraphQLView(GraphQLView):
     @classmethod
     def as_view(cls, *args, **kwargs):
         view = super(GraphQLView, cls).as_view(*args, **kwargs)
-        view = permission_classes((IsAuthenticated,))(view)
+        # view = permission_classes((IsAuthenticated,))(view)
         view = authentication_classes(api_settings.DEFAULT_AUTHENTICATION_CLASSES)(view)
         view = api_view(['GET', 'POST'])(view)
         return csrf_exempt(view)

@@ -1,10 +1,10 @@
 from .forms import *
-from .types import *
 from canteenDb.models import *
+
+import graphene
 from graphene_django.forms.mutation import DjangoModelFormMutation
 from graphene_django.rest_framework.mutation import SerializerMutation
-import graphene
-from graphene import ObjectType, Field, ID
+from graphene import ObjectType, ID
 
 
 class OrderMutation(SerializerMutation):
@@ -30,10 +30,23 @@ class MenuItemMutation(DjangoModelFormMutation):
     class Meta:
         form_class = MenuItemForm
 
+
+class FulfillMutation(graphene.Mutation):
+    ok = graphene.Boolean()
+    class Arguments:
+        id = ID()
+
+    @classmethod
+    def mutate(cls, root, info, **args):
+        obj = Order.objects.get(pk=args["id"])
+        obj.is_fulfilled = True
+        obj.save()
+        return cls(ok=True)
+
+
 class DeleteCategoryMutation(graphene.Mutation):
     ok = graphene.Boolean()
     class Arguments:
-        # The input arguments for this mutation
         id = ID()
 
     @classmethod
@@ -76,3 +89,4 @@ class Mutation(ObjectType):
     delete_category_mutation = DeleteCategoryMutation.Field()
     delete_menu_item_mutation = DeleteMenuItemMutation.Field()
     delete_order_mutation = DeleteOrderMutation.Field()
+    fulfill_order_mutation = FulfillMutation.Field()

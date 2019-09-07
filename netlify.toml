@@ -1,0 +1,6 @@
+[build]
+  publish = "canteenDashboard/build"
+  command = "cd canteenDashboard; npm run build"
+[build.environment]
+  YARN_VERSION = "1.3.2"
+  YARN_FLAGS = "--no-ignore-optional"
