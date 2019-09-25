@@ -7,7 +7,7 @@ from canteenDb.models import (
     Bill,
     Category,
     StudentProfile,
-    TeacherProfile
+    TeacherProfile,
 )
 
 ###################
@@ -138,3 +138,17 @@ class TeacherSignupSerializer(serializers.ModelSerializer):
             "password",
         )
         read_only_fields = ("is_student", "is_teacher", "is_banned")
+
+class StudentProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentProfile
+        fields = (
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "phone_number",
+            "division",
+            "department",
+            "admission_year",
+        )
