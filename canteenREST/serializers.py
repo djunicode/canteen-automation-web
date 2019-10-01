@@ -10,15 +10,32 @@ from canteenDb.models import (
     TeacherProfile
 )
 
+
+#####################
+# CUSTOMIZABLE MENU #
+#####################
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = "__all__"
+
+
+class MenuItemSerializer(serializers.ModelSerializer):
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
+
+    class Meta:
+        model = MenuItem
+        fields = "__all__"
+
 ###################
 # ORDERING SYSTEM #
 ###################
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
-    menu_item = serializers.SlugRelatedField(
-        slug_field="name", queryset=MenuItem.objects.all()
-    )
+    menu_item = MenuItemSerializer(many=False)
 
     class Meta:
         model = OrderItem
@@ -63,23 +80,6 @@ class OrderSerializer(serializers.ModelSerializer):
         return order
 
 
-#####################
-# CUSTOMIZABLE MENU #
-#####################
-
-
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = "__all__"
-
-
-class MenuItemSerializer(serializers.ModelSerializer):
-    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
-
-    class Meta:
-        model = MenuItem
-        fields = "__all__"
 
 
 ##################
