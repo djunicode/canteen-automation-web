@@ -22,7 +22,8 @@ from .serializers import (
     BillSerializer,
     CategorySerializer,
     StudentSignupSerializer,
-    TeacherSignupSerializer
+    TeacherSignupSerializer,
+    StudentProfileSerializer,
 )
 
 
@@ -208,4 +209,14 @@ class UserOrders(viewsets.ModelViewSet):
         """
         current_orders_list = Order.objects.filter(user=request.user.id, is_fulfilled=False)
         serializer = self.get_serializer(current_orders_list, many=True)
+        return Response(serializer.data)
+
+class StudentUserProfile(viewsets.ModelViewSet):
+    queryset = StudentProfile.objects.all()
+    serializer_class = StudentProfileSerializer
+
+    @action(detail=False)
+    def profile(self, request):
+        student_profile = StudentProfile.objects.get(username=request.user.username)
+        serializer = self.get_serializer(student_profile)
         return Response(serializer.data)

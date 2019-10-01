@@ -22,6 +22,7 @@ router.register("bills", views.BillViewSet)
 router.register("menu", views.MenuViewSet)
 router.register("categories", views.CategoryViewSet)
 router.register("user-orders", views.UserOrders)
+router.register("student-user", views.StudentUserProfile)
 
 urlpatterns = [
     path("", include(router.urls)),

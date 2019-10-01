@@ -1,6 +1,4 @@
-/* eslint-disable linebreak-style */
-
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Mutation } from 'react-apollo';
@@ -13,15 +11,17 @@ import {
   Col,
   Row,
 } from 'react-bootstrap';
-import EditItemModal from './EditItemModal';
 
 export default function ItemCard(props) {
-  const { id, name, price, category, options, onDelete } = props;
-  const [show, setShow] = useState(false);
-  const toggle = () => setShow(s => !s);
-  const onHide = () => {
-    toggle();
-  }
+  const {
+    id,
+    name,
+    price,
+    category,
+    options,
+    onDelete,
+    onEdit,
+  } = props;
   const onClick = async (performMutation) => {
     performMutation({
       variables: {
@@ -55,19 +55,19 @@ export default function ItemCard(props) {
 
         return (
           <Card className="w-100 m-1">
-            <Card.Header className="d-flex align-items-center">
-              <span className="mr-auto">{name}</span>
-              <span className="mr-auto">{options}</span>
-              <Button className="mr-5" variant="success" size="sm" onClick={toggle}> edit </Button>             
-                <EditItemModal show={show} onHide={onHide} />
-              <Button
-                onClick={() => onClick(performMutation)}
-                size="sm"
-                variant="outline-danger"
-                disabled={config.disabled}
-              >
-                {config.text}
-              </Button>
+            <Card.Header className="d-flex justify-content-between">
+              <span>{name}</span>
+              <section>
+                {onEdit && <Button className="mr-5" variant="success" size="sm" onClick={onEdit}> EDIT </Button>}
+                <Button
+                  onClick={() => onClick(performMutation)}
+                  size="sm"
+                  variant="outline-danger"
+                  disabled={config.disabled}
+                >
+                  {config.text}
+                </Button>
+              </section>
             </Card.Header>
             <Card.Body className="p-0">
               <Container fluid>
@@ -81,11 +81,9 @@ export default function ItemCard(props) {
                   </Col>
                 </Row>
               </Container>
-            </Card.Body>            
+            </Card.Body>
           </Card>
-          
         );
-        
       }}
     </Mutation>
   );
@@ -106,4 +104,5 @@ ItemCard.propTypes = {
   is_available: PropTypes.bool.isRequired,
   price: PropTypes.number.isRequired,
   onDelete: PropTypes.func,
+  onEdit: PropTypes.func,
 };

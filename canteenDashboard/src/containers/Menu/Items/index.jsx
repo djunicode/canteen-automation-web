@@ -1,5 +1,3 @@
-/* eslint-disable linebreak-style */
-
 import React, { useState } from 'react';
 
 import { Query } from 'react-apollo';
@@ -20,6 +18,7 @@ import AddCategoryModal from './AddItemModal';
 export default function Categories() {
   const [show, setShow] = useState(false);
   const toggle = () => setShow(s => !s);
+  const [itemEdit, setItemEdit] = useState();
 
   return (
     <Container fluid>
@@ -56,14 +55,14 @@ export default function Categories() {
             return (
               <Col>
                 <div className="flex-column">
-                  {data.menu_items.map(c => <MenuItem key={c.id} onDelete={refetch} className="px-0" {...c} />)}
+                  {data.menu_items.map(c => <MenuItem key={c.id} onDelete={refetch} className="px-0" {...c} onEdit={() => { toggle(); setItemEdit(c); }} />)}
                 </div>
-                <AddCategoryModal show={show} onHide={onHide} />
+                <AddCategoryModal show={show} onHide={onHide} item={itemEdit} />
               </Col>
             );
           }}
         </Query>
-      </Row> 
+      </Row>
     </Container>
   );
 }

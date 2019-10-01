@@ -21,7 +21,7 @@ export default function PendingOrders(props) {
     id,
     isFulfilled,
     time_scheduled,
-    onPrepare
+    onPrepare,
   } = props;
 
   const onPreparedClick = useCallback((mutate) => {
@@ -36,7 +36,7 @@ export default function PendingOrders(props) {
         onPrepare();
       }
     });
-  }, [id]);
+  }, [id, onPrepare]);
 
   const border = isFulfilled ? 'success' : 'warning';
 
@@ -84,17 +84,17 @@ export default function PendingOrders(props) {
 
   return (
     <Card style={cardStyle} border={border}>
-      <Card.Header className="d-flex align-items-center">
+      <Card.Header className="d-flex justify-content-between align-items-center">
         <span>Order #{id}</span>
+        <section>
+          {!isFulfilled && preparedButton}
+        </section>
       </Card.Header>
       <ListGroup variant="flush">
           {orderItems}
       </ListGroup>
 
       <Card.Footer className="d-flex align-items-center">
-        <section>
-          {!isFulfilled && preparedButton}
-        </section>
         <section className="ml-auto">
           Scheduled: {scheduleTimeObj.toLocaleTimeString()}
         </section>

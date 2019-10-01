@@ -79,8 +79,8 @@ mutation addCategory($name: String!) {
 `;
 
 export const ADD_MENU_ITEM = gql`
-mutation addMenu($name: String!, $price: Int!, $categoryId: ID!,$choice:String!) {
-  menuItemMutation(input: { name: $name, price: $price, category: $categoryId,options:$choice}) {
+mutation addMenu($name: String!, $price: Int!, $categoryId: ID!,$choice:String!, $id: ID) {
+  menuItemMutation(input: { id: $id, name: $name, price: $price, category: $categoryId, options:$choice }) {
     menuItem {
       id
       name
