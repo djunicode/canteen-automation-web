@@ -5,7 +5,7 @@ import { HttpLink } from 'apollo-link-http';
 
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
-const httpsUri = `https://${process.env.REACT_APP_GRAPHQL_ENDPOINT}`;
+const httpsUri = `http://${process.env.REACT_APP_GRAPHQL_ENDPOINT}`;
 
 const httpLink = new HttpLink({
   uri: httpsUri,

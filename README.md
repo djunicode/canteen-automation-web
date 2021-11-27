@@ -51,6 +51,7 @@
   npm install
   npm start
 ```
+Note: DO NOT RUN ```npm audit fix```
 
 ## Development Instructions
 
