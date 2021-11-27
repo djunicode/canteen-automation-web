@@ -19,5 +19,5 @@ sqlparse==0.3.0
 gunicorn
 whitenoise
 django-environ
-psycopg2
+#psycopg2
 Pillow
