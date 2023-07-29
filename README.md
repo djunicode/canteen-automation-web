@@ -1,6 +1,6 @@
 <p>
     <h1 align='center'> 🥙 Canteen Automation Project </h1>
-    <h6 align='center'> Admin Dashboard </h6>
+    <h6 align='center'> Project link - https://www.djunicode.in/projects/canteen-automation-web </h6>
 </p>
 
 <h4 align='center'> Repository for the Unicode 2018 project Canteen ordering and queueing system. </h4>
